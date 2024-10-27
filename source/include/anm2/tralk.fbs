@@ -1,0 +1,113 @@
+﻿include "animation_common2.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "tralk";
+
+// LookAtの値から上軸を計算する種類
+enum UpAxisType : uint {
+  ZeroXPlusZMinusY,
+  ZeroXMinusZPlusY,
+  PlusZZeroYMinusX,
+  MinusZZeroYPlusX,
+  PlusYMinusXZeroZ,
+  MinusYPlusXZeroZ,
+}
+
+// 補間の種類
+enum InterpolationType : uint {
+  Linear,
+  EaseInOutQuad,
+  EaseInOutCubic,
+  EaseInOutQuart,
+  EaseInOutQuint,
+  EaseInOutSine,
+}
+
+
+enum LookAtType : uint {
+  InterpolatedPosition,  // 位置補間
+  AngleSpeed,            // 回転速度
+}
+
+// LookAtGroup
+table LookAtGroup {
+  controlJointName:string;
+
+  // Axis Variables
+  lookAtAxis:gfl.anm2.fb.Vector3;
+  lookUpAxis:gfl.anm2.fb.Vector3;
+  upAxisType:UpAxisType;
+
+  // Clamp Variables
+  leftClampInDegrees:float;
+  rightClampInDegrees:float;
+  upClampInDegrees:float;
+  downClampInDegrees:float;
+
+  horizontalClampBlendRange:float;
+  verticalClampBlendRange:float;
+
+  // Interpolation
+  interpolationTime:float;
+  interpolationType:InterpolationType;
+
+  // Material Variables
+  isMaterialLookAt:bool;
+  meshName:string;
+  materialName:string;
+  jointOffset:gfl.anm2.fb.Vector3;
+
+  // Interpolation Rotation
+  isUseInterpolationRotations:bool;
+
+  // Interpolation Point Values (Material UV / Joint Rotations)
+  interpolationPointValues:[gfl.anm2.fb.Vector3];
+
+  // Interpolation Translation
+  isUseInterpolationTranslations:bool;
+
+  // Interpolation Translation Values (In combination with Joint Rotations Points)
+  interpolationTranslationValues:[gfl.anm2.fb.Vector3];
+
+  // Angle Rotation Speed
+  rotSpeedPerSecond:float;
+
+  // UV Uniform Names
+  materialUVUniformNames:[string];
+
+  // Rotation Speed Ease Time
+  rotSpeedEaseTime:float;
+
+  // Rotation Speed Fixed Look At
+  fixedLookAtTime:float;
+  fixedLookAtAreaInDegrees:float;
+  fixedLookAtReleaseAreaInDegrees:float;
+
+  // Channel ID
+  channelID:int = 0;
+
+  // Rotation Weights
+  rotationWeights:[float];
+
+  // No-Look
+  isNoLookByMaterial:bool;
+  materialUVsNoLook:[gfl.anm2.fb.Vector4];
+}
+
+// LookAt Config, Animation Subcomponent
+table LookAtConfig {
+  interpolationThreshold:float;
+
+  // Group Data
+  lookAtGroups:[LookAtGroup];
+
+  // LookAt Type
+  lookAtType:LookAtType;
+
+  // Target Minimum Distance
+  isTargetMinDistEnabled:bool;
+  targetMinDist:float;
+  targetMinDistJointName:string;
+}
+
+root_type LookAtConfig;

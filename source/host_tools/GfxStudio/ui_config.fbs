@@ -1,0 +1,58 @@
+namespace GfxStudio.UI;
+
+// モード
+enum Mode : int {
+  // Model を表示するモード
+  ModelViewer,
+
+  // Config を編集するモード
+  AnimationConfig,
+
+  // PokeConfig を編集するモード
+  PokeConfig,
+
+  // ModelMetadata を編集するモード
+  ModelMetadata,
+
+  // CharacterCreate モード
+  CharacterCreate,
+
+  // CharacterCreateMaster モード
+  CharacterCreateMaster,
+
+  // CurveDataSet モード
+  CurveDataSet,
+
+  // モデルキャプチャモード
+  ModelCapture,
+
+  // Preference を編集するモード
+  Preference,
+
+  // 開発者用機能モード
+  Developer,
+}
+
+// ImGui の Style
+enum Style : int {
+  // ImGui.StyleColorsClassic()
+  Classic,
+
+  // ImGui.StyleColorsLight()
+  Light,
+
+  // ImGui.StyleColorsDark()
+  Dark,
+}
+
+// 保存する UI 情報
+table UIConfig {
+  Mode: Mode = ModelViewer;
+  Style: Style = Dark;
+  NavEnableKeyboard: bool = true;
+  IsSelectionVisible: bool = false;
+  IsJointVisible: bool = false;
+  IsLocatorVisible: bool = false;
+}
+
+root_type UIConfig;

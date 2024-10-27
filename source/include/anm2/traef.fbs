@@ -1,0 +1,23 @@
+﻿include "traed.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "traef";
+
+// ---------------------------------------------------------
+// ■アニメーションイベントファイル
+
+// トラック情報
+table TrackData {
+  name:string;          // トラック名
+  path:string;          // トラックファイル(traed)への相対パス (エディタ用)
+  templateName:string;  // トラックテンプレート名(エディタ用)
+}
+
+// アニメーションイベントファイル
+table AnimationEventData {
+  events:[EventData];  // 全てのトラックからのイベントデータを結合した配列 (インゲーム用)
+  tracks:[TrackData];  // トラックデータ配列 (エディタ用)
+}
+
+// ルートタイプ
+root_type AnimationEventData;

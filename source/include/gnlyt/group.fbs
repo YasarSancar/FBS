@@ -1,0 +1,17 @@
+include "types.fbs";
+
+namespace gfl.gnlyt.fb;
+
+table PaneRef {
+    name:string;
+}
+
+table Group {
+    name:string;
+    paneref:[PaneRef];
+    group:[Group];
+}
+
+table GroupSet {
+    rootgroup:Group;
+}

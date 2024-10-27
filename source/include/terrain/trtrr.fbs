@@ -1,0 +1,96 @@
+﻿namespace gfl.terrain.fb;
+
+// 3次元ベクトル
+struct Vector3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+// 4次元ベクトル
+struct Vector4 {
+  x:float;
+  y:float;
+  z:float;
+  w:float;
+}
+
+table AABB {
+  min:Vector4;
+  max:Vector4;
+}
+
+// 草に向けた風の設定
+table WindSettingsForGrass {
+  speed:float;
+  size:float;
+  bending:float;
+  grassTint:Vector4;
+}
+
+// メッシュの解像度
+table MeshResolution {
+  terrainWidth:float;
+  terrainLength:float;
+  terrainHeight:float;
+  detailResolutionPerPatch:int;
+  detailResolution:int;
+}
+
+// テクスチャの解像度
+table TextureResolutions {
+  baseTextureResolution:int;
+  controlTextureResolution:int;
+  heightmapResolution:int;
+}
+
+// 木のインスタンス設定
+table Tree {
+  modelFilePath:string;
+  instanceFilePathList:[string];
+}
+
+// ディティールの設定
+table Detail {
+  detailFilePath:string;
+  minWidth:float;     // deprecated
+  maxWidth:float;     // deprecated
+  minHeight:float;    // deprecated
+  maxHeight:float;    // deprecated
+  noiseSpread:float;  // deprecated
+  healthyColor:Vector4;
+  dryColor:Vector4;
+  tileResolution:int;
+  cellResolutionPerTile:int;
+  tileSize:float;
+  noiseScaleH:float;
+  noiseScaleV:float;
+  noiseOffsetX:float;
+  noiseOffsetZ:float;
+  noiseOffsetS:float;
+  minScaleV:float;
+  maxScaleV:float;
+  spreadScaleH:float;
+  shared:bool = false;
+}
+
+// マテリアル
+table Material {
+  materialPath:string;
+}
+
+table Terrain {
+  windSettingsForGrass:WindSettingsForGrass;
+  meshResolution:MeshResolution;
+  textureResolutions:TextureResolutions;
+  treeCount:int;
+  trees:[Tree];
+  detailCount:int;
+  details:[Detail];
+  material:Material;
+  detailTextureList:[string];
+  version:uint = 1;
+  boundingBox:AABB;
+}
+
+root_type Terrain;

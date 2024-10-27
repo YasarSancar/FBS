@@ -1,0 +1,25 @@
+﻿namespace gfl.terrain.fb;
+
+enum TextureFormat: uint {
+  Unknown = 0,
+  R8G8B8A8_UNORM,
+  R16_UNORM,
+  R2G2B2A2_UNORM,
+  Count
+}
+
+table TextureMeta{
+  format:TextureFormat;
+  width:int;
+  height:int;
+  depth:int;
+  mip_level:int;
+  data_size:int;
+}
+
+table TextureBuffer {
+  meta:TextureMeta;
+  data:[ubyte];
+}
+
+root_type TextureBuffer;

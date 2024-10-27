@@ -1,0 +1,13 @@
+include "DataType.fbs";
+
+namespace GenericEditor.Plugin.Model;
+
+table ModelPreviewSetVisibility {
+  instanceName:string;
+  targetMeshName:string;
+  visibility:bool;
+
+  dataType:DataType = ModelPreviewSetVisibility;
+}
+
+root_type ModelPreviewSetVisibility;

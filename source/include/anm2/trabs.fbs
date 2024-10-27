@@ -1,0 +1,86 @@
+﻿include "animation_common2.fbs";
+include "fbj_common.fbs";
+include "trcrv.fbs";
+
+namespace gfl.anm2.fb;
+
+file_extension "trabs";
+
+enum BlendShapeTargetType : uint {
+  Mesh,
+  Lattice,
+}
+
+// ---------------------------------------------------------
+// ■for May
+// ---------------------------------------------------------
+
+table MayaBlendShapeMesh {
+  name:string;                      // メッシュ名
+  targetNames:[string];             // ターゲット名リスト
+  targetType:BlendShapeTargetType;  // ターゲットタイプ
+}
+
+table MayaBlendShapeParam {
+  name:string;                      // パラメータ名
+  meshes:[MayaBlendShapeMesh];      // メッシュリスト
+  weights:[gfl.anm2.fbj.KeyBase];   // Weight用カーブデータ
+}
+
+table MayaBlendShapeDeformer {
+  name:string;                      // デフォーマ名
+  params:[string];                  // パラメータ名リスト
+}
+
+table MayaBlendShapeAnimationData {
+  params:[MayaBlendShapeParam];      // パラメータリスト
+  deformers:[MayaBlendShapeDeformer];// デフォーマリスト
+}
+
+// ---------------------------------------------------------
+// ■for editor
+// ---------------------------------------------------------
+
+table EditorBlendShapeParam {
+  shapeName:string;     // ターゲットシェイプ名
+  trcrvPath:string;     // Weight用カーブデータパス
+  curveData:CurveData;  // Weight用カーブデータ
+}
+
+table EditorBlendShapeAnimationData {
+  blendShapeParams:[EditorBlendShapeParam];
+}
+
+// ---------------------------------------------------------
+// ■for runtime
+// ---------------------------------------------------------
+table BlendShapeMesh {
+  name:string;                      // メッシュ名
+  targetNames:[string];             // ターゲット名リスト
+  targetType:BlendShapeTargetType;  // ターゲットタイプ
+}
+
+table BlendShapeParam {
+  name:string;                      // パラメータ名
+  meshes:[BlendShapeMesh];          // メッシュリスト
+  weights:KeyData_Float;            // Weight用カーブデータ
+  deformerIndex:int = -1;           // デフォーマ番号
+}
+
+table BlendShapeDeformer {
+  name:string;                      // デフォーマ名
+}
+
+// ---------------------------------------------------------
+// ■ブレンドシェイプアニメーションデータ
+table BlendShapeAnimationData {
+  frameSetting:fb.FrameSetting;  // フレーム設定
+  editorBlendShapeAnimationData:EditorBlendShapeAnimationData; // エディット時用ブレンドシェイプアニメーションデータ
+
+  params:[BlendShapeParam];      // ランタイム用ブレンドシェイプアニメーションデータ
+  mayaBlendShapeAnimationData:MayaBlendShapeAnimationData; // Maya用ブレンドシェイプアニメーションデータ
+  deformers:[BlendShapeDeformer];// ランタイム用デフォーマリスト
+}
+
+// ルートタイプ
+root_type BlendShapeAnimationData;

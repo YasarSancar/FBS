@@ -1,0 +1,8 @@
+namespace gfl.debug_framework.fb.light;
+
+table LightChangeOffsetTableData {
+  offsetTypeName:string;
+  blendWeight:float;
+}
+
+root_type LightChangeOffsetTableData;

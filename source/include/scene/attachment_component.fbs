@@ -1,0 +1,8 @@
+namespace gfl.scene.fb;
+  
+table AttachmentComponent {
+  filePath:string;
+  instanceName:string;
+}
+  
+root_type AttachmentComponent;

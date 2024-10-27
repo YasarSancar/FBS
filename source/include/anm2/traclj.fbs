@@ -1,0 +1,72 @@
+﻿namespace gfl.anm2.fbj;
+
+file_extension "traclj";
+
+// ---------------------------------------------------------
+// ■レイヤーコンフィグ
+
+// レイヤーモード
+enum LayerMode : int {
+  // 上書きレイヤー
+  Override,
+
+  // 加算レイヤー
+  Additive,
+}
+
+table JointMask {
+  name:string;                // ジョイント名
+  enabled:bool;               // アニメーションを流すかどうか
+}
+
+table MeshMask {
+  name:string;                // メッシュ名
+  enabled:bool;               // アニメーションを流すかどうか
+}
+
+table AttributeMask {
+  name:string;                // アトリビュート名
+  enabled:bool;               // アニメーションを流すかどうか
+}
+
+table MaterialMask {
+  name:string;                    // マテリアル名
+  floatMaskList:[AttributeMask];  // floatパラメータマスク
+  float4MaskList:[AttributeMask]; // float4パラメータマスク
+}
+
+table DeformerMask {
+  name:string;                // デフォーマ名
+  enabled:bool;               // アニメーションを流すかどうか
+}
+
+table Mask {
+  jointMaskList:[JointMask];        // ジョイントマスクリスト
+  meshMaskList:[MeshMask];          // メッシュマスクリスト
+  materialMaskList:[MaterialMask];  // マテリアルマスクリスト
+  deformerMaskList:[DeformerMask];  // デフォーママスクリスト
+}
+
+table Layer {
+  no:int;                    // レイヤー番号
+  name:string;                // レイヤー名
+
+  mask:Mask;                  // マスク
+  mode:LayerMode;             // レイヤーモード
+
+  // 削除予定 ここから
+  enablePhysicsWeight:bool = true;      // Physicsのウェイト値を反映
+  enableWindWeight:bool = true;         // Windのウェイト値を反映
+  enableWindNoiseWeight:bool = true;    // WindNoiseのウェイト値を反映
+  // 削除予定 ここまで
+
+  additionalParameterEnableList:[bool]; // 追加パラメータを反映するかのリスト
+}
+
+table LayerConfig {
+  layerList:[Layer];          // レイヤーリスト
+  blendMask:Mask;             // ブレンドマスク
+}
+
+// ルートタイプ
+root_type LayerConfig;

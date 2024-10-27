@@ -1,0 +1,9 @@
+namespace gfl.audio.fb;
+
+table AudioBankComponent {
+  bankNames:[string];
+  isAsyncLoad:bool = false;
+  loadOnAwake:bool = true;
+}
+
+root_type AudioBankComponent;

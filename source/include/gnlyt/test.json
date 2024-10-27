@@ -1,0 +1,1173 @@
+{
+    "name": "test",
+    "paneSet":[
+        {
+            "pane_type":"Picture",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Picture",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"picture_test",
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":512.0, "y":128.0 },
+                    "translate":{ "x":-200.0, "y":80.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "vtxColLT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColLB":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRB":{ "r":255, "g":255, "b":255, "a":255 },
+                "texCoord": [
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    }
+                ],
+                "material":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/Digital.0.bntx",
+                            "wrap_s":"TexWrap_Mirror",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texPattern":[
+                        {
+                            "images": [
+                                "Texture/Digital.0.bntx",
+                                "Texture/Digital.1.bntx",
+                                "Texture/Digital.2.bntx",
+                                "Texture/Digital.3.bntx",
+                                "Texture/Digital.4.bntx",
+                                "Texture/Digital.5.bntx",
+                                "Texture/Digital.6.bntx",
+                                "Texture/Digital.7.bntx",
+                                "Texture/Digital.8.bntx",
+                                "Texture/Digital.9.bntx"
+                            ]
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    }
+                }
+            }
+        },
+       {
+            "pane_type":"Window",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Window",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"picture_test_win",
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":512.0, "y":256.0 },
+                    "translate":{ "x":-200.0, "y":-256.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "vtxColLT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColLB":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRB":{ "r":255, "g":255, "b":255, "a":255 },
+                "frameSize":{
+                    "left":32.0, "right":32.0, "top":32.0, "bottom":32.0
+                },
+                "textureFrameSize":{
+                    "left":0.5, "right":0.5, "top":0.5, "bottom":0.5
+                },                
+                "matCorner":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/window_corner.bntx",
+                            "wrap_s":"TexWrap_Repeat",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    },
+                    "interpolateCol":{
+                        "blackColor":{ "r":0, "g":0, "b":0, "a":0 },
+                        "whiteColor":{ "r":255, "g":255, "b":255, "a":255 },
+                        "interpolateAlpha": false
+                    }
+                },
+                "matLR":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/window_LR.bntx",
+                            "wrap_s":"TexWrap_Repeat",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":2.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    }
+                },
+                "matTB":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/window_TB.bntx",
+                            "wrap_s":"TexWrap_Repeat",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":2.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    }
+                },
+                "matContent":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/window_content.bntx",
+                            "wrap_s":"TexWrap_Repeat",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":2.0, "y":2.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    }
+                },
+                "texCoord":{
+                    "tex_LT":{ "s":0, "t":0 },
+                    "tex_RT":{ "s":1, "t":0 },
+                    "tex_LB":{ "s":0, "t":1 },
+                    "tex_RB":{ "s":1, "t":1 }
+                }
+            }
+        },
+        {
+            "pane_type":"Scissor",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Scissor",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"scissor",
+                    "alpha": 255,
+                    "isInfluencedAlpha": false,
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":180.0, "y":800.0 },
+                    "translate":{ "x":300.0, "y":0.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                }
+            }
+        },
+        {
+            "pane_type":"Picture",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Picture",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"picture_test_r",
+                    "alpha": 255,
+                    "isInfluencedAlpha": true,
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":2.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "vtxColLT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColLB":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRB":{ "r":255, "g":255, "b":255, "a":255 },
+                "texCoord": [
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    }
+                ],
+                "material":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/f128.bntx",
+                            "wrap_s":"TexWrap_Mirror",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    }
+                }
+            }
+        },
+        {
+            "pane_type":"Null",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Null",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"null",
+                    "alpha": 255,
+                    "isInfluencedAlpha": true,
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                }
+            }
+        },
+        {
+            "pane_type":"Picture",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Picture",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"picture_test_text",
+                    "alpha": 255,
+                    "isInfluencedAlpha": true,
+                    "basePosition":{ "horizontal":"HorizontalPosition_Left", "vertical":"VerticalPosition_Bottom" },
+                    "parentRelativePosition":{ "horizontal":"HorizontalPosition_Right", "vertical":"VerticalPosition_Bottom" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "vtxColLT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColLB":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRB":{ "r":255, "g":255, "b":255, "a":255 },
+                "texCoord": [
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    }
+                ],
+                "material":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/mark.1.bntx",
+                            "wrap_s":"TexWrap_Mirror",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    }
+                }
+            }
+        },
+        {
+            "pane_type":"TextBox",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Textbox",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"text_test",
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "utf8": true,
+                "text": "テキストペイン1",
+                "font": "UDKakugo",
+                "fontSize": { "x":32.0, "y":32.0 },
+                "space": { "x":0.0, "y":0.0 },
+                "textPosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                "textAlignment": "TextAlignment_Synchronous",
+                "textCache": 0,
+                "topColor": { "r":255, "g":255, "b":255, "a":255 },
+                "bottomColor": { "r":255, "g":0, "b":0, "a":255 },
+                "shadowOffset": { "x":1.0, "y":1.0 },
+                "shadowScale": { "x":1.0, "y":1.0 },
+                "shadowTopColor": { "r":0, "g":0, "b":0, "a":255 },
+                "shadowBottomColor": { "r":0, "g":0, "b":0, "a":255 },
+                "glyphTransform": {
+                    "offset": 0.0,
+                    "width": 100.0,
+                    "enableLoop": true,
+                    "transformInfos": [
+                        {
+                            "target": "CurveTypeGlyphTransform_TranslateY",
+                            "curveType": "CurveType_Linear",
+                            "keyframe": {
+                                "keyframes": [ 0.0, 50.0 ],
+                                "times": [ 0.0, 100.0 ]
+                            }
+                        },
+                        {
+                            "target": "CurveTypeGlyphTransform_RotateX",
+                            "curveType": "CurveType_Linear",
+                            "keyframe": {
+                                "keyframes": [ 0.0, 3.14 ],
+                                "times": [ 0.0, 100.0 ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "pane_type":"Parts",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Parts",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"parts",
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":700.0, "y":100.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "textCacheOffset" : 0,
+                "layout":"gnlyt/parts.bin",
+                "animations": [ "gnlyt/parts_anim.bin" ]
+            }
+        },
+        {
+            "pane_type":"Picture",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Picture",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"compare",
+                    "alpha": 255,
+                    "isInfluencedAlpha": true,
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "parentRelativePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":740.0, "y":128.0 },
+                    "translate":{ "x":550.0, "y":-400.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "vtxColLT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColLB":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRB":{ "r":255, "g":255, "b":255, "a":255 },
+                "texCoord": [
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    }
+                ],
+                "material":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/f128.bntx",
+                            "wrap_s":"TexWrap_Mirror",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    }
+                }
+            }
+        },
+        {
+            "pane_type":"Alignment",
+            "pane":{
+                "base":{
+                      "kind":"PaneKind_Picture",
+                      "flag":"PaneFlag_Visible",
+                      "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                      "name":"align",
+                      "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                      "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                      "scale":{ "x":1.0, "y":1.0 },
+                      "size":{ "x":740.0, "y":128.0 },
+                      "translate":{ "x":550.0, "y":-256.0, "z":0.0 },
+                      "userData":"",
+                      "comment":""
+                },
+                direction:"AlignDirection_Horizontal",
+                horizontalAlignment:"HorizontalPosition_Left",
+                verticalAlignment:"VerticalPosition_Bottom",
+                margin:0.0,
+                isexpand:true
+            }
+        },
+        {
+            "pane_type":"Null",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Null",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"null2",
+                    "alpha": 255,
+                    "isInfluencedAlpha": true,
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                }
+            }
+        },
+        {
+            "pane_type":"Picture",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Picture",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"picture_tev",
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "vtxColLT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColLB":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRB":{ "r":255, "g":255, "b":255, "a":255 },
+                "texCoord": [
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    }
+                ],
+                "material":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/mark.1.bntx",
+                            "wrap_s":"TexWrap_Mirror",
+                            "wrap_t":"TexWrap_Mirror",
+                            "textureStage":0
+                        },
+                        {
+                            "imageName":"Texture/maskTest01.bntx",
+                            "wrap_s":"TexWrap_Mirror",
+                            "wrap_t":"TexWrap_Mirror",
+                            "textureStage":0
+                        },
+                                                {
+                            "imageName":"Texture/indirect.bntx",
+                            "wrap_s":"TexWrap_Mirror",
+                            "wrap_t":"TexWrap_Mirror",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        },
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        },
+                                                {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        },
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        },
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    },
+                    "combiner": [
+                      {
+                        "rgb": "CombineType_BlendIndirect",
+                        "alpha": "CombineAlphaType_Max"
+                      },
+                      {
+                        "rgb": "CombineType_Modulate",
+                        "alpha": "CombineAlphaType_Max"
+                      }
+                    ],
+                    "indirectScale": {"x":1.0, "y":1.0},
+                    "indirectRotate": 0.0
+                }
+            }
+        },
+        {
+            "pane_type":"Picture",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Picture",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"picture_mask",
+                    "basePosition":{ "horizontal":"HorizontalPosition_Left", "vertical":"VerticalPosition_Bottom" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":1.047 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":64.0, "y":-64.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "vtxColLT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColLB":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRB":{ "r":255, "g":255, "b":255, "a":255 },
+                "texCoord": [
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    }
+                ],
+                "material":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/maskTest01.bntx",
+                            "wrap_s":"TexWrap_Mirror",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    }
+                }
+            }
+        },
+        {
+            "pane_type":"TextBox",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Textbox",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"text_tev",
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":0.0, "y":-128.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "utf8": false,
+                "text": "RGB:インダイレクト\n３枚テスト",
+                "font": "RodinNTLG",
+                "fontSize": { "x":32.0, "y":32.0 },
+                "space": { "x":0.0, "y":0.0 },
+                "textPosition":{ "horizontal":"HorizontalPosition_Left", "vertical":"VerticalPosition_Top" },
+                "textAlignment": "TextAlignment_Center",
+                "textCache": 1,
+                "topColor": { "r":255, "g":255, "b":0, "a":255 },
+                "bottomColor": { "r":255, "g":255, "b":0, "a":255 },
+                "shadowOffset": { "x":1.0, "y":1.0 },
+                "shadowScale": { "x":1.0, "y":1.0 },
+                "shadowTopColor": { "r":0, "g":0, "b":0, "a":255 },
+                "shadowBottomColor": { "r":0, "g":0, "b":0, "a":255 },
+                "glyphTransform": {
+                    "offset": 0.0,
+                    "width": 100.0,
+                    "enableLoop": true,
+                    "transformInfos": [
+                        {
+                            "target": "CurveTypeGlyphTransform_ColorTopR",
+                            "curveType": "CurveType_Linear",
+                            "keyframe": {
+                                "keyframes": [ 0.0, 255.0 ],
+                                "times": [ 0.0, 100.0 ]
+                            }
+                        },
+                        {
+                            "target": "CurveTypeGlyphTransform_ColorBottomR",
+                            "curveType": "CurveType_Linear",
+                            "keyframe": {
+                                "keyframes": [ 0.0, 255.0 ],
+                                "times": [ 0.0, 100.0 ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "pane_type":"Picture",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Picture",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"picture_mark",
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":250.0, "y":0.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "vtxColLT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColLB":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRB":{ "r":255, "g":255, "b":255, "a":255 },
+                "texCoord": [
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    }
+                ],
+                "material":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/mark.1.bntx",
+                            "wrap_s":"TexWrap_Mirror",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    }
+                }
+            }
+        },
+        {
+            "pane_type":"Picture",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Picture",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"picture_indirect",
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":350.0, "y":0.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "vtxColLT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColLB":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRB":{ "r":255, "g":255, "b":255, "a":255 },
+                "texCoord": [
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    }
+                ],
+                "material":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/indirect.bntx",
+                            "wrap_s":"TexWrap_Mirror",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    }
+                }
+            }
+        },
+       {
+            "pane_type":"Picture",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Picture",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"picture_test_c",
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":2.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":0.0, "y":300.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "vtxColLT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColLB":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRB":{ "r":255, "g":255, "b":255, "a":255 },
+                "texCoord": [
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    }
+                ],
+                "material":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/f128.bntx",
+                            "wrap_s":"TexWrap_Mirror",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    }
+                }
+            }
+        }
+    ],
+    "paneHierarchy":{
+        "name":"RootPane",
+        "children":[
+            {
+                "name": "picture_test"
+            },
+            {
+                "name": "align",
+                "children": [
+                    {
+                        "name":  "null2",
+                        "children": [
+                            {
+                                "name": "picture_tev"
+                            },
+                            {
+                                "name": "picture_mask"
+                            },
+                            {
+                                "name": "text_tev"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "picture_mark"
+                    },
+                    {
+                        "name": "picture_indirect"
+                    }
+                ]
+            },
+            {
+                "name": "compare"
+            },
+            {
+                "name": "scissor",
+                "children": [
+                    {
+                        "name": "picture_test_r",
+                        "children": [
+                            {
+                                "name": "null",
+                                "children": [
+                                    {
+                                        "name": "picture_test_text",
+                                        "children": [
+                                            {
+                                                "name": "text_test"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "picture_test_c"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name":  "picture_test_win"
+            },
+            {
+                "name":  "parts"
+            }
+        ]
+    },
+    "groupset":{
+        "rootgroup":{
+            "name":"RootGroup",
+            "group":[
+                {
+                    "name":"group_test",
+                    "paneref":[
+                        { "name": "picture_test" },
+                        { "name": "picture_test_win" },
+                        { "name": "parts" },
+                        { "name": "picture_tev" },
+                        { "name": "picture_mask" },
+                        { "name": "picture_mark" }
+                    ]
+                },
+                {
+                    "name":"group_test2",
+                    "paneref":[
+                        { "name": "scissor" },
+                        { "name": "picture_test_r" },
+                        { "name": "text_test" }
+                    ]
+                }
+            ]
+        }
+    },
+    "screenSetting":{
+        "layoutSize":{ "x":1920.0, "y":1080.0 },
+        "backGround":{ "r":169, "g":169, "b":169, "a":255 },
+        "grid":{
+            "thickLineInterval":40,
+            "thinDivisionNum":4,
+            "visible":"true",
+            "moveMethod":"None",
+            "color":{ "r":128, "g":128, "b":64, "a":128 }
+        }
+    }
+}

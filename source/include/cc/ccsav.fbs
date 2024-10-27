@@ -1,0 +1,95 @@
+// キャラクリエイト用エディタ保存法データ
+
+namespace gfl.cc.fb;
+
+file_extension "ccsavj";
+
+// --- モデルパーツデータ ---
+table CCPartsSaveData {
+  name:string;           // パーツ名
+  isRoot:bool;           // ルートパーツ(アニメーションのベースになるパーツ)
+  trmdljFilePath:string; // Trmdljファイルパス
+  trmmtjFilePath:string; // Trmmtjファイルパス
+  tracnjFilePath:string; // Tracnjファイルパス (削除予定。しばらくは互換用に残す)
+  metadataName:string;   // メタデータ名
+  tracnjFilePathList:[string]; // Tracnjファイルパスリスト
+  isAnimationLayer:bool; // パーツをアニメーションレイヤーとしてマージする
+  useSharedPartsAnimation:bool;           // パーツ間共有アニメを使用する
+  sharedPartsAnimationFolder:string;      // パーツ間共有アニメ用のディレクトリパス
+  sharedPartsAnimationFileList:[string];  // パーツ間共有アニメ用のファイルリスト
+}
+
+// --- モディファイアデータ ---
+
+// Ratio データ
+table CCModifierRatioSaveData {
+  tagName:string;
+  ratio:float;
+}
+
+// Scalar データ
+table CCModifierScalarSaveData {
+  tagName:string;
+  scaleX:float;
+  scaleY:float;
+  scaleZ:float;
+}
+
+// Modifierデータ
+table CCModifierSaveData {
+  trbsmjFilePath:string;
+  ratioList:[CCModifierRatioSaveData];
+  scalarList:[CCModifierScalarSaveData];
+}
+
+// --- アタッチパーツデータ ---
+table CCAttachPartsSaveData {
+  trmdljFilePath:string;  // Trmdljファイルパス
+  attachJointName:string; // アタッチ先ジョイント名
+  inheritedScale:bool;    // スケール伝搬
+}
+
+// --- バリエーション : パラメータデータ ---
+table CCVariationParameterSaveData {
+  name:string;            // パラメータ名
+  value:int;              // 値
+}
+
+// --- バリエーション : パーツデータ ---
+table CCVariationPartsSaveData {
+  partsName:string;                               // パーツ名
+  metadataName:string;                            // メタデータ名
+  parameterList:[CCVariationParameterSaveData];   // パラメータリスト
+}
+
+// --- バリエーションデータ ---
+table CCVariationSaveData {
+  name:string;                            // バリエーション名
+  partsList:[CCVariationPartsSaveData];   // パーツリスト
+}
+
+// ルートパーツタイプ
+enum CCRootPartsType : uint {
+  FromPartsList,                          // パーツリストから選択する
+  PreviewOnly,                            // プレビュー用にパーツリスト外のファイルを選択する
+}
+
+// ルートパーツ設定
+table CCRootPartsSetting {
+  type:CCRootPartsType;                   // タイプ
+  rootTrmdlPathForPreview:string;         // プレビュー専用のルートパーツのパス
+}
+
+// --- セーブデータ ---
+table CCSaveData {
+  partsList:[CCPartsSaveData];
+  modifierData:CCModifierSaveData;
+  attachPartsList:[CCAttachPartsSaveData];
+  variationList:[CCVariationSaveData];
+  animationSlotCount:int = 1;
+  rootPartsSetting:CCRootPartsSetting;
+  animationReferencePath:string;          // 削除予定。互換用にしばらく残す
+  animationReferencePathList:[string];
+}
+
+root_type CCSaveData;

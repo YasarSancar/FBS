@@ -1,0 +1,17 @@
+﻿include "template_util.fbs";
+
+namespace AiEditor.Fb.Template;
+
+file_extension "json";
+
+//----------------------------------------
+// サービステンプレート
+//----------------------------------------
+
+// ルート
+table Service {
+  name:string;
+  parameters:[Parameter];
+}
+
+root_type Service;

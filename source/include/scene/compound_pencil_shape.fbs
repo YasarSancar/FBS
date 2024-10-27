@@ -1,0 +1,13 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+table CompoundPencilShape {
+    resourceName:string;
+    pos:gfl.math.fb.Vector3f;
+    radius:float;
+    cylinderHeight:float;
+    tipHeight:float;
+    sliceCount:int;
+}
+
+root_type CompoundPencilShape;

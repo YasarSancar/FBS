@@ -1,0 +1,9 @@
+namespace GenericEditor.Plugin.MotionDetector;
+
+// モーション検知システムの現在値
+table MotionDetectorMessage {
+  values:[float];
+  fileNames:[string];
+}
+
+root_type MotionDetectorMessage;

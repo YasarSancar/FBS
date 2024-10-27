@@ -1,0 +1,63 @@
+include "tranm.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "tracp";
+
+// ---------------------------------------------------------
+// ■パラメータ
+
+table IntParameter {
+  name:string;                   // パラメータ名
+  minValue:int;                  // 最小値
+  maxValue:int;                  // 最大値
+  defaultValue:int;              // デフォルト値
+  trigger:bool = false;          // トリガーフラグ
+}
+
+table FloatParameter {
+  name:string;                   // パラメータ名
+  minValue:float;                // 最小値
+  maxValue:float;                // 最大値
+  defaultValue:float;            // デフォルト値
+}
+
+table BoolParameter {
+  name:string;                   // パラメータ名
+  defaultValue:bool;             // デフォルト値
+  trigger:bool = false;          // トリガーフラグ
+}
+
+table TriggerParameter {
+  name:string;                   // パラメータ名
+}
+
+enum ParameterType : uint {
+  Int,
+  Float,
+  Bool,
+  Trigger,
+}
+
+table SortInfoItem {
+  parameterType:ParameterType;   // パラメータリスト種類
+  index:int;                     // パラメータリストへの順番
+}
+
+table ParameterConfig {
+  intParameters:[IntParameter];         // int型パラメータリスト
+  floatParameters:[FloatParameter];     // float型パラメータリスト
+  boolParameters:[BoolParameter];       // bool型パラメータリスト
+  triggerParameters:[TriggerParameter]; // trigger型パラメータリスト
+  sortInfo:[SortInfoItem];              // 表示順
+}
+
+// ---------------------------------------------------------
+// ■コンフィグ
+
+// アニメーションパラメタコンフィグ
+table AnimationParameterConfig {
+  parameterConfig:ParameterConfig;          // パラメータ設定
+}
+
+// ルートタイプ
+root_type AnimationParameterConfig;

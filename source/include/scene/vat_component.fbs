@@ -1,0 +1,7 @@
+namespace gfl.scene.fb;
+
+table VATComponent {
+    filePath:string;
+}
+
+root_type VATComponent;

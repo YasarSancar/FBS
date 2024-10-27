@@ -1,0 +1,11 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+table CompoundBoxShape {
+    resourceName:string;
+    pos:gfl.math.fb.Vector3f;
+    extend:gfl.math.fb.Vector3f;
+    rot:gfl.math.fb.Vector3f;
+}
+
+root_type CompoundBoxShape;

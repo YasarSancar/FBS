@@ -1,0 +1,11 @@
+include "../include/math/math.fbs";
+
+namespace GenericEditor.Plugin.Material;
+
+table FloatParamData {
+  materialName:string;
+  paramaterName:string;
+  value:float;
+}
+
+root_type FloatParamData;

@@ -1,0 +1,11 @@
+namespace GenericEditor.Plugin.Physics;
+
+table CollisionFilter {
+  filter:int;
+}
+
+table PhysicsFilterSetting {
+  collisionFilterList:[CollisionFilter];
+}
+
+root_type PhysicsFilterSetting;

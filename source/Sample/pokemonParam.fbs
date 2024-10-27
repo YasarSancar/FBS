@@ -1,0 +1,16 @@
+namespace FieldResource;
+
+struct Vec3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+table PokemonParam {
+  pos:Vec3;
+  mana:short = 150;
+  hp:short = 100;
+  name:string;
+}
+
+root_type PokemonParam;

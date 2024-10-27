@@ -1,0 +1,8 @@
+namespace gfl.scene.fb;
+  
+table ObjectSwitcher {
+  packageName:string;
+  functionName:string;
+}
+
+root_type ObjectSwitcher;

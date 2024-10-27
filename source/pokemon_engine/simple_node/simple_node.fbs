@@ -1,0 +1,7 @@
+namespace pe.simple_node.fb;
+  
+table SimpleNode {
+  nodeName:string;
+}
+  
+root_type SimpleNode;

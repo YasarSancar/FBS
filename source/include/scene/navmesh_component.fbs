@@ -1,0 +1,10 @@
+namespace gfl.scene.fb;
+  
+table NavmeshComponent {
+  filePath:string;
+  instanceName:string;
+  isResident:bool;
+  streamingLoadRadius:float;
+}
+  
+root_type NavmeshComponent;

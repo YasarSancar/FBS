@@ -1,0 +1,7 @@
+namespace gfl.scene.fb;
+
+table TextureBufferComponent {
+    bufferCount:int;
+}
+
+root_type TextureBufferComponent;

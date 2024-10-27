@@ -1,0 +1,19 @@
+include "../../math/math.fbs";
+namespace gfl.protocol.scene.fb;
+
+enum PinType : int{
+    Normal,
+    Flag,
+    Text,
+}
+
+table PinMessage {
+    position:gfl.math.fb.Vector3f; // ワールド座標位置
+    color:gfl.math.fb.Vector4f;
+    category:int;
+    type:PinType;
+    isEnable:bool;
+    extra:string;
+}
+
+root_type PinMessage;

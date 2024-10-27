@@ -1,0 +1,29 @@
+namespace gfl.scene.fb;
+
+enum InputEventType : int {
+  Button,
+  Stick
+}
+
+enum InputTriggerTiming : int {
+  Is,
+  Was,
+  Trigger,
+  Release,
+  Both,
+  Any,
+  XOR,
+  Not,
+  Always
+}
+
+table InputEventTriggerComponent {
+  inputName:string;
+  resourceName:string;
+  eventType:InputEventType;
+  triggerTiming:InputTriggerTiming;
+  triggerName:string;
+  eventNames:[string];
+}
+  
+root_type InputEventTriggerComponent;

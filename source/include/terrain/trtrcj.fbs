@@ -1,0 +1,29 @@
+﻿include "trtrr.fbs";
+
+namespace gfl.terrain.fb;
+
+file_extension "trtrcj";
+
+enum TerrainConfigType : uint {
+  None,
+  Detail
+}
+
+table DetailConfigItem {
+  index:int;
+  detail:Detail;
+}
+
+table TerrainConfigItem {
+  name:string;
+  type:TerrainConfigType;
+  detail_config_item:DetailConfigItem;
+}
+
+table TerrainConfig {
+  version:uint = 1;
+  source_path:string;
+  config_item_list:[TerrainConfigItem];
+}
+
+root_type TerrainConfig;

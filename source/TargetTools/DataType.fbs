@@ -1,0 +1,21 @@
+namespace GenericEditor.Plugin.Model;
+
+enum DataType : uint {
+  ModelLoad,
+  ModelRemove,
+  ModelSelect,
+  ModelDeselect,
+  ModelSRTUpdate,
+  ModelVisible,
+  ModelInvisible,
+  ModelResetPose,
+  ResetModelSRTAll,
+  AlignModelSRTAll,
+  RemoveModelAll,
+  ModelBlendShapeUpdateData,
+  ModelPreviewSetVisibility,
+  ModelSetLODLevel,
+  ModelLatticeUpdateData,
+  ModelLatticeDebugDrawEnable,
+  ModelPreviewWireFrame
+}

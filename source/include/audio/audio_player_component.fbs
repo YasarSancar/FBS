@@ -1,0 +1,7 @@
+namespace gfl.audio.fb;
+
+table AudioPlayerComponent {
+  startWithDisabled:bool = false;
+}
+
+root_type AudioPlayerComponent;

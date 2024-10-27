@@ -1,0 +1,8 @@
+namespace gfl.protocol.scene.fb;
+
+table ObjectVisibility {
+    nodeId: string;
+    isVisible: bool;
+}
+
+root_type ObjectVisibility;

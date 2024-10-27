@@ -1,0 +1,22 @@
+﻿include "types.fbs";
+
+namespace gfl.gfx2.fb;
+
+table VATMaterialInfo
+{
+  material_name:string;
+  offset_texture_path:string;
+  normal_texture_path:string;
+  tangent_texture_path:string;
+  max_offset:float;
+}
+
+table VAT {
+  version:uint = 1;
+  materials_info:[VATMaterialInfo];
+  play_offset:float;
+  play_speed:float;
+  random_seed:float;
+}
+
+root_type VAT;

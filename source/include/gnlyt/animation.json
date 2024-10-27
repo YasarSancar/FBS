@@ -1,0 +1,190 @@
+{
+  "name": "animation1",
+  "frameSize": 100.0,
+  "loopSetting": {
+    "enableLoop": true,
+    "loopFrame": 100.0,
+    "enableStartRandom": false
+  },
+  "sectionTag": {
+    "name": "Trans",
+    "groups": [ "group_test" ]
+  },
+  "animations": [
+    {
+      "name": "picture_test",
+      "kind": "AnimationKind_Pane_Translate",
+      "targets": [
+        {
+          "target": 1,
+          "curveType": "CurveType_Hermite",
+          "keyframe": {
+            "keyframes": [ 40.0, 40.0 ],
+            "times": [ 0.0, 100.0 ],
+            "slopes": [ -40.0, -40.0 ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "picture_test",
+      "kind": "AnimationKind_Texture_Pattern",
+      "targets": [
+        {
+          "target": 0,
+          "curveType": "CurveType_Step",
+          "keyframe": {
+            "keyframes": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+            "times": [ 0.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0, 90.0 ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "picture_test",
+      "kind": "AnimationKind_VertexColor",
+      "targets": [
+        {
+          "target": 0,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 255, 0 ],
+            "times": [ 0.0, 100.0 ]
+          }
+        },
+        {
+          "target": 5,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 255, 0 ],
+            "times": [ 0.0, 100.0 ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "picture_test_win",
+      "kind": "AnimationKind_VertexColor",
+      "targets": [
+        {
+          "target": 0,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 255, 0 ],
+            "times": [ 0.0, 100.0 ]
+          }
+        },
+        {
+          "target": 5,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 255, 0 ],
+            "times": [ 0.0, 100.0 ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "picture_test_win",
+      "kind": "AnimationKind_WindowFrame",
+      "targets": [
+        {
+          "target": 0,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 32, 64, 32 ],
+            "times": [ 0.0, 50, 100.0 ]
+          }
+        },
+        {
+          "target": 1,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 32, 64, 32 ],
+            "times": [ 0.0, 50, 100.0 ]
+          }
+        },
+        {
+          "target": 2,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 32, 64, 32 ],
+            "times": [ 0.0, 50, 100.0 ]
+          }
+        },
+        {
+          "target": 3,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 32, 64, 32 ],
+            "times": [ 0.0, 50, 100.0 ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "parts",
+      "kind": "AnimationKind_Pane_Scale",
+      "targets": [
+        {
+          "target": 0,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 1.0, 0.0, 1.0 ],
+            "times": [ 0.0, 50.0, 100.0 ]
+          }
+        },
+        {
+          "target": 1,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 1.0, 0.0, 1.0 ],
+            "times": [ 0.0, 50.0, 100.0 ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "picture_mask",
+      "kind": "AnimationKind_Pane_Rotate",
+      "targets": [
+        {
+          "target": 2,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 0.0, 6.28 ],
+            "times": [ 0.0, 100.0 ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "picture_tev",
+      "kind": "AnimationKind_Indirect_Scale",
+      "targets": [
+        {
+          "target": 0,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 0.0, 3.0, 0.0 ],
+            "times": [ 0.0, 50.0, 100.0 ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "picture_tev",
+      "kind": "AnimationKind_Indirect_Rotate",
+      "targets": [
+        {
+          "target": 0,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 0.0, 6.28 ],
+            "times": [ 0.0, 100.0 ]
+          }
+        }
+      ]
+    }
+  ]
+}

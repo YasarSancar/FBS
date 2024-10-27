@@ -1,0 +1,13 @@
+include "DataType.fbs";
+
+namespace GenericEditor.Plugin.Model;
+
+table ModelLatticeUpdateData {
+  instanceName:string;
+  latticeName:string;
+  weight:float;
+
+  dataType:DataType = ModelLatticeUpdateData;
+}
+
+root_type ModelLatticeUpdateData;

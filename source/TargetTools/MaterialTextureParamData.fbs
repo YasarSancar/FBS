@@ -1,0 +1,33 @@
+include "../include/math/math.fbs";
+
+namespace GenericEditor.Plugin.Material;
+
+// include/gfx2/trmtr.fbsをインクルードするとtypes.fbsがインクルードできずエラーになるため,
+// あくまでサンプラのデータを送るための簡易版として定義.
+table SimpleSampler {
+  min_filter:uint = 0;
+  mag_filter:uint = 0;
+  mip_filter:uint = 0;
+  reduction_mode:uint = 0;
+  max_anisotropy:float = 0.0;
+  lod_clamp_min:float = 0.0;
+  lod_clamp_max:float = 100.0;
+  lod_bias:float = 0.0;
+  lod_snap:float = 0.0;
+  wrap_u:uint = 0;
+  wrap_v:uint = 0;
+  wrap_w:uint = 0;
+  border_color:gfl.math.fb.Vector4f;
+  depth_compare_function:uint = 0;
+  depth_compare_enable:bool = false;
+}
+
+table TextureParamData {
+  materialName:string;
+  paramaterName:string;
+  filePath:string;
+
+  sampler:SimpleSampler;
+}
+
+root_type TextureParamData;

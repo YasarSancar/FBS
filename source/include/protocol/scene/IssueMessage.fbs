@@ -1,0 +1,30 @@
+include "../../math/math.fbs";
+namespace gfl.protocol.scene.fb;
+
+union IssueMessageData {
+    ShowIssue,
+    HideIssue,
+    OpenIssue,
+}
+
+table ShowIssue {
+    issueKey:string;
+    issueSummary:string;
+    sceneName:string;
+    objectName:string;
+    location:gfl.math.fb.Vector3f;
+}
+
+table HideIssue {
+    issueKey:string;
+}
+
+table OpenIssue {
+    issueKey:string;
+}
+
+table IssueMessage {
+    data:IssueMessageData;
+}
+
+root_type IssueMessage;

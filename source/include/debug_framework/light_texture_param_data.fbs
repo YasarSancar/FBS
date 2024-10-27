@@ -1,0 +1,13 @@
+include "../math/math.fbs";
+
+namespace gfl.debug_framework.fb.light;
+
+table TextureParamData {
+  lightName:string;
+  typeName:string;
+  paramaterName:string;
+  filePath:string;
+  lightUniqueId:string;
+}
+
+root_type TextureParamData;

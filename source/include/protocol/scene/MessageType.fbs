@@ -1,0 +1,24 @@
+namespace gfl.protocol.scene.fb;
+
+enum MessageType : uint {
+  SceneMesage,
+
+  // Sceneに対してのメッセージ
+  CreateNewScene,
+  ChangeNodeId,
+  RemoveScene,
+  CreateGroup,
+  RemoveGroup,
+  CreateElement,
+  RemoveElement,
+  UpdateProperty,
+  CameraRequest,
+  MoveToCameraViewPoint,
+  CreateSample,
+  RemoveSample,
+
+  // Sceneのシステムに対してのメッセージ
+  EditorMessage,
+  IssueMessage,
+  
+}

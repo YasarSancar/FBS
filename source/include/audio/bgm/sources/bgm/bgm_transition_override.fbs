@@ -1,0 +1,38 @@
+include "flatbuffers_editor.fbs";
+include "includes/audio_curve_type.fbs";
+include "sources/bgm/bgm_layer.fbs";
+
+namespace gfl.audio.fb;
+
+enum BGMTransitionOverrideType : int {
+  Any = 0,
+  Layer = 1,
+  Event = 2
+}
+
+table BGMTransitionOverride {
+  fadeInTime:float = 0.0;
+  fadeOutTime:float = 0.0;
+  delayTime:float = 0.0;
+  holdTime:float = 0.0;
+  overrideFadeInTime:bool = 0;
+  overrideFadeOutTime:bool = 0;
+  overrideDelayTime:bool = 0;
+  overrideHoldTime:bool = 0;
+  fadeInCurve:gfl.audio.fb.AudioCurveType = 4 (fbe_default_value: "Linear");
+  fadeOutCurve:gfl.audio.fb.AudioCurveType = 4 (fbe_default_value: "Linear");
+  overrideFadeInCurve:bool = 0;
+  overrideFadeOutCurve:bool = 0;
+  overrideStoreBehaviour:bool = 0;
+  storeBehaviour:gfl.audio.fb.BGMStoreBehaviour = 0 (fbe_default_value: "None");
+}
+
+table BGMTransitionOverrideRule {
+  srcType:gfl.audio.fb.BGMTransitionOverrideType = 0;
+  srcName:string;
+  dstType:gfl.audio.fb.BGMTransitionOverrideType = 0;
+  dstName:string;
+  transitionOverride:gfl.audio.fb.BGMTransitionOverride;
+}
+
+root_type gfl.audio.fb.BGMTransitionOverrideRule;

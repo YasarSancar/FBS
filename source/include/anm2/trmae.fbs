@@ -1,0 +1,22 @@
+﻿namespace gfl.anm2.fb;
+
+file_extension "trmae";
+
+table EffectPathTable {
+  metaDataName:string;
+  effectPath:string;
+}
+
+table EffectData {
+  effectName:string;
+  effectPathTable:[EffectPathTable];
+  jointName:string;
+  defaultEmit:bool;
+}
+
+// Model Attach Effect
+table ModelAttachEffect {
+  effectDataList:[EffectData];
+}
+
+root_type ModelAttachEffect;

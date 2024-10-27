@@ -1,0 +1,8 @@
+namespace pe.field.fb;
+  
+table WeatherEventTrigger {
+  resourceName:string;
+  triggerName:string;
+}
+
+root_type WeatherEventTrigger;

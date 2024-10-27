@@ -1,0 +1,132 @@
+namespace GfxStudio.UI.Preference.FB;
+
+enum Version : byte {
+  CurrentVersion = 1
+}
+
+table Vector3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+//--------------------------------------
+// General
+table General {
+  viewerPath:string;  // Viewer のパス
+  viewerTopMost:bool; // Viewer の表示プライオリティを最上位にする
+  viewerFovy:float;   // Viewer の画角
+  viewerNear:float;   // Viewer のNear設定
+  viewerFar:float;    // Viewer のFar設定
+}
+
+//--------------------------------------
+// Presets
+table Presets {
+  animationEventDirectory:string;
+  animationStateDirectory:string;
+  animationTagDirectory:string;
+  lightDirectory:string;
+  implicitVolumeDirectory:string;
+  attachmentDirectory:string;
+  postEffectDirectory:string;
+  materialDirectory:string;
+  animationEventTrackDirectory:string;
+  animationPreviewDirectory:string;
+}
+
+//--------------------------------------
+// ModelViewer
+table PreloadModel {
+  trmdlPath:string;  // 起動時に読むファイル
+  defaultDisp:bool;  // 読み込んだ後に表示するか
+  scale:Vector3;        // スケール
+  rotation:Vector3;     // 回転
+  translation:Vector3;  // 移動
+}
+
+table ModelViewer {
+  preloadModelList:[PreloadModel];
+  preloadAnimationList:[string];
+  isLocatorDefaultLoadPreset:bool;
+  convertOptionFilePath:string;
+}
+
+
+//--------------------------------------
+// AnimationConfig
+enum LookAtInterpolationType : uint {
+  Linear,
+  EaseInOutQuad,
+  EaseInOutCubic,
+  EaseInOutQuart,
+  EaseInOutQuint,
+  EaseInOutSine,
+}
+
+table AnimationConfig {
+  lookAtImportStartFrame:int;     // LookAt のインポート開始フレーム
+  lookAtImportFrameInterval:int;  // LookAt のインポートフレーム間隔
+  lookAtInterpolationTime:float;  // LookAt の補間時間
+  lookAtInterpolationType:LookAtInterpolationType;  // LookAt の補間種類
+  lookAtPosition:Vector3;
+}
+
+//--------------------------------------
+// Physics
+table CollisionFilter {
+  filter:int;
+}
+
+table Physics {
+  collisionFilterList:[CollisionFilter];
+}
+
+//--------------------------------------
+// TerrainViewer
+table PreloadTerrain {
+  trtrrPath:string;  // 起動時に読むファイル
+}
+
+table TerrainViewer {
+  preloadTerrainList:[PreloadTerrain];
+}
+
+//--------------------------------------
+// Audio
+table AudioConfig {
+  bankPath:string;
+  initEventName:string;
+  packageNames:[string];
+  initObjectEventName:string;
+}
+
+//--------------------------------------
+// ShaderManager
+table ShaderManagerConfig {
+  rootDirectory:string;
+  outputDirectory:string;
+  cacheDirectory:string;
+  debugInfoDirectory:string;
+  statisticsDirectory:string;
+}
+
+//--------------------------------------
+// 環境設定データ
+table Preference {
+  version:Version = CurrentVersion;
+  prefGeneral:General;                  // 全体設定
+  prefModelViewer:ModelViewer;          // ModelViewer 設定
+  prefLightList:[string];               // 起動時に読み込むライトリスト
+  prefPresets:Presets;                  // Presetsディレクトリ設定
+  prefAnimationConfig:AnimationConfig;  // AnimationConfig 設定
+  prefPhysics:Physics;				    // 物理エンジン設定
+  prefTerrainViewer:TerrainViewer;      // TerrainViewer 設定
+  prefAudio:AudioConfig;                // Audio 設定
+  prefLightAnimationList:[string];      // 起動時に読み込むライトアニメーションリスト
+  prefAreaLightList:[string];               // 起動時に読み込むエリアライトリスト
+  prefOffsetLightList:[string];               // 起動時に読み込むオフセットライトリスト
+  prefShaderManager:ShaderManagerConfig;  // ShaderManager設定
+}
+
+root_type Preference;

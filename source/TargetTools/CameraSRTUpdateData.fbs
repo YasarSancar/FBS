@@ -1,0 +1,21 @@
+include "../include/math/math.fbs";
+
+namespace GenericEditor.Plugin.Camera.FB;
+
+// 射影方法
+enum ProjectionType : ubyte {
+  Perspective,
+  Ortho,
+}
+
+table CameraSRTUpdateData {
+  instanceName:string;
+  rotation:gfl.math.fb.Vector3f;
+  translation:gfl.math.fb.Vector3f;
+  fovy:float = 30.0;
+  nearDistance:float = 32.0;
+  farDistance:float = 6000.0;
+  projectionType:ProjectionType;
+}
+
+root_type CameraSRTUpdateData;

@@ -1,0 +1,17 @@
+﻿namespace gfl.tml.fb;
+
+union MessageType {
+  FrameMessage,
+}
+
+// フレームメッセージ
+table FrameMessage {
+  frame:float;
+  fileName:string;
+}
+
+table TimelineMessage {
+  message:MessageType;
+}
+
+root_type TimelineMessage;

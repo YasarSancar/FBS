@@ -1,0 +1,29 @@
+{
+  "name": "simple_anim",
+  "frameSize": 100.0,
+  "loopSetting": {
+    "enableLoop": true,
+    "loopFrame": 100.0,
+    "enableStartRandom": false
+  },
+  "sectionTag": {
+    "name": "Test",
+    "groups": [ "group_test" ]
+  },
+  "animations": [
+    {
+      "name": "simple_test",
+      "kind": "AnimationKind_Pane_Rotate",
+      "targets": [
+        {
+          "target": 2,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 0.0, 6.28 ],
+            "times": [ 0.0, 100.0 ]
+          }
+        }
+      ]
+    }
+  ]
+}

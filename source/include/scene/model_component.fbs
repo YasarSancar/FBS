@@ -1,0 +1,35 @@
+namespace gfl.scene.fb;
+
+enum ModelLodOrigin : byte {
+    Object = 0,
+    Center = 1,
+}
+
+table ModelComponent {
+    filePath:string;
+    resourceName:string;
+    metaFilePath:string;
+    metaItemName:string;
+    overrideLodDistance:bool;
+    lodDistance0:float;
+    lodDistance1:float;
+    lodDistance2:float;
+    jointPriorityEnabled:bool;
+    jointPriorityDistance0:float;
+    jointMaxPriority0:int;
+    jointPriorityDistance1:float;
+    jointMaxPriority1:int;
+    jointPriorityDistance2:float;
+    jointMaxPriority2:int;
+    jointPriorityDistance3:float;
+    jointMaxPriority3:int;
+    visibleOnInit:bool = true;
+    overrideLodCategory:bool;
+    lodCategory:string;
+    lodSubCategory:string;
+    lodOrigin: ModelLodOrigin;
+    optNameSpace:string;
+    isStatic:bool = false;
+}
+
+root_type ModelComponent;

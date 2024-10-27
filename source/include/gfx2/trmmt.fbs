@@ -1,0 +1,105 @@
+﻿include "types.fbs";
+include "trmtr.fbs";
+include "trmmr.fbs";
+
+namespace gfl.gfx2.fb;
+
+// bool パラメータ
+table BoolParam {
+  name:string;
+  value:bool;
+}
+
+// アトリビュートリスト。この情報からメッシュアニメのマテリアルカーブデータを取得する。ランタイム側には必要ない。
+table ModelMetadataAttribute
+{
+  // メッシュ名
+  mesh_name:string;
+
+  // マテリアル名
+  material_name:string;
+
+  // アトリビュート名
+  attribute_name:string;
+}
+
+// ビジビリティリスト。この情報からメッシュアニメのビジビリティカーブデータを取得する。ランタイム側には必要ない。
+table ModelMetadataVisibility
+{
+  // メッシュ名
+  mesh_name:string;
+}
+
+// デフォーマリスト。この情報からメッシュアニメのビジビリティカーブデータを取得する。ランタイム側には必要ない。
+table ModelMetadataDeformer
+{
+  // デフォーマ名
+  deformer_name:string;
+}
+
+// メタデータ用パラメータ
+table ModelMetadataParam
+{
+  // パラメータ名
+  name:string;
+
+  // アトリビュートリスト
+  attribute_list:[ModelMetadataAttribute];
+
+  // 最小設定フレーム値
+  min_value:int;
+
+  // 最大設定フレーム値
+  max_value:int;
+
+  // メッシュアニメデータ(.tracmバイナリ)（ランタイム用）
+  mesh_anime_data:Blob;
+
+  // ビジビリティリスト
+  visibility_list:[ModelMetadataVisibility];
+
+  // デフォーマリスト
+  deformer_list:[ModelMetadataDeformer];
+
+  // ルール
+  rule:gfl.gfx2.fb.mmr.Parameter;
+
+  // デフォルト値上書き用、0 以上で有効
+  override_default_value:int = -1;
+}
+
+// メタデータリスト
+table ModelMetadataItem {
+
+  // データ名（"male", "female", "rare" 等、プロジェクト側で自由に設定可能)
+  name:string;
+
+  // マテリアル(trmtr)パスリスト
+  material_path_list:[string];
+
+  // メッシュのビジビリティ
+  mesh_visibility_list:[BoolParam];
+
+  // パラメータデータ
+  param_list:[ModelMetadataParam];
+
+  // パラメータとして利用するメッシュアニメのファイルパス
+  mesh_anime_file_path:string;
+}
+
+// モデルメタデータ
+table ModelMetadata {
+  // バージョン
+  version:uint = 2;
+
+  // 参照するtrmdlFilePath（エディタのみ使用）
+  trmdlFilePath:string;
+
+  // メタデータ
+  item_list:[ModelMetadataItem];
+
+  // 参照するルールファイル（エディタのみ使用）
+  ruleFilePath:string;
+}
+
+root_type ModelMetadata;

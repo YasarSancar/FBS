@@ -1,0 +1,21 @@
+﻿namespace gfl.anm2.fb;
+
+file_extension "trslp";
+
+// Slope Orientor Config
+table SlopeOrientorConfig {
+  originJointName:string;
+  pitchLimitInDegrees:float;
+  rollLimitInDegrees:float;
+  rotateSpeed:float;
+  terrainLayer:int;
+  rayCastDistance:float;
+  rayCastHeightOffset:float;
+  rayCastFrontOffset:float;
+  rayCastBehindOffset:float;
+  rayCastLeftOffset:float;
+  rayCastRightOffset:float;
+  isTerrainNormal:bool;
+}
+
+root_type SlopeOrientorConfig;

@@ -1,0 +1,174 @@
+// VSCode との通信プロトコル
+// スクリプトデバッガー用
+
+namespace sdp;  // script debugger protocol 長いので省略した
+
+file_extension "sdp";
+
+// --------------------------------------------------------
+// VSCode -> Runtime メッセージ集
+union ToRuntimeMessageType {
+  // Event
+  EventResponse,
+
+  // Request
+  DebugStartRequest,
+  SetBreakpointsRequest,
+  StackTraceRequest,
+  DebugActionRequest,
+  LocalVariablesRequest,
+  GlobalVariablesRequest,
+}
+
+// --------------------------------------------------------
+// Runtime -> VSCode メッセージ集
+union ToDebuggerMessageType {
+  // Event
+  StoppedEvent,
+  LoadedSourceEvent,
+
+  // Response
+  DebugStartResponse,
+  SetBreakpointsResponse,
+  StackTraceResponse,
+  DebugActionResponse,
+  LocalVariablesResponse,
+  GlobalVariablesResponse,
+}
+
+// --------------------------------------------------
+// Request & Response
+
+table DebugStartRequest {
+  __dummy__:int;  // union にするためのダミー
+}
+
+table DebugStartResponse {
+  exePath:string;           // 実行中の exe のファイルパス
+  filePathList:[string];    // main/main.lua などの現在ロードされているファイルパスのリスト
+  crc32List:[uint];         // ファイルのハッシュ値リスト。ここから deployed_runtime もしくは local_convert_result を特定する
+}
+
+table Source {
+  name:string;
+  path:string;
+}
+
+table Breakpoint {
+  id:int;
+  verified:bool;
+  line:int;
+  condition:string;
+  hitCondition:string;
+  logMessage:string;
+}
+
+table SetBreakpointsRequest {
+  // source
+  source:Source;
+
+  // breakpoint
+  breakpoints:[Breakpoint];
+}
+
+table SetBreakpointsResponse {
+  breakpoints:[Breakpoint];
+}
+
+table StackTraceRequest {
+  __dummy__:int;  // union にするためのダミー
+}
+
+table StackFrame {
+  id:int;
+  name:string;
+  source:string;
+  line:int;
+}
+
+table StackTraceResponse {
+  stackFrames:[StackFrame];
+}
+
+enum DebugActionRequest_Type : int {
+  Stop,
+  Pause,
+  Continue,
+  Next,
+  StepIn,
+  StepOut,
+}
+
+table DebugActionRequest {
+  type:DebugActionRequest_Type;
+}
+
+table DebugActionResponse {
+  __dummy__:int;  // union にするためのダミー
+}
+
+enum Variable_Type : int {
+  Number,
+  String,
+  Bool,
+  Null,
+  UserData,
+  Function,
+  Thread,
+  Table,
+}
+
+table Variable {
+  level:int;            // 取得したスタックレベル
+  id:int;               // VSCode 管理用の番号
+  lua_index:int;        // Lua の管理番号。ローカル変数番号 or テーブル番号
+  name:string;
+  type:Variable_Type;
+  typeText:string;
+  value:string;         // Table の場合は empty
+  childrenCount:int;    // Table の場合は子要素を持つ。遅延実行させるため初回は要素数だけ取得する
+  children:[Variable];  // Table の場合は子要素を持つ
+}
+
+table LocalVariablesRequest {
+  level:int;               // 取得したいスタックレベル
+  lua_index_list:[int];    // Lua の管理番号。ローカル変数番号 or テーブル番号
+}
+
+table LocalVariablesResponse {
+  variables:[Variable];
+}
+
+table GlobalVariablesRequest {
+  names:[string];  // __Package.Value の場合 -> ["__Package", "Value"]
+}
+
+table GlobalVariablesResponse {
+  variables:[Variable];
+}
+
+// --------------------------------------------------
+// Event
+
+table EventResponse {
+  __dummy__:int;  // union にするためのダミー
+}
+
+enum StoppedEvent_Reason : int {
+  Step,
+  Breakpoint,
+  Exception,
+  Pause,
+}
+
+table StoppedEvent {
+  reason:StoppedEvent_Reason;
+  description:string;  // Exception の場合のエラーメッセージ
+  breakpointId:int;    // Breakpoint の場合の管理番号
+}
+
+table LoadedSourceEvent {
+  load_or_unload:bool;
+  filePath:string;     // 変更があったファイルのパス
+  crc32:uint;          // 変更が合ったファイルのハッシュ値
+}

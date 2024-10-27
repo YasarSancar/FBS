@@ -1,0 +1,23 @@
+namespace gfl.gfx2.fb;
+
+// Large Binary Object
+table Blob2 {
+  data:[ubyte] (force_align:4);
+}
+
+table VertexBufferItem {
+  vertex_buffer_list:[Blob2];
+}
+
+table MeshBufferItem {
+  index_buffer_list:[Blob2];
+  vertex_buffer_list:[Blob2];
+  partial_vertex_buffer_list:[VertexBufferItem];
+}
+
+table MeshBuffer {
+  version:uint = 1;
+  item_list:[MeshBufferItem];
+}
+
+root_type MeshBuffer;

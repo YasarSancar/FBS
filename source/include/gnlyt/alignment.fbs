@@ -1,0 +1,18 @@
+include "types.fbs";
+include "pane.fbs";
+
+namespace gfl.gnlyt.fb;
+
+enum AlignDirection : ubyte {
+  AlignDirection_Vertical,
+  AlignDirection_Horizontal,
+}
+
+table Alignment {
+    base:Pane;
+    direction:AlignDirection;
+    horizontalAlignment:HorizontalPosition;
+    verticalAlignment:VerticalPosition;
+    margin:float;
+    isexpand:bool;
+}

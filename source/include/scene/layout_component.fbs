@@ -1,0 +1,11 @@
+namespace gfl.scene.fb;
+
+table LayoutComponent {
+    filePath:string;
+    bflytName:string;
+    priority:int;
+    invisibleAtLoaded:bool = false;
+    resourceName:string;
+}
+
+root_type LayoutComponent;

@@ -1,0 +1,79 @@
+namespace gfl.anm2.fbj;
+
+// ---------------------------------------------------------
+// ■エクスポーター情報
+
+table ExporterInfo {
+  name:string;        // 名前
+  version:string;     // バージョン
+}
+
+// ---------------------------------------------------------
+// ■入力ソース
+
+table DccSource {
+  path:string;        // ファイルパス
+  targetNode:string;  // 出力時に選択されていたノード
+}
+
+// ---------------------------------------------------------
+// ■フレーム設定
+
+enum PlayMode : uint {
+  Once, // 一度だけ再生
+  Loop, // ループ再生
+}
+
+table FrameSetting {
+  startFrame:int;       // 再生開始フレーム
+  endFrame:int;         // 再生終了フレーム
+  frameCount:int;       // 総フレーム数
+  playMode:PlayMode;    // 再生モード
+  fps:int;              // FPS
+  reverseEnabled:bool;  // 逆再生フラグ
+  layerName:string;     // AnimationLayer 名
+}
+
+// ---------------------------------------------------------
+// ■SRT
+
+table Vector3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+table SRT {
+  scale:Vector3;
+  rotate:Vector3;
+  translate:Vector3;
+}
+
+// ---------------------------------------------------------
+// ■キーリスト
+
+table BoolKey {
+  frame:int;
+  value:bool;
+}
+
+table DoubleKey {
+  frame:int;
+  value:double;
+}
+
+table HermiteKey {
+  frame:int;
+  value:double;
+  slope:double;
+}
+
+union KeyType {
+  BoolKey,
+  DoubleKey,
+  HermiteKey,
+}
+
+table KeyBase {
+  key:KeyType;
+}

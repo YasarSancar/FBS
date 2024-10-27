@@ -1,0 +1,24 @@
+// キャラクリ通信用データ
+
+namespace gfl.cc.cmm;
+
+
+table CMMParts {
+  unitIndex:int;        // ユニット番号
+  labelIndex:int;       // ラベル番号
+}
+
+table CMMParam {
+  paramHash:uint64;     // パラメータハッシュ値
+  value:int;            // 値
+}
+
+table CMMBuffer {
+  softVersion:int;      // ソフトバージョン
+  animationSlot:int;    // アニメスロット番号
+  gender:int;           // 性別
+  parts:[CMMParts];     // パーツリスト
+  params:[CMMParam];    // パラメータリスト
+}
+
+root_type CMMBuffer;

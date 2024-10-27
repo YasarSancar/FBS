@@ -1,0 +1,8 @@
+include "../../math/math.fbs";
+namespace gfl.protocol.scene.fb;
+
+table SceneProperty {
+  timerLevelName: string;
+}
+
+root_type SceneProperty;

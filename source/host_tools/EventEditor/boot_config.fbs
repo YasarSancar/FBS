@@ -1,0 +1,9 @@
+namespace EventEditor;
+
+// 起動設定
+table BootConfig {
+  EventResourcePath: string;
+  FontSize: float = 18.0;
+}
+
+root_type BootConfig;

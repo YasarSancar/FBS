@@ -1,0 +1,19 @@
+namespace gfl.protocol.scene.fb;
+
+enum LogLevel : byte {
+    Debug,
+    Info,
+    Warning,
+    Error,
+    Fatal,
+}
+
+table LogMessage {
+    level: LogLevel;
+    key: string;
+    message: string;
+    filename: string;
+    line: int;
+}
+
+root_type LogMessage;

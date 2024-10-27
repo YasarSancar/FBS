@@ -1,0 +1,43 @@
+﻿namespace AiEditor.Fb.Template;
+
+file_extension "json";
+
+//----------------------------------------
+// Value
+//----------------------------------------
+
+union ValueUnion {
+  Value_Int,
+  Value_Float,
+  Value_Vector3,
+}
+
+table Value_Int {
+  value:int;
+}
+
+table Value_Float {
+  value:float;
+}
+
+table Value_Vector3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+//--------------------------------------------------
+// テンプレートのパラメーターに指定できる値付きEnum
+//--------------------------------------------------
+
+table Element {
+  name:string;
+  value:ValueUnion;
+}
+
+// ルート
+table Enum {
+  elements:[Element];
+}
+
+root_type Enum;

@@ -1,0 +1,154 @@
+{
+    "name": "simple",
+    "paneSet":[
+        {
+            "pane_type":"Picture",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Picture",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"simple_test",
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "vtxColLT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColLB":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRB":{ "r":255, "g":255, "b":255, "a":255 },
+                "texCoord":{
+                    "tex_LT":{ "s":0, "t":0 },
+                    "tex_RT":{ "s":1, "t":0 },
+                    "tex_LB":{ "s":0, "t":1 },
+                    "tex_RB":{ "s":1, "t":1 }
+                },
+                "material":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/f128.bntx",
+                            "wrap_s":"TexWrap_Repeat",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    }
+                }
+            }
+        },
+        {
+            "pane_type":"Picture",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Picture",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"simple_compare",
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":0.0, "y":-128, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "vtxColLT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColLB":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRB":{ "r":255, "g":255, "b":255, "a":255 },
+                "texCoord":{
+                    "tex_LT":{ "s":0, "t":0 },
+                    "tex_RT":{ "s":1, "t":0 },
+                    "tex_LB":{ "s":0, "t":1 },
+                    "tex_RB":{ "s":1, "t":1 }
+                },
+                "material":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/f128.bntx",
+                            "wrap_s":"TexWrap_Repeat",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    }
+                }
+            }
+        }
+    ],
+    "paneHierarchy":{
+        "name":"RootPane",
+        "children":[
+            {
+                "name": "simple_test"
+            },
+            {
+                "name": "simple_compare"
+            }
+
+        ]
+    },
+    "groupset":{
+        "rootgroup":{
+            "name":"RootGroup",
+            "group":[
+                {
+                    "name":"group_test",
+                    "paneref":[
+                        { "name": "simple_test" },
+                        { "name": "simple_compare" }
+                    ]
+                }
+            ]
+        }
+    },
+    "screenSetting":{
+        "layoutSize":{ "x":1920.0, "y":1080.0 },
+        "backGround":{ "r":169, "g":169, "b":169, "a":255 },
+        "grid":{
+            "thickLineInterval":40,
+            "thinDivisionNum":4,
+            "visible":"true",
+            "moveMethod":"None",
+            "color":{ "r":128, "g":128, "b":64, "a":128 }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+table CombineLODEntity {
+    resourceName: string;
+    filePath: string;  // unused
+    targetObjectNames: [string];
+    referencePoint: gfl.math.fb.Vector3f;
+    combineDistance: float;
+    releaseDistance: float;
+    animationFilePath: string;  // unused
+    scriptPackageName: string;  // unused
+    configures: [CombineLODConfigure];
+}
+
+table CombineLODConfigure {
+    modelFilePath: string;
+    animationFilePath: string;
+    scriptPackageName: string;
+}
+
+root_type CombineLODEntity;

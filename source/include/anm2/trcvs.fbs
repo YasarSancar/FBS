@@ -1,0 +1,23 @@
+include "animation_common2.fbs";
+include "fbj_common.fbs";
+include "trcrv.fbs";
+
+namespace gfl.anm2.fb;
+
+file_extension "trcvs";
+
+// カーブデータ
+table CurveDataUnit {
+  name:string;
+  curveData:CurveData;
+}
+
+// ---------------------------------------------------------
+// ■カーブデータセット
+table CurveDataSet {
+  floatCurveList:[CurveDataUnit];
+  float4CurveList:[CurveDataUnit];
+}
+
+// ルートタイプ
+root_type CurveDataSet;

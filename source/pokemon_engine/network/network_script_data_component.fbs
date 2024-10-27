@@ -1,0 +1,9 @@
+namespace pe.network.fb;
+
+table NetworkScriptDataComponent {
+    index:int;
+    bufferSize:int;
+    isReliable:bool;
+}
+  
+root_type NetworkScriptDataComponent;

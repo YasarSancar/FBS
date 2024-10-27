@@ -1,0 +1,36 @@
+namespace gfl.protocol.scene.fb;
+
+union EditorMessageData {
+  EditorStatus,
+  EditorSetting,
+}
+
+enum EditorStatusType : uint {
+  EditMode,
+  PlayMode,
+  PlayModeWithPause,
+}
+
+table EditorStatus {
+  type: EditorStatusType;
+}
+
+enum EditorSettingType : ubyte {
+  GridVisible,
+  IconEnable,
+  SceneControllerVisible,
+  CollisionVisible,
+  MultiViewportEnable,
+  SelectUIEnable,
+}
+
+table EditorSetting {
+  type: EditorSettingType;
+  value: uint32;
+}
+
+table EditorMessage {
+  data: EditorMessageData;
+}
+
+root_type EditorMessage;

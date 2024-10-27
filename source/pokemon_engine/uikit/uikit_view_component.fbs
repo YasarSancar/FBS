@@ -1,0 +1,14 @@
+namespace pe.uikit.fb;
+
+
+table UikitViewComponent {
+    filePath:string;
+    bluaPath:string (deprecated);
+    packageName:string (deprecated);
+    group:string (deprecated);
+    resident:bool;
+    linkObjs:[string];
+    linkScenes:[string];
+}
+
+root_type UikitViewComponent;

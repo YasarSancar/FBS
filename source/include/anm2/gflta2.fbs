@@ -1,0 +1,30 @@
+﻿include "animation_common2.fbs";
+namespace gfl.anm2.fb;
+
+// ---------------------------------------------------------
+// ■ライトアニメーション
+
+// ライトデータ
+table LightData {
+  name:string;                        // ライト名
+
+  intensities:KeyData_Float;          // 輝度
+  coneAngles:KeyData_Float;           // スポットライト角度
+  colors:KeyData_Vector3;             // 光源色
+  directions:KeyData_Vector3;         // 光源向き
+  positions:KeyData_Vector3;          // 光源位置
+}
+
+// ---------------------------------------------------------
+// ■ライトアニメーション
+
+// ライトアニメーションデータ
+table LightAnimationData {
+  frameSetting:FrameSetting;  // フレーム設定
+
+  light:LightData;            // ライト
+}
+
+// ルートタイプ
+root_type LightAnimationData;
+

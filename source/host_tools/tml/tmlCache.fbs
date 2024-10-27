@@ -1,0 +1,8 @@
+namespace TimelineEditor.Cache;
+
+table TmlCache {
+  recentFilePaths: [string];
+  searchDirectoryPath: string;
+}
+
+root_type TmlCache;

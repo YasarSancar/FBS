@@ -1,0 +1,15 @@
+include "../math/math.fbs";
+include "../gfx2/object/format/current/fbs/light_curve.fbs";
+
+namespace gfl.debug_framework.fb.light;
+
+table Vector4fParamData {
+  lightName:string;
+  typeName:string;
+  paramaterName:string;
+  value:gfl.math.fb.Vector4f;
+  curveValue:gfl.gfx2.fb.RuntimeCurveFloat4;
+  lightUniqueId:string;
+}
+
+root_type Vector4fParamData;

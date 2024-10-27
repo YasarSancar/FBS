@@ -1,0 +1,7 @@
+namespace GenericEditor.Plugin.Audio;
+
+table AudioEventData {
+  eventName:string;
+}
+
+root_type AudioEventData;

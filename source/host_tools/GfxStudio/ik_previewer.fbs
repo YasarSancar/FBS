@@ -1,0 +1,84 @@
+namespace gfl.host.ik_previewer;
+
+struct Vector {
+  x : float;
+  y : float;
+  z : float;
+}
+
+table FootSolver {
+  activation: bool;
+  factor: float;
+  rootConstraintActivation: bool;
+  rootConstraintRangeAxisY_Positive: float;
+  rootConstraintRangeAxisY_Negative: float;
+  rootConstraintRangeAxisZ_Positive: float;
+  rootConstraintRangeAxisZ_Negative: float;
+  rootConstraintIterations: int;
+  middleConstraintActivation: bool;
+  middleConstraintRange_Positive: float;
+  middleConstraintRange_Negative: float;
+  poleVector: Vector;
+  twist: float;
+}
+
+table ToeSolver {
+  activation: bool;
+  factor: float;
+  constraintActivation: bool;
+  localForward: Vector;
+  localUp:Vector;
+
+  fwd_Positive: float;
+  fwd_Negative: float;
+  side_Positive:float;
+  side_Negative:float;  
+}
+
+
+table Visualizer {
+  activation : bool;
+  target : bool;
+  skeleton : bool;
+  poleVector : bool;
+  middleConstraint : bool;
+  rootConstraint : bool;
+  rootLocalAxis : bool;
+  toeLocalAxis : bool;
+  toeConstraint : bool;
+  offsetDiff: bool;
+  vectorLength: float;
+  pointSize : float;
+}
+
+table FootControl {
+  name: string;
+  activation: bool;
+  factor: float;
+  rootJointName: string;
+  midJointName: string;
+  tipJointName: string;
+  ankleJointName: string;
+  target: Vector;
+  ground : Vector;
+  toeSolver : ToeSolver;
+  footSolver : FootSolver;
+  toeJointName: string;
+}
+
+
+// Root
+table Root {
+  activation: bool;
+  factor: float;
+  offsetJointName: string;
+  offsetActivation: bool;
+  offsetFactor: float;
+  footControls : [FootControl];
+  visualizer : Visualizer;
+  isUseAdditionalParameterWeights: bool;
+  limitFootHeightDifference: float = 0.25;
+  toeEndOffset: float = 0.0;
+}
+
+root_type Root;

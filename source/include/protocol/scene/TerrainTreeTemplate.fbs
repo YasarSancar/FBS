@@ -1,0 +1,16 @@
+include "../../scene/terrain_tree_template.fbs";
+namespace gfl.protocol.scene.fb;
+
+enum TerrainTreeTemplateRequestType : ubyte {
+    Add,
+    Remove,
+    Replace,
+}
+
+table TerrainTreeTemplate {
+    requestType: TerrainTreeTemplateRequestType;
+    nodeId: string;
+    data: gfl.scene.fb.TerrainTreeTemplate;
+}
+
+root_type TerrainTreeTemplate;

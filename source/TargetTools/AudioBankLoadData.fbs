@@ -1,0 +1,8 @@
+namespace GenericEditor.Plugin.Audio;
+
+table AudioBankLoadData {
+  bankName:string;
+  load:bool;
+}
+
+root_type AudioBankLoadData;

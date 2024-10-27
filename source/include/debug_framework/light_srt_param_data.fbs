@@ -1,0 +1,21 @@
+include "../math/math.fbs";
+include "../gfx2/object/format/current/fbs/light_curve.fbs";
+
+namespace gfl.debug_framework.fb.light;
+
+table LightCurveSRT
+{
+  scale:gfl.gfx2.fb.RuntimeCurveFloat4;
+  rotation:gfl.gfx2.fb.RuntimeCurveFloat4;
+  translation:gfl.gfx2.fb.RuntimeCurveFloat4;
+}
+
+table SRTParamData {
+  lightName:string;
+  typeName:string;
+  value:gfl.math.fb.SRT;
+  curveValue:LightCurveSRT;
+  lightUniqueId:string;
+}
+
+root_type SRTParamData;

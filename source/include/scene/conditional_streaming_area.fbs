@@ -1,0 +1,16 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+enum AreaType : byte {
+    Circle,
+    Sphere,
+}
+
+table ConditionalStreamingArea {
+    areaType: AreaType;
+    position: math.fb.Vector3f;
+    activate: math.fb.Vector4f;
+    disactivate: math.fb.Vector4f;
+}
+
+root_type ConditionalStreamingArea;

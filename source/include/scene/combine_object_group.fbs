@@ -1,0 +1,7 @@
+namespace gfl.scene.fb;
+
+table CombineObjectGroup {
+    combineModelPath: string;
+}
+
+root_type CombineObjectGroup;

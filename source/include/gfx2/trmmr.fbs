@@ -1,0 +1,46 @@
+﻿namespace gfl.gfx2.fb.mmr;
+
+union Condition {
+  Copy,
+  CopyIfExist,
+  SwitchCase,
+}
+
+// 参照先のパラメータをコピーする
+table Copy {
+  paramName:string;           // 参照するパラメータ名
+}
+
+// 参照先のパラメータが存在するならコピーする
+// 存在しないならデフォルト値を使用する
+table CopyIfExist {
+  existParamName:string;      // 確認するパラメータ
+  copyParamName:string;       // コピーするパラメータ名
+}
+
+table CaseValue {
+  case_:int;                  // case と同じ値なら
+  value:int;                  // value を設定する
+}
+
+// 参照先のパラメータの値でSwitchCase
+// ヒットしないならデフォルト値を使用する
+table SwitchCase {
+  paramName:string;           // 参照するパラメータ名
+  caseValues:[CaseValue];     // ケースリスト
+}
+
+table Parameter {
+  name:string;                // パラメータ名
+  maxValue:int;               // 最大値
+  defaultValue:int;           // デフォルト値
+  condition:Condition;        // 条件
+}
+
+// モデルメタデータルールファイル
+table Rule {
+  version:uint = 1;           // バージョン
+  parameters:[Parameter];     // パラメータリスト
+}
+
+root_type Rule;

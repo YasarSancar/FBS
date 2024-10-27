@@ -1,0 +1,10 @@
+namespace GenericEditor.Plugin.Camera.FB;
+
+// カメラ設定データ
+table CameraSettingData {
+  fovy:float;
+  nearDistance:float;
+  farDistance:float;
+}
+
+root_type CameraSettingData;

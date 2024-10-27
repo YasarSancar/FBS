@@ -1,0 +1,16 @@
+namespace gfl.scene.fb;
+
+table ModelSubCullingSetting {
+    categoryName:string;
+    threshold:float;
+    cullingDistance:float;
+}
+
+table ModelCullingSetting {
+    categoryName:string;
+    pattern:string;
+    cullingDistance:float;
+    subSettings:[ModelSubCullingSetting];
+}
+
+root_type ModelCullingSetting;

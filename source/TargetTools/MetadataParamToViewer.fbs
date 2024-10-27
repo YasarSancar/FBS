@@ -1,0 +1,10 @@
+namespace GenericEditor.Plugin.CharacterCreate.FB;
+
+table MetadataParamToViewer {
+  instanceId:string;
+  partsName:string;
+  parameterName:string;
+  parameter:int;
+}
+
+root_type MetadataParamToViewer;

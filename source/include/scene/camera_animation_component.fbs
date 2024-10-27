@@ -1,0 +1,8 @@
+namespace gfl.scene.fb;
+
+table CameraAnimationComponent {
+    resourceName:string;
+    filePath:string;
+}
+
+root_type CameraAnimationComponent;

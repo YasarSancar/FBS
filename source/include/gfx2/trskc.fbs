@@ -1,0 +1,19 @@
+include "types.fbs";
+
+namespace gfl.gfx2.fb;
+file_extension "trskcj";
+
+table SkeletonPriorityInfo {
+  priority:uint=0;
+  name:string;
+  transform:SRT;
+  priority_pass:bool=false;
+}
+
+table SkeletonConfig {
+  version:uint = 2;
+
+  node_list:[SkeletonPriorityInfo];
+}
+
+root_type SkeletonConfig;

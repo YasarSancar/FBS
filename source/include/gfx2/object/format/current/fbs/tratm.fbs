@@ -1,0 +1,36 @@
+﻿include "light_common.fbs";
+file_extension "tratm";
+
+namespace gfl.gfx2.fb;
+
+// ---------------------------------------------------------
+// アタッチメントライトアニメーション用カーブデータ群
+
+// float パラメータ
+table LightAnimationFloatParam {
+  attributeName:string;     // アトリビュート名
+  curveData:RuntimeCurveFloat; // floatパラメータキー
+}
+
+// float4 パラメータ
+table LightAnimationFloat4Param {
+  attributeName:string;      // アトリビュート名
+  curveData:RuntimeCurveFloat4; // float4カーブ
+}
+
+table AttachmentItem {
+  name:string;
+  type:string;
+  locatorName:string;
+  light:LightItem;
+  filePath:string;
+  animationFloatParam:LightAnimationFloatParam;   // float パラメータリスト
+  animationFloat4Param:LightAnimationFloat4Param; // float4 パラメータリスト
+}
+
+table Attachment {
+  version:uint = 1;
+  item_list:[AttachmentItem];
+}
+
+root_type Attachment;

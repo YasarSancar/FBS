@@ -1,0 +1,12 @@
+include "../../include/math/math.fbs";
+namespace pe.field.fb;
+  
+table WeatherEffect {
+  weatherName:string;
+  filePath:string;
+  positionOffset:gfl.math.fb.Vector3f;
+  killDelayTime:float;
+  isFollowCamera:bool;
+}
+
+root_type WeatherEffect;

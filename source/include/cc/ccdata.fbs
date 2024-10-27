@@ -1,0 +1,64 @@
+﻿namespace gfl.cc.fb;
+
+// モデルパーツ
+table CCPartsData {
+  name:string;          // パーツ名
+  isRoot:bool;          // ルートパーツ(アニメーションのベースになるパーツ)
+  trmdlFilePath:string; // Trmdlファイルパス
+  trmmtFilePath:string; // Trmmtファイルパス
+  tracnFilePath:string; // Tracnファイルパス (削除予定。しばらくは互換用に残す)
+  metadataName:string;  // メタデータ名
+  tracnFilePathList:[string]; // Tracnファイルパスリスト
+  isAnimationLayer:bool;      // パーツをアニメーションレイヤーとしてマージする
+  sharedPartsAnimationFileList:[string]; // パーツ間共有アニメ用のファイルリスト
+}
+
+// BodyShapeModifier 用 Scalar パラメータ
+table CCModifierScalar {
+  name:string;
+  scaleX:float;
+  scaleY:float;
+  scaleZ:float;
+}
+
+// BodyShapeModifier 用 Ratio パラメータ
+table CCModifierRatio {
+  name:string;
+  ratio:float;
+}
+
+// BodyShapeModifier 用パラメータ
+table CCModifierData {
+  trbsmFilePath:string;           // BodyShapeMeshファイル
+  scalarList:[CCModifierScalar];  // Scalerリスト
+  ratioList:[CCModifierRatio];    // Ratioリスト
+}
+
+// --- バリエーション : パラメータデータ ---
+table CCVariationParameterData {
+  name:string;                                // パラメータ名
+  value:int;                                  // 値
+}
+
+// --- バリエーション : パーツデータ ---
+table CCVariationPartsData {
+  partsName:string;                           // パーツ名
+  metadataName:string;                        // メタデータ名
+  parameterList:[CCVariationParameterData];   // パラメータリスト
+}
+
+// --- バリエーションデータ ---
+table CCVariationData {
+  name:string;                                // バリエーション名
+  partsList:[CCVariationPartsData];           // パーツリスト
+}
+
+// キャラクリ用データ
+table CCData {
+  partsList:[CCPartsData];        // パーツリスト
+  modifierData:CCModifierData;    // 体系変更データリスト
+  animationSlotCount:int = 1;     // アニメーションスロット数
+  variationList:[CCVariationData];// バリエーションリスト
+}
+
+root_type CCData;

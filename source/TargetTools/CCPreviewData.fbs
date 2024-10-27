@@ -1,0 +1,23 @@
+include "../include/cc/ccdata.fbs";
+
+namespace GenericEditor.Plugin.CharacterCreate.FB;
+
+table CCPreviewAttachData {
+  trmdlFilePath:string;
+  jointName:string;
+  inheritedScale:bool;
+}
+
+table CCTypeParameter {
+  name:string;
+  value:int;
+}
+
+table CCPreviewData {
+  instanceId:string;
+  ccdata:gfl.cc.fb.CCData;
+  attachDataList:[CCPreviewAttachData];
+  typeParameterList:[CCTypeParameter];
+}
+
+root_type CCPreviewData;

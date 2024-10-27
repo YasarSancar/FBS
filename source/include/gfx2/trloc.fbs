@@ -1,0 +1,32 @@
+//====================================================================
+// gfl.gfx2.fb用スキーマ
+// 
+// このファイルは ExcelToSchemaCreate から自動生成されています
+//====================================================================
+
+
+namespace gfl.gfx2.fb;
+file_extension "trloc";
+
+table Vector
+{ 
+  x: float;
+  y: float;
+  z: float;
+}
+
+table LocatorData
+{ 
+  name: string;
+  parent_name: string;
+  position: Vector;
+  rotation: Vector;
+  scale: Vector;
+}
+
+table LocatorDataParameter
+{ 
+  LocatorDataArray: [LocatorData];
+}
+
+root_type LocatorDataParameter;

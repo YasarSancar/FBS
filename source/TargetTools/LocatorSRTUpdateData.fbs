@@ -1,0 +1,11 @@
+include "../include/math/math.fbs";
+
+namespace GenericEditor.Plugin.Model;
+
+table LocatorSRTUpdateData {
+  instanceName:string;
+  nodeName:string;
+  value:gfl.math.fb.SRT;
+}
+
+root_type LocatorSRTUpdateData;

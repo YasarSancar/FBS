@@ -1,0 +1,52 @@
+﻿// ---------------------------------------------------------
+// メッシュアニメコンフィグ
+// メッシュ名と各種アニメデータファイルの紐づけに使用する。
+
+include "animation_common2.fbs";
+include "tramt.fbs";
+include "travs.fbs";
+include "trabs.fbs";
+
+namespace gfl.anm2.fb;
+
+file_extension "tracm";
+
+// マテリアルアニメファイルパス
+table MaterialAnimeFilePath {
+  path:string;
+}
+
+// ビジビリティアニメファイルパス
+table VisibilityAnimeFilePath {
+  path:string;
+}
+
+// ブレンドシェイプアニメファイルパス
+table BlendShapeAnimeFilePath {
+  path:string;
+}
+
+// メッシュアニメファイルとメッシュを紐づけるデータ
+table MeshAnimeFilePath {
+  meshName:string;                              // アニメーションファイルを適用するメッシュ名
+  materialAnimeFilePath:MaterialAnimeFilePath;      // マテリアルアニメファイルパス
+  visibilityAnimeFilePath:VisibilityAnimeFilePath;  // ビジビリティアニメファイルパス
+  blendShapeAnimeFilePath:BlendShapeAnimeFilePath;  // ブレンドシェイプアニメファイルパス
+
+  materialData:MaterialAnimationData;           // マテリアルアニメーションデータ
+  visibilityData:VisibilityMeshAnimationData;   // ビジビリティアニメーションデータ
+  blendShapeData:BlendShapeAnimationData;       // ブレンドシェイプアニメーションデータ
+}
+
+// ---------------------------------------------------------
+// メッシュアニメファイルコンフィグ
+table MeshAnimeConfigData {
+  frameSetting:FrameSetting;          // フレーム設定
+  meshAnimePaths:[MeshAnimeFilePath]; // メッシュ毎のアニメーションファイルパス
+  materialAnimeCount:ubyte;           // マテリアルアニメの総数
+  visibilityAnimeCount:ubyte;         // ビジビリティアニメの総数
+  blendShapeAnimeCount:ubyte;         // ブレンドシェイプアニメの総数
+}
+
+// ルートタイプ
+root_type MeshAnimeConfigData;

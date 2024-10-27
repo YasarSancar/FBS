@@ -1,0 +1,135 @@
+﻿namespace gfl.ai.character.bt.fb;
+
+file_extension "trabt";
+
+//------------------------------------------------------------------------------
+
+union ParameterValue {
+  ParameterValue_Int,
+  ParameterValue_Float,
+  ParameterValue_Bool,
+  ParameterValue_Vector3,
+  ParameterValue_String,
+  ParameterValue_FnvHash,
+}
+
+table ParameterValue_Int {
+  value:int;
+}
+
+table ParameterValue_Float {
+  value:float;
+}
+
+table ParameterValue_Bool {
+  value:bool;
+}
+
+table ParameterValue_Vector3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+table ParameterValue_String {
+  value:string;
+}
+
+table ParameterValue_FnvHash {
+  value:string;
+}
+
+table Parameter {
+  name:string;
+  value:ParameterValue;
+}
+
+//------------------------------------------------------------------------------
+
+table Header {
+  blackboardPath:string;
+  userDatas:[string];
+}
+
+//------------------------------------------------------------------------------
+
+table Service {
+  id:string;
+  name:string;
+  executeType:string;
+  parameters:[Parameter];
+}
+
+//------------------------------------------------------------------------------
+
+table Decorator {
+  id:string;
+  name:string;
+  isAbort:bool;
+  returnStatus:string;
+  parameters:[Parameter];
+}
+
+//------------------------------------------------------------------------------
+
+union NodeUnion {
+  Primitive, // 単体ノード
+  Asset, // アセット化されたサブツリー
+}
+
+table NodeData {
+  node: NodeUnion;
+}
+
+//------------------------------------------------------------------------------
+
+table Primitive {
+  id:string;
+  name:string;
+  parameters:[Parameter];
+  services:[Service];
+  decorators:[Decorator];
+}
+
+//------------------------------------------------------------------------------
+
+table OverrideData {
+  linkID:string; // ノードやデコレータ、サービスのID
+  parameters:[Parameter]; // オーバーライド対象のパラメータとその値
+}
+
+table OverrideAsset {
+  linkID:string;
+  linkPath:string;
+  overrideDatas:[OverrideData];
+}
+
+table Asset {
+  id:string;
+  linkPath:string;
+  overrideDatas:[OverrideData];
+  services:[Service];
+  decorators:[Decorator];
+  overrideAssets:[OverrideAsset];
+}
+
+//------------------------------------------------------------------------------
+
+table Connect {
+  id:string;
+  children:[ConnectChild];
+}
+
+table ConnectChild {
+  id:string;
+}
+
+//------------------------------------------------------------------------------
+
+table BehaviorTree {
+  header:Header;
+  nodes:[NodeData];
+  connect:[Connect];
+}
+
+root_type BehaviorTree;

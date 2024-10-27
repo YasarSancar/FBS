@@ -1,0 +1,21 @@
+namespace gfl.scene.fb;
+
+table JointLod {
+    distance: float;
+    priority: int;
+}
+
+table SubJointPrioritySetting {
+    categoryName:string;
+    threshold:float;
+    jointLods:[JointLod];
+}
+
+table JointPrioritySetting {
+    categoryName:string;
+    pattern:string;
+    jointLods:[JointLod];
+    subSettings:[SubJointPrioritySetting];
+}
+
+root_type JointPrioritySetting;

@@ -1,0 +1,8 @@
+namespace GenericEditor.Plugin.Model;
+
+table LocatorUpdateData {
+  instanceName:string;
+  filePath:string;
+}
+
+root_type LocatorUpdateData;

@@ -1,0 +1,167 @@
+namespace pe.hid.fb;
+  
+// プラットフォーム
+enum Platform : int {
+  NX,
+}
+
+// パッドスタイル
+enum Styles : int {
+  None,
+  FullKey,
+  Handheld,
+  JoyDual,
+  JoyLeft,
+  JoyRight,
+}
+  
+enum Keys : int {
+  FullKey_A,
+  FullKey_B,
+  FullKey_X,
+  FullKey_Y,
+  FullKey_StickL,
+  FullKey_StickR,
+  FullKey_L,
+  FullKey_R,
+  FullKey_ZL,
+  FullKey_ZR,
+  FullKey_Plus,
+  FullKey_Minus,
+  FullKey_Left,
+  FullKey_Up,
+  FullKey_Right,
+  FullKey_Down,
+  Handheld_A,
+  Handheld_B,
+  Handheld_X,
+  Handheld_Y,
+  Handheld_StickL,
+  Handheld_StickR,
+  Handheld_L,
+  Handheld_R,
+  Handheld_ZL,
+  Handheld_ZR,
+  Handheld_Plus,
+  Handheld_Minus,
+  Handheld_Left,
+  Handheld_Up,
+  Handheld_Right,
+  Handheld_Down,
+  JoyDual_A,
+  JoyDual_B,
+  JoyDual_X,
+  JoyDual_Y,
+  JoyDual_StickL,
+  JoyDual_StickR,
+  JoyDual_L,
+  JoyDual_R,
+  JoyDual_ZL,
+  JoyDual_ZR,
+  JoyDual_Plus,
+  JoyDual_Minus,
+  JoyDual_Left,
+  JoyDual_Up,
+  JoyDual_Right,
+  JoyDual_Down,
+  JoyLeft_Stick,
+  JoyLeft_L,
+  JoyLeft_ZL,
+  JoyLeft_Minus,
+  JoyLeft_Left,
+  JoyLeft_Up,
+  JoyLeft_Right,
+  JoyLeft_Down,
+  JoyLeft_SL,
+  JoyLeft_SR,
+  JoyRight_A,
+  JoyRight_B,
+  JoyRight_X,
+  JoyRight_Y,
+  JoyRight_Stick,
+  JoyRight_R,
+  JoyRight_ZR,
+  JoyRight_Plus,
+  JoyRight_SL,
+  JoyRight_SR,
+  FullKey_StickLLeft,
+  FullKey_StickLUp,
+  FullKey_StickLRight,
+  FullKey_StickLDown,
+  FullKey_StickRLeft,
+  FullKey_StickRUp,
+  FullKey_StickRRight,
+  FullKey_StickRDown,
+  Handheld_StickLLeft,
+  Handheld_StickLUp,
+  Handheld_StickLRight,
+  Handheld_StickLDown,
+  Handheld_StickRLeft,
+  Handheld_StickRUp,
+  Handheld_StickRRight,
+  Handheld_StickRDown,
+  JoyDual_StickLLeft,
+  JoyDual_StickLUp,
+  JoyDual_StickLRight,
+  JoyDual_StickLDown,
+  JoyDual_StickRLeft,
+  JoyDual_StickRUp,
+  JoyDual_StickRRight,
+  JoyDual_StickRDown,
+  JoyLeft_StickLeft,
+  JoyLeft_StickUp,
+  JoyLeft_StickRight,
+  JoyLeft_StickDown,
+  JoyRight_StickLeft,
+  JoyRight_StickUp,
+  JoyRight_StickRight,
+  JoyRight_StickDown,
+}
+  
+enum Sticks : int {
+  FullKey_Left,
+  FullKey_Right,
+  FullKey_Both,
+  Handheld_Left,
+  Handheld_Right,
+  Handheld_Both,
+  JoyDual_Left,
+  JoyDual_Right,
+  JoyDual_Both,
+  JoyLeft_Left,
+  JoyRight_Right,
+}
+  
+table KeySet {
+  style:Styles;
+  key:Keys;
+}
+  
+table KeyBind {
+  name:string;
+  keySetList:[KeySet];
+}
+  
+table StickSet {
+  style:Styles;
+  stick:Sticks;
+}
+  
+table StickBind {
+  name:string;
+  stickSetList:[StickSet];
+}
+  
+table Mode {
+  name:string;
+  supportStyleList:[Styles];
+  keyBindList:[KeyBind];
+  stickBindList:[StickBind];
+}
+  
+table InputSetting {
+  platform:Platform;
+  modeList:[Mode];
+}
+  
+root_type InputSetting;

@@ -1,0 +1,44 @@
+﻿include "fbj_common.fbs";
+namespace gfl.anm2.fbj;
+
+file_extension "trcmaj";
+
+// ---------------------------------------------------------
+// ■カメラアニメーション
+
+table Camera {
+  name:string;          // カメラ名
+
+  near:[KeyBase];       // ニア
+  far:[KeyBase];        // ファー
+  fovy:[KeyBase];       // 画角
+
+  rotationX:[KeyBase];  // 回転：X
+  rotationY:[KeyBase];  // 回転：Y
+  rotationZ:[KeyBase];  // 回転：Z
+
+  translateX:[KeyBase]; // 平行移動：X
+  translateY:[KeyBase]; // 平行移動：Y
+  translateZ:[KeyBase]; // 平行移動：Z
+
+  upVectorX:[KeyBase];  // アップベクター：X
+  upVectorY:[KeyBase];  // アップベクター：Y
+  upVectorZ:[KeyBase];  // アップベクター：Z
+
+  twist:[KeyBase];      // アップベクターのツイスト指定版
+
+  aimPosX:[KeyBase];    // 注視位置：X
+  aimPosY:[KeyBase];    // 注視位置：Y
+  aimPosZ:[KeyBase];    // 注視位置：Z
+}
+
+table CameraAnimation {
+  exporterInfo:ExporterInfo;                // 出力時のエクスポーターバージョン
+  source:DccSource;                         // 入力ソース
+  frameSetting:FrameSetting;                // フレーム設定
+
+  camera:Camera;                            // カメラ
+}
+
+// ルートタイプ
+root_type CameraAnimation;

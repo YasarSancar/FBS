@@ -1,0 +1,66 @@
+﻿include "aibt.fbs";
+
+namespace AiEditor.Fb;
+
+file_extension "aemeta";
+
+//----------------------------------------
+// Util
+//----------------------------------------
+
+// Vector2
+table Vector2 {
+  x:float;
+  y:float;  
+}
+
+// Vector3
+table Vector3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+//----------------------------------------
+// メタ情報
+//----------------------------------------
+
+// Rootノードに繋がっていない浮いたノード（Enable=falseも含む）
+table FloatingNodes {
+  parentNodeId:string;
+  nodes:[common.ai.bt.fb.NodeData];
+  connects:[common.ai.bt.fb.Connect];
+}
+
+// ノードのメタ情報
+table NodeMeta {
+  id:string;
+  position:Vector2;
+  isEnable:bool;
+}
+
+// 背景のメタ情報
+table BgMeta {
+  translate:Vector2;
+  scale:float;
+  isViewNodeName:bool;
+}
+
+// コメント付き矩形
+table RectComment {
+  min:Vector2;
+  max:Vector2;
+  color:Vector3;
+  comment:string;
+  isLinkNode:bool;
+}
+
+// メタ情報ルート
+table AEMeta {
+  nodeMetas:[NodeMeta];
+  bgMeta:BgMeta;
+  rectComments:[RectComment];
+  floatingNodes:[FloatingNodes];
+}
+
+root_type AEMeta;

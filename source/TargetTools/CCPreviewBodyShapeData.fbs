@@ -1,0 +1,12 @@
+include "../include/cc/ccdata.fbs";
+
+namespace GenericEditor.Plugin.CharacterCreate.FB;
+
+table CCPreviewBodyShapeData
+{
+  instanceId:string;
+  scalarList:[gfl.cc.fb.CCModifierScalar];  // Scalerリスト
+  ratioList:[gfl.cc.fb.CCModifierRatio];    // Ratioリスト
+}
+
+root_type CCPreviewBodyShapeData;

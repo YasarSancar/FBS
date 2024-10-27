@@ -1,0 +1,9 @@
+namespace gfl.scene.fb;
+
+table TerrainCollision {
+    filePath:string;
+    layer:int;
+    holeLayer:int;
+}
+
+root_type TerrainCollision;

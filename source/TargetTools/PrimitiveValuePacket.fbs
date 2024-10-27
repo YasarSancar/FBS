@@ -1,0 +1,39 @@
+namespace GenericEditor.Plugin.PrimitiveValuePacket;
+
+// 整数値
+table IntValue {
+	value : [int];
+}
+// 実数値
+table FloatValue {
+	value : [float];
+}
+// 文字列
+table StringValue {
+	value : [string];
+}
+// ブール
+table BoolValue {
+	value : [bool];
+}
+
+// 共用体
+union ValueUnion {
+	  IntValue
+	, FloatValue
+	, StringValue
+	, BoolValue
+}
+
+// データ
+table Data {
+	name : string;
+	value : ValueUnion;
+}
+
+// ルート定義
+table Root {
+  list : [Data];
+}
+
+root_type Root;

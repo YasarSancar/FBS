@@ -1,0 +1,11 @@
+include "DataType.fbs";
+
+namespace GenericEditor.Plugin.Model;
+
+table ModelSetLODLevel {
+  instanceName:string;
+  level:int;
+  dataType:DataType = ModelSetLODLevel;
+}
+
+root_type ModelSetLODLevel;

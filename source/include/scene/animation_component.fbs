@@ -1,0 +1,18 @@
+namespace gfl.scene.fb;
+
+table AnimationComponent {
+  filePath:string;
+  instanceName:string;
+  distanceIntervalEnabled:bool;
+  intervalDistance0:float;
+  updateInterval0:int;
+  intervalDistance1:float;
+  updateInterval1:int;
+  intervalDistance2:float;
+  updateInterval2:int;
+  intervalDistance3:float;
+  updateInterval3:int;
+  modelComponentName:string;  // ModelComponent が複数存在する場合用。ModelComponent の名前で判別する
+}
+
+root_type AnimationComponent;

@@ -1,0 +1,22 @@
+namespace gfl.anm2ext.fb;
+
+file_extension "trspb";
+
+// PhysicsResource Data
+table PhysicsResourceData {
+  physicsResourcePath:string;
+  iterationCount:int;
+  adjustPartRate:float = 0.1;
+  adjustPartOffset:float;
+}
+
+// 揺れ骨コンフィグ
+table SpringBoneConfig {
+  masterBlendWeight:float;
+  masterWindBlendWeight:float;
+  masterWindNoiseBlendWeight:float;
+  physicsResourceData:[PhysicsResourceData];
+  useGlobalWorld:bool = false;
+}
+
+root_type SpringBoneConfig;

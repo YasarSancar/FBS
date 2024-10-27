@@ -1,0 +1,11 @@
+include "../math/math.fbs";
+
+namespace gfl.debug_framework.fb.light;
+
+table ProbeCaptureResultData {
+  filepath:string;
+  light_name:string;
+  enableIblConvert:bool;
+}
+
+root_type ProbeCaptureResultData;

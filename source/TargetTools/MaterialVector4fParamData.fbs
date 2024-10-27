@@ -1,0 +1,11 @@
+include "../include/math/math.fbs";
+
+namespace GenericEditor.Plugin.Material;
+
+table Vector4fParamData {
+  materialName:string;
+  paramaterName:string;
+  value:gfl.math.fb.Vector4f;
+}
+
+root_type Vector4fParamData;

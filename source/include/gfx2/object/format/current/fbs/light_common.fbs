@@ -1,0 +1,48 @@
+﻿include "../../../../../math/math.fbs";
+include "light_curve.fbs";
+
+namespace gfl.gfx2.fb;
+
+table LightFloatParam {
+  name:string;
+  value:float;
+  curveValue:RuntimeCurveFloat;
+}
+
+table LightVector4fParam {
+  name:string;
+  value:gfl.math.fb.Vector4f;
+  curveValue:RuntimeCurveFloat4;
+}
+
+table LightTextureParam {
+  name:string;
+  file_path:string;
+}
+
+table LightCurveSRT
+{
+  scale:RuntimeCurveFloat4;
+  rotation:RuntimeCurveFloat4;
+  translation:RuntimeCurveFloat4;
+}
+
+// ライトオフセット（天候などに使用）
+table LightOffsetParam
+{
+  name:string;                              // 識別名(sunny, cloudy 等)
+  transform:gfl.math.fb.SRT;                // オフセットパラメータ srt
+  float_param_list:[LightFloatParam];       // オフセットパラメータ float
+  vector4f_param_list:[LightVector4fParam]; // オフセットパラメータ float4
+}
+
+table LightItem {
+  name:string;
+  type:string;
+  transform:gfl.math.fb.SRT;
+  float_param_list:[LightFloatParam];
+  vector4f_param_list:[LightVector4fParam];
+  texture_param_list:[LightTextureParam];
+  transformCurve:LightCurveSRT;
+  offset_param_list:[LightOffsetParam];
+}

@@ -1,0 +1,14 @@
+﻿include "aibt.fbs";
+
+namespace AiEditor.Fb.Template;
+
+//----------------------------------------
+// Parameter
+//----------------------------------------
+
+table Parameter {
+  name:string;
+  value:common.ai.bt.fb.ParameterValue;
+  enumPath:string;
+}
+

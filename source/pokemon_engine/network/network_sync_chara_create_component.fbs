@@ -1,0 +1,7 @@
+namespace pe.network.fb;
+
+table NetworkSyncCharaCreateComponent {
+    index:int;
+}
+  
+root_type NetworkSyncCharaCreateComponent;

@@ -1,0 +1,49 @@
+﻿include "tranm.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "tracl";
+
+// ---------------------------------------------------------
+// ■レイヤーコンフィグ
+
+// レイヤーモード
+enum LayerMode : int {
+  // 上書きレイヤー
+  Override,
+
+  // 加算レイヤー
+  Additive,
+}
+
+table Layer {
+  no:uint;                      // レイヤー番号
+  name:string;                  // レイヤー名
+
+  mask:Mask;                    // マスク
+  mode:LayerMode;               // レイヤーモード
+
+  // 削除予定 ここから
+  enablePhysicsWeight:bool;     // Physicsのウェイト値を反映
+  enableWindWeight:bool;        // Windのウェイト値を反映
+  enableWindNoiseWeight:bool;   // WindNoiseのウェイト値を反映
+  // 削除予定 ここまで
+
+  additionalParameterEnableList:[bool]; // 追加パラメータを反映するかのリスト
+}
+
+table LayerConfig {
+  layers:[Layer];      // レイヤーリスト
+  blendMask:Mask;      // ブレンドマスク
+  jointNames:[string]; // 操作対象のジョイント名リスト
+}
+
+// ---------------------------------------------------------
+// ■コンフィグ
+
+// アニメーションレイヤーコンフィグ
+table AnimationLayerConfig {
+  layerConfig:LayerConfig;                  // レイヤーコンフィグ
+}
+
+// ルートタイプ
+root_type AnimationLayerConfig;

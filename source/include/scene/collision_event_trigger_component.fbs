@@ -1,0 +1,30 @@
+namespace gfl.scene.fb;
+
+enum CollisionEventType : int {
+  Trigger,
+  Manifold,
+  ContactImpulse
+}
+
+enum CollisionTriggerTiming : int {
+  Is,
+  Was,
+  Trigger,
+  Release,
+  Both,
+  Any,
+  XOR,
+  Not,
+  Always
+}
+
+table CollisionEventTriggerComponent {
+  sceneObject:string;
+  resourceName:string;
+  eventType:CollisionEventType;
+  triggerTiming:CollisionTriggerTiming;
+  triggerName:string;
+  eventNames:[string];
+}
+  
+root_type CollisionEventTriggerComponent;

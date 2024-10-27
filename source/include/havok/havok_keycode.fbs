@@ -1,0 +1,9 @@
+﻿namespace gfl.physics.fb;
+
+table HavokKeycode
+{
+  physics: string;
+  ai: string;
+}
+
+root_type HavokKeycode;

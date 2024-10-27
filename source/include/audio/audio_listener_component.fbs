@@ -1,0 +1,8 @@
+namespace gfl.audio.fb;
+
+table AudioListenerComponent {
+  subListenerName:string;
+  shouldRegister:bool = false;
+}
+
+root_type AudioListenerComponent;

@@ -1,0 +1,23 @@
+﻿include "tranm.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "tracn";
+
+// ---------------------------------------------------------
+// ■サブコンポーネント
+
+table SubComponentConfig {
+  type:string;
+  file_path:string;
+}
+
+// ---------------------------------------------------------
+// ■コンフィグ
+
+// アニメーションコンフィグ
+table AnimationConfig {
+  subComponentConfig:[SubComponentConfig];  // サブコンポーネント設定
+}
+
+// ルートタイプ
+root_type AnimationConfig;

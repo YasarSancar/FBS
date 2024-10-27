@@ -1,0 +1,8 @@
+namespace GenericEditor.Plugin.Environment;
+
+table EnvironmentIntParamData {
+  paramaterName:string;
+  value:int;
+}
+
+root_type EnvironmentIntParamData;

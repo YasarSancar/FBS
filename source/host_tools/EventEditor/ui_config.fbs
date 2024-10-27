@@ -1,0 +1,33 @@
+namespace EventEditor.UI;
+
+// モード
+enum Mode : int {
+  Overview,
+  Connection,
+  EventEdit,
+}
+
+// ImGui の Style
+enum Style : int {
+  // ImGui.StyleColorsClassic()
+  Classic,
+
+  // ImGui.StyleColorsLight()
+  Light,
+
+  // ImGui.StyleColorsDark()
+  Dark,
+
+  // EventEditor
+  EventEditor,
+}
+
+// 保存する UI 情報
+table UIConfig {
+  Mode: Mode = Overview;
+  Style: Style = EventEditor;
+  LastFolder:string;
+  LastTemplate:string;
+}
+
+root_type UIConfig;

@@ -1,0 +1,31 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+enum SceneObjectPriority : byte {
+    Lowest = 0,
+    Low = 1,
+    Middle = 2,
+    High = 3,
+    Highest = 4,
+}
+
+table SceneObjectLayer {
+    priority: int;
+    name: string;
+    srt: gfl.math.fb.SRT;
+}
+
+table SceneObject {
+    name: string;
+    srt: gfl.math.fb.SRT;
+    keepWorldSRT: bool;
+    attachTransformEnable: bool;
+    attachJointName: string;
+    isScriptable: bool;
+    priority: SceneObjectPriority = Middle;
+    layerList: [SceneObjectLayer];
+    tagList: [string];
+    boundingSphere: gfl.math.fb.Sphere;
+}
+
+root_type SceneObject;

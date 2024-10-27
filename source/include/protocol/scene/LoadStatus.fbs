@@ -1,0 +1,8 @@
+namespace gfl.protocol.scene.fb;
+
+enum LoadStatus : uint {
+  LoadRequest,
+  LoadStart,
+  LoadFinish,
+  Unload,
+}

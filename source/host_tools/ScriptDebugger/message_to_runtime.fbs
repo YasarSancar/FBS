@@ -1,0 +1,16 @@
+// VSCode との通信プロトコル
+// スクリプトデバッガー用
+
+include "sdp_common.fbs";
+
+namespace sdp;  // script debugger protocol 長いので省略した
+
+file_extension "sdp";
+
+// --------------------------------------------------------
+// VSCode -> Runtime メッセージ
+table ToRuntimeMessage {
+  message:ToRuntimeMessageType;
+}
+
+root_type ToRuntimeMessage;

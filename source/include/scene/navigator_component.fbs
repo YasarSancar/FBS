@@ -1,0 +1,23 @@
+namespace gfl.scene.fb;
+  
+table NavigatorComponent {
+  instanceName:string;
+  navigatorRadius:float;
+  navigatorSearchRadius:float;
+  navigatorVerticalTolerance:float;
+  navigatorHorizontalTolerance:float;
+  avoidanceCharacterMaximumSpeed:float;
+  avoidanceCharacterPreferredSpeed:float;
+  avoidanceCharacterRadius:float;
+  avoidanceSensorTopExtent:float;
+  avoidanceSensorBottomExtent:float;
+  avoidanceSensorHalfWidth:float;
+  steeringPropertiesWallFollowingAngle:float;
+  steeringPropertiesDodgingPenalty:float;
+  steeringPropertiesCollisionPenalty:float;
+  steeringPropertiesPenetrationPenalty:float;
+  steeringPropertiesWeight:float;
+  steeringPropertiesPriority:int;
+}
+
+root_type NavigatorComponent;

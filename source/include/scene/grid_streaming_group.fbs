@@ -1,0 +1,35 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+enum GridType : byte {
+    Octree,
+    Quadtree,
+    Hybridtree,
+}
+
+enum DivisionType : byte {
+    Div1,
+    Div2,
+    Div4,
+    Div8,
+    Div16,
+    Div32,
+    Div64,
+    Div128,
+    Div256,
+    Div512,
+    Div1024,
+}
+
+table GridStremingGroup {
+    name: string;
+    gridType: GridType;
+    position: math.fb.Vector3f;
+    sizes: [float];
+    divisions: [DivisionType];
+
+    activate: float;
+    disactivate: float;
+}
+
+root_type GridStremingGroup;

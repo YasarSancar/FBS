@@ -1,0 +1,42 @@
+﻿include "animation_common2.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "trcma";
+
+// ---------------------------------------------------------
+// ■カメラアニメーション
+
+table CameraProjectionData {
+  nears:KeyData_Float;                // ニア
+  fars:KeyData_Float;                 // ファー
+  fovys:KeyData_Float;                // 画角
+}
+
+table CameraViewData {
+  rotates:KeyData_Quaternion48bit;    // 回転
+  translates:KeyData_Vector3;         // 平行移動
+  upVectors:KeyData_Vector3;          // アップベクター
+  aims:KeyData_Vector3;               // 注視位置
+  twists:KeyData_Float;               // ツイスト
+}
+
+// カメラデータ
+table CameraData {
+  name:string;                        // カメラ名
+
+  projection:CameraProjectionData;    // 射影行列用データ
+  view:CameraViewData;                // ビュー行列用データ
+}
+
+// ---------------------------------------------------------
+// ■カメラアニメーション
+
+// カメラアニメーションデータ
+table CameraAnimationData {
+  frameSetting:FrameSetting;  // フレーム設定
+
+  camera:CameraData;          // カメラリスト
+}
+
+// ルートタイプ
+root_type CameraAnimationData;

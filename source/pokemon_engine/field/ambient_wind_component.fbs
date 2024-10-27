@@ -1,0 +1,13 @@
+include "../../include/math/math.fbs";
+namespace pe.field.fb;
+  
+table AmbientWindComponent {
+  instanceName:string;
+  direction:gfl.math.fb.Vector3f;
+  speed:float;
+  noiseScale:float;
+  strength:float;
+  scriptControlOnly:bool;
+}
+
+root_type AmbientWindComponent;

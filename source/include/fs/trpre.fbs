@@ -1,0 +1,7 @@
+namespace gfl.fs.fb;
+
+table PrefetchFileList {
+    hashs:[uint64];
+}
+
+root_type PrefetchFileList;

@@ -1,0 +1,58 @@
+﻿include "animation_common2.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "tranm";
+
+// ---------------------------------------------------------
+// ■ジョイントアニメーション
+
+// ジョイントデータ
+table JointData {
+  name:string;                      // ジョイント名
+
+  scales:KeyData_Vector3;           // スケールキー
+  rotates:KeyData_Quaternion48bit;  // ローテートキー
+  translates:KeyData_Vector3;       // トランスレートキー
+}
+
+// ルートモーション
+table RootMotion {
+  rootMotionIndex:int;    // ルートモーション用のノードインデックス:存在しないなら-1
+  rootMotionBaseSRT:_SRT;  // ルートモーション用の基準になるSRT
+}
+
+// ジョイントアニメーションデータ
+table JointAnimationData {
+  joints:[JointData];     // ジョイントデータ配列
+  rootMotion:RootMotion;  // ルートモーション
+}
+
+// ---------------------------------------------------------
+// ■ビジビリティアニメーション
+
+// メッシュデータ
+table MeshData {
+  name:string;  // ジョイント名
+
+  visibilities:KeyData_Bool;  // ビジビリティキー
+}
+
+// ビジビリティアニメーションデータ
+table VisibilityAnimationData {
+  meshes:[MeshData];     // メッシュデータ配列
+}
+
+// ---------------------------------------------------------
+// ■アニメーション
+
+// アニメーションデータ
+table AnimationData {
+  frameSetting:FrameSetting;                        // フレーム設定
+
+  jointAnimationData:JointAnimationData;            // ジョイントアニメーションデータ
+  visibilityAnimationData:VisibilityAnimationData;  // ビジビリティアニメーションデータ
+}
+
+// ルートタイプ
+root_type AnimationData;
+

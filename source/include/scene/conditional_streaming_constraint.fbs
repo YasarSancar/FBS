@@ -1,0 +1,16 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+enum ConstraintType : byte {
+    DistanceCircle,
+    DistanceSphere,
+    LimitedHeight,
+}
+
+table ConditionalStreamingConstraint {
+    constraintType: ConstraintType;
+    activate: math.fb.Vector4f;
+    disactivate: math.fb.Vector4f;
+}
+
+root_type ConditionalStreamingConstraint;

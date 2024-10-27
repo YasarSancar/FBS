@@ -1,0 +1,61 @@
+include "../math/math.fbs";
+
+namespace gfl.scene.fb;
+
+union PSValue {
+  PSInteger,
+  PSDecimal,
+  PSString,
+  gfl.math.fb.Vector2f,
+  gfl.math.fb.Vector3f,
+  gfl.math.fb.Vector4f,
+  PSEnum,
+  PSList,
+  PSTable,
+  PSUnion,
+}
+
+table PSInteger {
+  data: ulong;
+  size: ubyte;
+}
+
+table PSDecimal {
+  data: double;
+  size: ubyte;
+}
+
+table PSString {
+  data: string;
+}
+
+table PSEnum {
+  name: string;
+  value: int;
+}
+
+table PSUnion {
+  type: PSEnum;
+  value: PSTable;
+}
+
+table PSField {
+  key: string;
+  value: PSValue;
+}
+
+table PSTable {
+  fields: [PSField];
+}
+
+table PSList {
+  values: [PSValue];
+}
+  
+table PropertySheet {
+  schemaName: string;
+  resourceName: string;
+  values: [PSTable];
+}
+  
+root_type PropertySheet;

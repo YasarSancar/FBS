@@ -1,0 +1,8 @@
+namespace gfl.fs.fb;
+
+table ArchiveStorage {
+    pathHashs:[ulong];
+    fileOffsets:[ulong];
+}
+
+root_type ArchiveStorage;

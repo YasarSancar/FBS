@@ -1,0 +1,10 @@
+include "animation_common2.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "trmdt";
+
+table MotionDetectorConfig {
+  detectorDataFileList:[string];
+}
+
+root_type MotionDetectorConfig;

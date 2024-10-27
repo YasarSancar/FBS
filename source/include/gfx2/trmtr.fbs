@@ -1,0 +1,203 @@
+﻿include "types.fbs";
+
+namespace gfl.gfx2.fb;
+
+table IntParam {
+  name:string;
+  value:int;
+}
+
+table Vector2iParam {
+  name:string;
+  value:Vector3i;
+}
+
+table Vector3iParam {
+  name:string;
+  value:Vector3i;
+}
+
+table Vector4iParam {
+  name:string;
+  value:Vector4i;
+}
+
+table FloatParam {
+  name:string;
+  value:float;
+}
+
+table Vector2fParam {
+  name:string;
+  value:Vector2f;
+}
+
+table Vector3fParam {
+  name:string;
+  value:Vector3f;
+}
+
+table Vector4fParam {
+  name:string;
+  value:Vector4f;
+}
+
+table Matrix4x4fParam {
+  name:string;
+  value:Matrix4x4f;
+}
+
+table TextureParam {
+  name:string;
+  file_path:string;
+  sampler_id:int;
+}
+
+enum TextureFilterMode : uint {
+  Nearest,
+  Linear,
+  Count
+}
+
+enum TextureReductionMode : uint {
+  Average,
+  Min,
+  Max,
+  Count
+}
+
+enum TextureWrapMode : uint {
+  Clamp,
+  Repeat,
+  MirrorClamp,
+  MirrorClampToEdge,
+  MirrorClampToBorder,
+  ClampToBorder,
+  MirroredRepeat,
+  ClampToEdge,
+  Count
+}
+
+enum CompareFunction : uint {
+  Never,
+  Less,
+  Equal,
+  LessEqual,
+  Greater,
+  NotEqual,
+  GreaderEqual,
+  Always,
+  Count
+}
+
+table Sampler {
+  min_filter:TextureFilterMode = Linear;
+  mag_filter:TextureFilterMode = Linear;
+  mip_filter:TextureFilterMode = Linear;
+  reduction_mode:TextureReductionMode = Average;
+  max_anisotropy:float = 0.0;
+  lod_clamp_min:float = 0.0;
+  lod_clamp_max:float = 100.0;
+  lod_bias:float = 0.0;
+  lod_snap:float = 0.0;
+  wrap_u:TextureWrapMode = Clamp;
+  wrap_v:TextureWrapMode = Clamp;
+  wrap_w:TextureWrapMode = Clamp;
+  border_color:Vector4f;
+  depth_compare_function:CompareFunction = Always;
+  depth_compare_enable:bool = false;
+}
+
+enum PrimitiveTopology : uint {
+  Points,
+  Lines,
+  LineLoop,
+  LineStrip,
+  Triangles,
+  TriangleStrip,
+  TriangleFan,
+  Quads,
+  QuadStrip,
+  Polygon,
+  LinesAdjacency,
+  LineStripAdjacency,
+  TrianglesAdjacency,
+  TriangleStripAdjacency,
+  Patches,
+  Count
+}
+
+enum FrontFace : uint {
+  CW,
+  CCW,
+  Count
+}
+
+enum CullMode : uint {
+  None,
+  Front,
+  Back,
+  FrontAndBack,
+  Count
+}
+
+enum CoverageModulationMode : uint {
+  None,
+  RGB,
+  Alpha,
+  RGBA,
+  Count,
+}
+
+table RasterizationState {
+  front_face:FrontFace = CW;
+  cull_mode:CullMode = Back;
+  depth_bias:int = 0;
+  slope_scaled_depth_bias:float = 0.0;
+  depth_bias_clamp:float = 0.0;
+}
+
+table DepthState {
+  depth_write_enable:bool = true;
+  depth_test_enable:bool = true;
+}
+
+table ShaderOption {
+  name:string;
+  choice:string;
+}
+
+table Technique {
+  name:string;
+  shader_option_list:[ShaderOption];
+}
+
+table MaterialItem {
+  name:string;
+
+  technique_list:[Technique];
+  texture_param_list:[TextureParam];
+  sampler_list:[Sampler];
+  float_param_list:[FloatParam];
+  vector2f_param_list:[Vector2fParam];
+  vector3f_param_list:[Vector3fParam];
+  vector4f_param_list:[Vector4fParam];
+  matrix4x4f_param_list:[Matrix4x4fParam];
+  int_param_list:[IntParam];
+  vector2i_param_list:[Vector2iParam];
+  vector3i_param_list:[Vector3iParam];
+  vector4i_param_list:[Vector4iParam];
+
+  depth_state:DepthState;
+  rasterization_state:RasterizationState;
+  blend_state_preset:string;
+  cast_shadow:bool = true;
+  receive_shadow:bool = true;
+}
+
+table Material {
+  version:uint = 1;
+  item_list:[MaterialItem];
+}
+
+root_type Material;

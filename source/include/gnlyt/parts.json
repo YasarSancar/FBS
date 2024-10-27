@@ -1,0 +1,205 @@
+{
+    "name": "parts",
+    "paneSet":[
+        {
+            "pane_type":"Picture",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Picture",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"picture_test_s",
+                    "alpha": 255,
+                    "isInfluencedAlpha": true,
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "vtxColLT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRT":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColLB":{ "r":255, "g":255, "b":255, "a":255 },
+                "vtxColRB":{ "r":255, "g":255, "b":255, "a":255 },
+                "texCoord": [
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    },
+                    {
+                        "tex_LT":{ "s":0, "t":0 },
+                        "tex_RT":{ "s":1, "t":0 },
+                        "tex_LB":{ "s":0, "t":1 },
+                        "tex_RB":{ "s":1, "t":1 }
+                    }
+                ],
+                "material":{
+                    "texMap":[
+                        {
+                            "imageName":"Texture/f128.bntx",
+                            "wrap_s":"TexWrap_Mirror",
+                            "wrap_t":"TexWrap_Repeat",
+                            "textureStage":0
+                        }
+                    ],
+                    "texMatrix":[
+                        {
+                            "rotate":0.0,
+                            "scale":{ "x":1.0, "y":1.0 },
+                            "translate":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "texCoordGen":[
+                        {
+                            "srcParam":"TexGenSrc_Tex0",
+                            "projectionScale":{ "x":1.0, "y":1.0 },
+                            "projectionTrans":{ "x":0.0, "y":0.0 }
+                        }
+                    ],
+                    "alphaCompare":{
+                        "comp":"AlphaTest_Always",
+                        "ref":0.0
+                    },
+                    "interpolateCol":{
+                        "blackColor":{ "r":0, "g":0, "b":0, "a":0 },
+                        "whiteColor":{ "r":255, "g":255, "b":255, "a":255 },
+                        "interpolateAlpha": false
+                    }
+                }
+            }
+        },
+        {
+            "pane_type":"TextBox",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Textbox",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"text_test",
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                },
+                "utf8": false,
+                "text": "部品テキスト",
+                "font": "UDKakugo",
+                "fontSize": { "x":20.0, "y":20.0 },
+                "space": { "x":0.0, "y":0.0 },
+                "textPosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Bottom" },
+                "textAlignment": "TextAlignment_Synchronous",
+                "textCache": 0,
+                "topColor": { "r":255, "g":0, "b":0, "a":255 },
+                "bottomColor": { "r":255, "g":255, "b":255, "a":255 },
+                "shadowOffset": { "x":1.0, "y":1.0 },
+                "shadowScale": { "x":1.0, "y":1.0 },
+                "shadowTopColor": { "r":0, "g":0, "b":0, "a":255 },
+                "shadowBottomColor": { "r":0, "g":0, "b":0, "a":255 },
+                "glyphTransform": {
+                    "offset": 0.0,
+                    "width": 100.0,
+                    "enableLoop": true,
+                    "transformInfos": [
+                        {
+                            "target": "CurveTypeGlyphTransform_TranslateY",
+                            "curveType": "CurveType_Linear",
+                            "keyframe": {
+                                "keyframes": [ 0.0, 50.0 ],
+                                "times": [ 0.0, 100.0 ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "pane_type":"Bounding",
+            "pane":{
+                "base":{
+                    "kind":"PaneKind_Bounding",
+                    "flag":"PaneFlag_Visible",
+                    "flagEx":"PaneFlagEx_PartsMagnifyAdjustToPartsBound",
+                    "name":"B_bounding",
+                    "basePosition":{ "horizontal":"HorizontalPosition_Center", "vertical":"VerticalPosition_Center" },
+                    "rotate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "scale":{ "x":1.0, "y":1.0 },
+                    "size":{ "x":128.0, "y":128.0 },
+                    "translate":{ "x":0.0, "y":0.0, "z":0.0 },
+                    "userData":"",
+                    "comment":""
+                }
+            }
+        }
+    ],
+    "paneHierarchy":{
+        "name":"RootPane",
+        "children":[
+            {
+                "name": "picture_test_s",
+                "children": [
+                    {
+                        "name": "text_test"
+                    }
+                ]
+            },
+            {
+                "name": "B_bounding"
+            }
+        ]
+    },
+    "groupset":{
+        "rootgroup":{
+            "name":"RootGroup",
+            "group":[
+                {
+                    "name":"group_test",
+                    "paneref":[
+                        { "name": "picture_test_s" },
+                        { "name": "B_bounding" }
+                    ]
+                }
+            ]
+        }
+    },
+    "controlSet": [
+        {
+            "name": "[GF]UIKitButton",
+            "functionPane": [
+                {
+                    "function": "bounding", 
+                    "pane":  "B_bounding"
+                }
+            ],
+            "functionAnimation": [
+                {
+                    "function": "down",
+                    "animation": "VertexColor"
+                }
+            ]
+        }
+    ],
+    "screenSetting":{
+        "layoutSize":{ "x":1920.0, "y":1080.0 },
+        "backGround":{ "r":169, "g":169, "b":169, "a":255 },
+        "grid":{
+            "thickLineInterval":40,
+            "thinDivisionNum":4,
+            "visible":"true",
+            "moveMethod":"None",
+            "color":{ "r":128, "g":128, "b":64, "a":128 }
+        }
+    }
+}

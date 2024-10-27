@@ -1,0 +1,8 @@
+namespace gfl.scene.fb;
+
+table Locator {
+    filePath:string;
+    resourceName:string;
+}
+
+root_type Locator;

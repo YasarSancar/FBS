@@ -1,0 +1,11 @@
+namespace gfl.protocol.scene.fb;
+
+table CreateElement {
+    nodeId:string;
+    type:string;            // 要素の型
+    name:string;            // 要素名
+    resourceName:string;    // リソース名
+    data:[ubyte];           // データ
+}
+
+root_type CreateElement;

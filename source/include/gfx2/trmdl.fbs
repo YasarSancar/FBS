@@ -1,0 +1,36 @@
+﻿include "types.fbs";
+
+namespace gfl.gfx2.fb;
+
+table MeshComponent {
+  file_path:string;
+}
+
+table SkeletonComponent {
+  file_path:string;
+}
+
+table LODInfo {
+  mesh_component_id:int;
+  threshold:float;
+}
+
+table LODGroup {
+  lod_info_list:[LODInfo];
+  transition_preset:string;
+}
+
+table Model {
+  version:uint = 1;
+  mesh_component_list:[MeshComponent];
+  skeleton_component:SkeletonComponent;
+  material_path_list:[string];
+  lod_group_list:[LODGroup];
+  aabb:AABB;
+  bounding_sphere:Vector4f;
+  lattice_deformer_path:string;
+  is_interior_map:bool = false;
+  shadow_lod_level:int = 0;
+}
+
+root_type Model;

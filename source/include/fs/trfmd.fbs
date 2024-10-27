@@ -1,0 +1,10 @@
+include "file_meta.fbs";
+namespace gfl.fs.fb;
+
+table FileMetaDictionary {
+  hashs:[uint64];
+  metas:[FileMeta];
+}
+
+root_type FileMetaDictionary;
+file_extension "trfmd";

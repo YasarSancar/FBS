@@ -1,0 +1,12 @@
+include "../math/math.fbs";
+
+namespace gfl.debug_framework.fb.light;
+
+table IrradianceVolumeCaptureData {
+  filepath:string;
+  lightName:string;
+  resolution:gfl.math.fb.Vector3f;
+  lightUniqueId:string;
+}
+
+root_type IrradianceVolumeCaptureData;

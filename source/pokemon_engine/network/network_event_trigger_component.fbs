@@ -1,0 +1,24 @@
+namespace pe.network.fb;
+
+enum NetworkTriggerTiming : int {
+  Is,
+  Was,
+  Trigger,
+  Release,
+  Both,
+  Any,
+  XOR,
+  Not,
+  Always
+}
+
+table NetworkEventTriggerComponent {
+  resourceName:string;
+  triggerTiming:NetworkTriggerTiming;
+  triggerName:string;
+  eventNames:[string];
+  channelGroupNumber:int;
+  channelId:int;
+}
+  
+root_type NetworkEventTriggerComponent;

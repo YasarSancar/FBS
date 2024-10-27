@@ -1,0 +1,7 @@
+namespace gfl.scene.fb;
+
+table LayoutCommonResourceComponent {
+    filePath:string;
+}
+
+root_type LayoutCommonResourceComponent;

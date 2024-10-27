@@ -1,0 +1,8 @@
+namespace gfl.scene.fb;
+
+table EnvironmentParameter {
+    parameterName:string;
+    value:float;
+}
+
+root_type EnvironmentParameter;

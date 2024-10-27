@@ -1,0 +1,10 @@
+﻿namespace gfl.framework.fb;
+
+table GfLicense {
+  version:uint;
+  hashCode:[ubyte];
+  iv:[ubyte];
+  data:[ubyte];
+}
+
+root_type GfLicense;

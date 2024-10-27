@@ -1,0 +1,77 @@
+﻿namespace gfl.anm2.fbj;
+
+file_extension "tracrj";
+
+// ---------------------------------------------------------
+// ■圧縮設定
+
+// 圧縮品質を表す値。品質が良いとあまり圧縮しないのでデータサイズも大きくなる
+enum CompressionQuality : uint {
+  High,   // 高品質に圧縮する == データサイズは大きくなる
+  Middle, // 中品質に圧縮する == データサイズはそれなり
+  Low,    // 低品質に圧縮する == データサイズは小さくなる
+}
+
+// プレセット指定して圧縮
+table CompressByPreset {
+  quality:CompressionQuality; // 圧縮品質
+}
+
+// 圧縮率指定して圧縮
+table CompressByPercent {
+  percent:int;                // 圧縮率
+}
+
+// 圧縮モード
+union ComporessMode {
+  CompressByPreset,
+  CompressByPercent,
+}
+
+table CompressionConfig {
+  mode:ComporessMode;         // 圧縮モード
+}
+
+// ---------------------------------------------------------
+// ■リソース設定
+
+table FileResource {
+  name:string;                    // リソース名
+  filePath:string;                // ファイルパス
+  tracmjFilePath:string;          // Meshアニメファイルパス
+  traefjFilePath:string;          // アニメーションEventファイルパス
+  compression:CompressionConfig;  // 圧縮設定
+}
+
+table Blend1DPoint {
+  resourceName:string;            // 再生対象のリソース名
+  positionX:float;                // ポイントの位置ｘ
+}
+
+table Blend1DResource {
+  name:string;                    // リソース名
+  parameterName:string;           // パラメータ名
+  pointList:[Blend1DPoint];          // ブレンドポイントリスト
+}
+
+table Blend2DPoint {
+  resourceName:string;            // 再生対象のリソース名
+  positionX:float;                // ポイントの位置ｘ
+  positionY:float;                // ポイントの位置ｙ
+}
+
+table Blend2DResource {
+  name:string;                    // リソース名
+  parameterNameX:string;          // パラメータ名ｘ
+  parameterNameY:string;          // パラメータ名ｙ
+  pointList:[Blend2DPoint];       // ブレンドポイントリスト
+}
+
+table ResourceConfig {
+  fileResourceList:[FileResource];       // ファイルリソースリスト
+  blend1dResourceList:[Blend1DResource]; // ブレンド1Dリソースリスト
+  blend2dResourceList:[Blend2DResource]; // ブレンド2Dリソースリスト
+}
+
+// ルートタイプ
+root_type ResourceConfig;

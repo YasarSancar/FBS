@@ -1,0 +1,82 @@
+include "../../math/math.fbs";
+namespace gfl.protocol.scene.fb;
+
+union Data {
+  Binary,
+  Bool,
+  BoolArray,
+  Int,
+  IntArray,
+  Long,
+  LongArray,
+  Float,
+  FloatArray,
+  String,
+  StringArray,
+  Vector3f,
+  Vector4f,
+  SRT,
+}
+
+table Binary {
+  data:[ubyte];
+}
+
+table Bool {
+  data:bool;
+}
+
+table BoolArray {
+  data:[bool];
+}
+
+table Int {
+  data:int;
+}
+
+table IntArray {
+  data:[int];
+}
+
+table Long {
+  data:long;
+}
+
+table LongArray {
+  data:[long];
+}
+
+table Float {
+  data:float;
+}
+
+table FloatArray {
+  data:[float];
+}
+
+table String {
+  data:string;
+}
+
+table StringArray {
+  data:[string];
+}
+
+table Vector3f {
+  data:gfl.math.fb.Vector3f;
+}
+
+table Vector4f {
+  data:gfl.math.fb.Vector4f;
+}
+
+table SRT {
+  data:gfl.math.fb.SRT;
+}
+
+table UpdateProperty {
+  propertyName:string;
+  data:Data;
+}
+
+root_type UpdateProperty;

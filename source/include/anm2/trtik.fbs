@@ -1,0 +1,80 @@
+namespace gfl.anm2.fb;
+file_extension "trtik";
+
+struct Vector {
+    x : float;
+    y : float;
+    z : float;
+}
+
+table ToeSolverData {
+    isEnabled: bool;
+    factor: float;
+    groundNormal: Vector;
+    localForward: Vector;
+    localUp:Vector;
+    constraintIsEnabled: bool;
+    fwd_Positive: float;
+    fwd_Negative: float;
+    side_Positive:float;
+    side_Negative:float;
+}
+
+table TwoBoneIKSetData {
+    isEnabled: bool;
+    rootNodeName: string;
+    middleNodeName: string;
+    tipNodeName: string;
+    rootConstraintIsEnabled: bool;
+    rootConstraintRangeAxisY_Positive: float;
+    rootConstraintRangeAxisY_Negative: float;
+    rootConstraintRangeAxisZ_Positive: float;
+    rootConstraintRangeAxisZ_Negative: float;
+    rootConstraintIterations: int;
+    middleConstraintIsEnabled: bool;
+    middleConstraintRange_Positive: float;
+    middleConstraintRange_Negative: float;
+    poleVector: Vector;
+    twist: float;
+    weight: float;
+    toeSolverData: ToeSolverData;
+    targetOffsetIsEnabled: bool;
+}
+
+table MultiJointIKData {
+    isEnabled: bool;
+    factor: float = 1.0;
+    startJointName: string;
+    endJointName: string;
+    precision: float = 0.001;
+    iterations: int = 5;
+}
+
+table TwoBoneIKGroupData {
+    groupName: string;
+    twoBoneIKSet: TwoBoneIKSetData;
+    multiJointIKData: MultiJointIKData;
+}
+
+table OriginOrientationSolverData {
+    isEnabled: bool;
+    factor: float;
+}
+
+table WaistOffsetSolverData {
+    isEnabled: bool;
+    factor: float;
+    limitFootHeightIsEnabled: bool;
+    limitFootHeightDifference: float = 0.25;
+}
+
+// Root
+table TwoBoneIKData {
+    twoBoneIKGroups : [TwoBoneIKGroupData];
+    isUseAdditionalParameterWeights: bool;
+    originOrientationSolverData: OriginOrientationSolverData;
+    waistOffsetSolverData: WaistOffsetSolverData;
+    factor: float;
+}
+
+root_type TwoBoneIKData;

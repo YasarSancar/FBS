@@ -1,0 +1,17 @@
+﻿include "tracpj.fbs";
+include "tracsj.fbs";
+
+namespace gfl.anm2.fbj;
+
+file_extension "trast";
+
+// ---------------------------------------------------------
+// ■ステートテンプレート
+
+table StateTemplate {
+  parameterConfig:ParameterConfig;  // パラメータ設定
+  state:State;                      // ステート
+}
+
+// ルートタイプ
+root_type StateTemplate;

@@ -1,0 +1,224 @@
+namespace GenericEditor.Plugin.AnimationEditor.ToViewer;
+
+enum PlayerType : uint {
+  StateMachine,   // ステートマシン
+  ResourcePlayer, // 単体リソース再生
+}
+
+// 3次元ベクトル
+struct Vector3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+// 4次元ベクトル
+struct Vector4 {
+  x:float;
+  y:float;
+  z:float;
+  w:float;
+}
+
+union MessageType {
+  StartMessage,
+  StopMessage,
+  PauseMessage,
+  ResumeMessage,
+  NextFrameMessage,
+  SetFrameMessage,
+  SetIntParameterMessage,
+  SetFloatParameterMessage,
+  SetBoolParameterMessage,
+  SetTriggerParameterMessage,
+  SetRootMotionEnabledMessage,
+  SetLookAtMessage,
+  SetMasterSpeedMessage,
+  SetUpdateIntervalMessage,
+  SetLODMessage,
+  SetSpringBoneMessage,
+  ResetSpringBoneMessage,
+  SetBipedIKDebugGroundMessage,
+  SetUnitOperatorDataMessage,
+  SetUnitOperatorDebugMessage,
+  SetUnitOperatorCalcMessage,
+  SetAdditionalParameterMessage,
+}
+
+// 開始
+table StartMessage {
+  configFilePath:string;
+  workingDirectory:string;
+  intParameters:[SetIntParameterMessage];
+  floatParameters:[SetFloatParameterMessage];
+  boolParameters:[SetBoolParameterMessage];
+  triggerParameters:[SetTriggerParameterMessage];
+  masterSpeed:float;
+  playerType:PlayerType;
+  updateInterval:int;
+  rootMotion:SetRootMotionEnabledMessage;
+  pauseOnStart:bool;
+  additional_messages:[MessageType];   // 再生開始時に追加で実行したいメッセージ
+}
+
+// 停止
+table StopMessage {
+  _dummy_:int;  // 何かフィールドが無いとC#から作成できないため
+}
+
+// 一時停止
+table PauseMessage {
+  _dummy_:int;  // 何かフィールドが無いとC#から作成できないため
+}
+
+// 再開
+table ResumeMessage {
+  _dummy_:int;  // 何かフィールドが無いとC#から作成できないため
+}
+
+// コマ送り
+table NextFrameMessage {
+  _dummy_:int;  // 何かフィールドが無いとC#から作成できないため
+}
+
+// フレーム直接指定
+table SetFrameMessage {
+  normalizedFrame:float;
+}
+
+// パラメータ設定 : int
+table SetIntParameterMessage {
+  name:string;
+  value:int;
+}
+
+// パラメータ設定 : float
+table SetFloatParameterMessage {
+  name:string;
+  value:float;
+}
+
+// パラメータ設定 : bool
+table SetBoolParameterMessage {
+  name:string;
+  value:bool;
+}
+
+// パラメータ設定 : trigger
+table SetTriggerParameterMessage {
+  name:string;
+  value:bool;
+}
+
+// RootMotion有効設定
+table SetRootMotionEnabledMessage {
+  rotateEnabled:bool;
+  translateEnabled:bool;
+}
+
+// LookAt設定
+table SetLookAtMessage {
+  debugDrawEnable:bool;
+  fixedLookAtAreaVisible:bool;
+  constraintDrawEnable:bool;
+  lookAtEnable:bool;
+  calculatePositionEnable:bool;
+  calculateAxisEnable:bool;
+  controlType:int;
+  selectedChannel:int;
+  targetDrawEnable0:bool;
+  targetDrawEnable1:bool;
+  isPaused0:bool;
+  isPaused1:bool;
+  position0:Vector3;
+  position1:Vector3;
+  channelColor0:Vector4;
+  channelColor1:Vector4;
+  gameObjectEnable:bool;
+  gameObjectPosition:Vector3;
+}
+
+// マスター速度設定
+table SetMasterSpeedMessage {
+  masterSpeed:float;
+}
+
+// アニメーション更新間隔の設定
+table SetUpdateIntervalMessage {
+  interval:int;
+}
+
+// LOD設定
+table SetLODMessage {
+  isEnabled:bool;
+  maxPriority:uint;
+  level:uint;
+}
+
+// SpringBone設定
+table SetSpringBoneMessage {
+  masterBlendWeight:float;
+  masterWindBlendWeight:float;
+  masterWindNoiseBlendWeight:float;
+  windDirectionX:float;
+  windDirectionY:float;
+  windDirectionZ:float;
+  windSpeed:float;
+  windStrength:float;
+  windNoiseScale:float;
+}
+
+// SpringBoneリセット
+table ResetSpringBoneMessage {
+  _dummy_:int;  // 何かフィールドが無いとC#から作成できないため
+}
+
+// BipedIKのデバッグ用地面の設定
+table SetBipedIKDebugGroundMessage {
+  useDebugGround:bool;
+  debugGroundHeight:float;
+  debugGroundYaw:float;
+  debugGroundPitch:float;
+  debugGroundRoll:float;
+  isLocomotion:bool;
+  rangeWeight:float;
+  maxGroundAngle:float = 90.0;
+  maxHeight:float;
+  groundWeight:float = 1.0;
+}
+
+// UnitOperatorの設定
+table SetUnitOperatorDataMessage {
+  data:[ubyte];
+}
+
+// UnitOperatorのデバッグ設定
+table SetUnitOperatorDebugMessage {
+  isVisible:bool;
+  isTranslateVisible:bool;
+  isRotation:bool;
+  isTranslate:bool;
+  isLand:bool;
+  isDelay:bool;
+}
+
+// UnitOperatorの計算メッセージ
+table SetUnitOperatorCalcMessage {
+  footNode:string;
+  childIndex:int = -1;
+}
+
+// 追加パラメータの変更メッセージ
+table SetAdditionalParameterMessage {
+  statePath:string;
+  parameterName:string;
+  value:float;
+}
+
+// ビューアーへのメッセージ
+table AnimationEditorToViewer {
+  modelInstanceName:string;
+  message:MessageType;
+}
+
+root_type AnimationEditorToViewer;

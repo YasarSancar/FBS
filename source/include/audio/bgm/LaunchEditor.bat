@@ -1,0 +1,1 @@
+start C:\projects\rd_public\tools\FlatBuffersEditor\FlatBuffersEditor.exe audio.fbproj

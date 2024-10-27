@@ -1,0 +1,11 @@
+include "types.fbs";
+include "pane.fbs";
+
+namespace gfl.gnlyt.fb;
+
+table Parts {
+    base:Pane;
+    textCacheOffset:uint;
+    layout:string;
+    animations:[string];
+}

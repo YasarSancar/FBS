@@ -1,0 +1,8 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+table ConditionalStreamingGroup {
+    name: string;
+}
+
+root_type ConditionalStreamingGroup;

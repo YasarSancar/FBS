@@ -1,0 +1,17 @@
+// キャラクリ通信用データ (ti のプレイヤー特化の簡略化版)
+
+namespace gfl.cc.cmm;
+
+struct Opt_CMMBody {
+  softVersion:int;          // ソフトバージョン
+  animationSlot:int;        // アニメスロット番号
+  gender:int;               // 性別
+  partsLabelList:[int:8];   // パーツ
+  parameterList:[int:15];   // パラメータ
+}
+
+table Opt_CMMBuffer {
+  body:Opt_CMMBody;
+}
+
+root_type Opt_CMMBuffer;

@@ -1,0 +1,9 @@
+namespace GenericEditor.Plugin.Model;
+
+table LocatorPtclEmitData {
+  instanceName:string;
+  locatorName:string;
+  ptclFilePath:string;
+}
+
+root_type LocatorPtclEmitData;

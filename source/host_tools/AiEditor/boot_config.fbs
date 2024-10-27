@@ -1,0 +1,14 @@
+namespace AiEditor;
+
+// 起動設定
+table BootConfig {
+  UserGuideURL: string;
+  BlackboardRootPath: string;
+  BehaviorTreeRootPath: string;
+  TemplateRootPath: string;
+  IsBackupExit: bool;
+  UniConsPath: string;
+  UniConsPipelineFilePath: string;
+}
+
+root_type BootConfig;

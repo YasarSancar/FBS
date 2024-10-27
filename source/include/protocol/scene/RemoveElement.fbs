@@ -1,0 +1,7 @@
+namespace gfl.protocol.scene.fb;
+
+table RemoveElement {
+    nodeId:string;
+}
+
+root_type RemoveElement;

@@ -1,0 +1,11 @@
+namespace gfl.scene.fb;
+
+table TerrainStreamingSetting {
+    lowLoadRadius:float;
+    middleLoadRadius:float;
+    highLoadRadius:float;
+    collisionLoadRadius:float;
+    treeVisibleRadius:float;
+}
+
+root_type TerrainStreamingSetting;

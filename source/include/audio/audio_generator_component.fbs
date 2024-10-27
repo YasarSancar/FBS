@@ -1,0 +1,38 @@
+include "../scene/collision_component.fbs";
+include "../scene/collision_shape.fbs";
+include "../math/math.fbs";
+namespace gfl.audio.fb;
+
+enum GeneratorType : uint {
+  AreaSound,
+  ShapeSound,
+  AmbientSound,
+  MultiDirectionSound,
+  MultiSourceSound,
+}
+
+enum MusicControlType : uint {
+  LayerPlay,
+  EventPost,
+}
+
+table AudioGeneratorComponent {
+  eventName:string;
+  stopEventName:string;
+  playOnAwake:bool = false;
+  shouldUpdatePosition:bool = false;
+  updatePositionIntervalMin:int = 0;
+  collision:gfl.scene.fb.CollisionComponent;
+  distanceCulling:float;
+  type:GeneratorType;
+  shapes:[gfl.scene.fb.CollisionShape];
+  positions:[gfl.math.fb.Vector3f];
+  shouldPrepareEvent:bool;
+  isMusicGenerator:bool;
+  layerName:string;
+  controlType:MusicControlType;
+  updatePositionIntervalMax:int = 0;
+  updatePositionMaxDistance:float = 0.0;
+}
+
+root_type AudioGeneratorComponent;

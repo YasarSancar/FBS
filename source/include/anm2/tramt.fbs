@@ -1,0 +1,68 @@
+﻿include "animation_common2.fbs";
+include "fbj_common.fbs";
+include "trcrv.fbs";
+
+namespace gfl.anm2.fb;
+
+file_extension "tramt";
+
+// ---------------------------------------------------------
+// ■for editor
+// ---------------------------------------------------------
+
+// エディット時用、パラメータ毎のカーブデータ
+table EditorMaterialParamCurve {
+  type:CurveType;       // カーブのタイプ
+  name:string;          // パラメータ名
+  trcrvPath:string;     // カーブデータパス
+  curveData:CurveData;  // カーブデータ
+}
+
+// エディット時用、マテリアル毎のデータ
+table EditorMaterialParam {
+  materialName:string;                  // アサイン先のマテリアル名
+  curveData:[EditorMaterialParamCurve]; // パラメータ毎のカーブデータ
+}
+
+// ---------------------------------------------------------
+// ■for runtime
+// ---------------------------------------------------------
+// ■パラメータデータ
+
+// float パラメータ
+table MaterialParamFloat {
+  attributeName:string;     // アトリビュート名
+  curveData:RuntimeCurveFloat; // floatパラメータキー
+}
+
+// float4 パラメータ
+table MaterialParamFloat4 {
+  attributeName:string;      // アトリビュート名
+  curveData:RuntimeCurveFloat4; // float4カーブ
+}
+
+// マテリアル毎のアニメーションパラメータ
+table MaterialParam
+{
+  materialName:string;                // アサイン先のマテリアル名
+  floatParams:[MaterialParamFloat];   // float パラメータリスト
+  float4Params:[MaterialParamFloat4]; // float4 パラメータリスト
+}
+
+// ---------------------------------------------------------
+// ■アニメーション
+
+// バイナリにする際にeditorMaterialParamsからmaterialParamsを作成。
+// editorMaterialParamsはnullptrにする。
+table MaterialAnimationData
+{
+  frameSetting:fb.FrameSetting;               // フレーム設定
+  editorMaterialParams:[EditorMaterialParam]; // エディット時用マテリアル毎のアニメーションデータ
+  materialParams:[MaterialParam];             // ランタイム用マテリアル毎のアニメーションデータ
+
+  totalFloatParamCount:ubyte;  // 全マテリアルのfloatパラメータトータル数
+  totalFloat4ParamCount:ubyte; // 全マテリアルのfloat4パラメータトータル数
+}
+
+// ルートタイプ
+root_type MaterialAnimationData;

@@ -1,0 +1,22 @@
+namespace gfl.scene.fb;
+
+enum EventStateTriggerTiming : int {
+  Is,
+  Was,
+  Trigger,
+  Release,
+  Both,
+  Any,
+  XOR,
+  Not,
+  Always
+}
+
+table EventStateEventTriggerComponent {
+  eventName:string;
+  eventStateName:string;
+  resourceName:string;
+  triggerTiming:EventStateTriggerTiming;
+}
+  
+root_type EventStateEventTriggerComponent;

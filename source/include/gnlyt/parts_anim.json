@@ -1,0 +1,29 @@
+{
+  "name": "animation1",
+  "frameSize": 100.0,
+  "loopSetting": {
+    "enableLoop": false,
+    "loopFrame": 100.0,
+    "enableStartRandom": false
+  },
+  "sectionTag": {
+    "name": "VertexColor",
+    "groups": [ "group_test" ]
+  },
+  "animations": [
+    {
+      "name": "picture_test_s",
+      "kind": "AnimationKind_WhiteColor",
+      "targets": [
+        {
+          "target": 2,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 255.0, 0.0 ],
+            "times": [ 0.0, 100.0 ]
+          }
+        }
+      ]
+    }
+  ]
+}

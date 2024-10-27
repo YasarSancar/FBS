@@ -1,0 +1,13 @@
+include "DataType.fbs";
+
+namespace GenericEditor.Plugin.Model;
+
+table ModelPreviewWireFrame {
+  instanceName:string;
+  targetMeshName:string;
+  wireFrame:bool;
+
+  dataType:DataType = ModelPreviewWireFrame;
+}
+
+root_type ModelPreviewWireFrame;

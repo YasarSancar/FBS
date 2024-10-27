@@ -1,0 +1,20 @@
+include "../math/math.fbs";
+include "scene_point.fbs";
+namespace gfl.scene.fb;
+
+
+table PointElement {
+    type: string;
+    data: [ubyte];
+}
+
+table PointTree {
+    point: ScenePoint;
+    elements: [PointElement];
+}
+
+table StreamingPoint {
+    points: [PointTree];
+}
+
+root_type StreamingPoint;

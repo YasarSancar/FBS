@@ -1,0 +1,14 @@
+﻿namespace gfl.gfx2.fb;
+
+table TechniqueDef {
+  name:string;
+  shader_name:string;
+  default_pass_name:string;
+}
+
+table TechniqueDefList {
+  version:uint = 1;
+  def_list:[TechniqueDef];
+}
+
+root_type TechniqueDefList;

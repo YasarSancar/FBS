@@ -1,0 +1,17 @@
+﻿include "template_util.fbs";
+
+namespace AiEditor.Fb.Template;
+
+file_extension "json";
+
+//----------------------------------------
+// デコレータテンプレート
+//----------------------------------------
+
+// ルート
+table Decorator {
+  name:string;
+  parameters:[Parameter];
+}
+
+root_type Decorator;

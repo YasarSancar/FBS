@@ -1,0 +1,53 @@
+// アニメ通信用データ
+
+namespace gfl.anm2.cmm;
+
+table CMMIntParam {
+  paramHash:uint64;       // パラメータハッシュ値
+  value:int;              // 値
+}
+
+table CMMFloatParam {
+  paramHash:uint64;       // パラメータハッシュ値
+  value:float;            // 値
+}
+
+table CMMBoolParam {
+  paramHash:uint64;       // パラメータハッシュ値
+  value:bool;             // 値
+}
+
+table CMMTriggerParam {
+  paramHash:uint64;       // パラメータハッシュ値
+  value:bool;             // 値
+}
+
+table CMMParams {
+  intParams:[CMMIntParam];         // int型パラメータリスト
+  floatParams:[CMMFloatParam];     // float型パラメータリスト
+  boolParams:[CMMBoolParam];       // bool型パラメータリスト
+  triggerParams:[CMMTriggerParam]; // trigger型パラメータリスト
+}
+
+table CMMStateInfo {
+  pathHash:uint64;      // ステートパスハッシュ値
+  time:float;           // 生成時間
+}
+
+table CMMStateLayer {
+  layerHash:uint64;     // レイヤーハッシュ値
+  main:CMMStateInfo;    // メインの再生状態
+  target:CMMStateInfo;  // もし遷移中なら遷移先の再生状態
+}
+
+table CMMParts {
+  partsHash:uint64;               // パーツハッシュ値
+  stateLayers:[CMMStateLayer];    // ステートレイヤーリスト
+}
+
+table CMMBuffer {
+  params:CMMParams;   // パラメータリスト
+  parts:[CMMParts];   // パーツリスト
+}
+
+root_type CMMBuffer;

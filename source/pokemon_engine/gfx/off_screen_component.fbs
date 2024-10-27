@@ -1,0 +1,14 @@
+include "../../include/math/math.fbs";
+namespace pe.gfx.fb;
+
+  
+table OffScreenComponent {
+	width: int;
+	height: int;
+	depth:	float;
+	priority: int;
+	screenPriority: int;
+	screenShareName: string;
+}
+  
+root_type OffScreenComponent;

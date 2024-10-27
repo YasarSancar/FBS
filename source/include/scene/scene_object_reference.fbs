@@ -1,0 +1,9 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+table SceneObjectReference {
+    name:string;
+    srt:gfl.math.fb.SRT;
+}
+
+root_type SceneObjectReference;

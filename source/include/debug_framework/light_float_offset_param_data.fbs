@@ -1,0 +1,14 @@
+include "../math/math.fbs";
+
+namespace gfl.debug_framework.fb.light;
+
+table FloatOffsetParamData {
+  lightName:string;
+  typeName:string;
+  paramaterName:string;
+  offsetTypeName:string;
+  value:float;
+  lightUniqueId:string;
+}
+
+root_type FloatOffsetParamData;

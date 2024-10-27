@@ -1,0 +1,7 @@
+namespace pe.network.fb;
+
+table NetworkSyncAnimComponent {
+    index:int;
+}
+  
+root_type NetworkSyncAnimComponent;

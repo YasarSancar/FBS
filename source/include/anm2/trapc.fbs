@@ -1,0 +1,17 @@
+﻿namespace gfl.anm2.fbj;
+
+file_extension "trapc";
+
+// グループ
+table PreviewOrderGroup {
+  name:string;                        // グループ名
+  orderList:[string];                 // 並び順
+}
+
+// プレビュー設定
+table PreviewConfig {
+  groupList:[PreviewOrderGroup];  // グループリスト
+}
+
+// ルートタイプ
+root_type PreviewConfig;

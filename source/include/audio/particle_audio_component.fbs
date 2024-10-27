@@ -1,0 +1,10 @@
+namespace gfl.audio.fb;
+
+table ParticleAudioComponent {
+  eventName:string;
+  stopEventName:string;
+  shouldUpdatePosition:bool = false;
+  playOnAwake:bool = false;
+}
+
+root_type ParticleAudioComponent;

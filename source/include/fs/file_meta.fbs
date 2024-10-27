@@ -1,0 +1,5 @@
+namespace gfl.fs.fb;
+
+table FileMeta {
+  timestamp:uint64;
+}

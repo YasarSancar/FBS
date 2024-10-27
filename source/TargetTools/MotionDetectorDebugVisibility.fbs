@@ -1,0 +1,9 @@
+namespace GenericEditor.Plugin.MotionDetector;
+
+// モーション検知システムのデバッグ表示フラグ
+table MotionDetectorDebugVisibility {
+  fileName:string;
+  visible:bool;
+}
+
+root_type MotionDetectorDebugVisibility;

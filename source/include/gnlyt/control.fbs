@@ -1,0 +1,19 @@
+include "types.fbs";
+
+namespace gfl.gnlyt.fb;
+
+table FunctionPane {
+    function:string;
+    pane:string;
+}
+
+table FunctionAnimation {
+    function:string;
+    animation:string;
+}
+
+table Control {
+    name:string;
+    functionPane:[FunctionPane];
+    functionAnimation:[FunctionAnimation];
+}

@@ -1,0 +1,86 @@
+namespace pe.text.fb;
+  
+namespace pe.text.fb;
+  
+enum FontBinaryLoadType : int {
+  SharedFont,
+  BFOTF,
+}
+  
+enum SharedFontType : int {
+  None,
+  Standard,
+  ChineseSimple,
+  ChineseSimpleExtension,
+  ChineseTraditional,
+  Korean,
+  NintendoExtension,
+}
+  
+enum FontType : int {
+  JAPANESE,
+  EFIGS,
+  HANGLE,
+  SIMP_CN,
+  TRAD,
+}
+  
+table TextureCacheData {
+  fontType:FontType;
+  paramList:[TextureCacheParameter];
+  fontSetName:string;
+}
+  
+table TextureCacheParameter {
+  fontBinaryName:string;
+  pBoldWeights:float;
+  pBorderWidths:int;
+  scaleWidths:float;
+  scaleHeights:float;
+  ignorePalt:bool;
+  deleteBearingX:bool;
+  bearingOffsetX:int;
+  forceMonospacedEnabled:bool;
+  forceMonospacedWidth:int;
+  baselineOffset:int;
+}
+  
+table BMPFontLoadSetting {
+  bmpFontTypeName:string;
+  path:string;
+  registerName:string;
+}
+  
+table FontBinaryLoadSetting {
+  binaryName:string;
+  loadType:FontBinaryLoadType;
+  type:SharedFontType;
+  path:string;
+}
+  
+table TextureCacheSetting {
+  name:string;
+  glyphNodeCount:int;
+  width:int;
+  height:int;
+  workMemorySize:int;
+  dataList:[TextureCacheData];
+}
+  
+table FontData {
+  sizeName:string;
+  width:int;
+  height:int;
+  textureCacheName:string;
+  registerName:string;
+  fontSetName:string;
+}
+  
+table FontSetting {
+  bmpFontLoadSettingList:[BMPFontLoadSetting];
+  binaryloadSettingList:[FontBinaryLoadSetting];
+  textureCacheSettingList:[TextureCacheSetting];
+  fontDataList:[FontData];
+}
+  
+root_type FontSetting;

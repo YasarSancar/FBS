@@ -1,0 +1,36 @@
+include "types.fbs";
+include "pane.fbs";
+
+namespace gfl.gnlyt.fb;
+
+table TransformInfo {
+  target:CurveTypeGlyphTransform;
+  curveType:CurveType;
+  keyframe:KeyframeAnimation1f;
+}
+
+table GlyphTransform {
+    offset:float; // 文字毎の変換のカーブオフセット
+    width:float; // 文字毎の変換のカーブ幅
+    enableLoop:bool; // ループするかどうか
+    transformInfos:[TransformInfo];
+}
+
+table TextBox {
+    base:Pane;
+    utf8:bool;
+    text:string;
+    font:string;
+    fontSize:Vector2f;
+    space:Vector2f;
+    textPosition:BasePosition;
+    textAlignment:TextAlignment;
+    textCache:uint;
+    topColor:Color4;
+    bottomColor:Color4;
+    shadowOffset:Vector2f;
+    shadowScale:Vector2f;
+    shadowTopColor:Color4;
+    shadowBottomColor:Color4;
+    glyphTransform:GlyphTransform;
+}

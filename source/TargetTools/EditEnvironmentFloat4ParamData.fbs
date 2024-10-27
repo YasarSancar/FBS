@@ -1,0 +1,11 @@
+namespace GenericEditor.Plugin.Environment;
+
+table EnvironmentFloat4ParamData {
+  paramaterName:string;
+  x:float;
+  y:float;
+  z:float;
+  w:float;
+}
+
+root_type EnvironmentFloat4ParamData;

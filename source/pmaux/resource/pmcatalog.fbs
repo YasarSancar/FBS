@@ -1,0 +1,60 @@
+namespace pmaux.resource.fb;
+
+// バージョン
+table Version {
+  majorVersion:int;
+  minorVersion:int;
+  buildNumber:int;
+  revision:int;
+}
+
+// 複数ファイルパス登録用
+table State {
+  formNo:ushort;
+  filePath:string;
+}
+
+// 性別
+enum Sex : ubyte {
+  Male,
+  Female,
+}
+
+// アニメーション種類
+enum LocatorType : ubyte {
+  Land,
+  Swim,
+  Float,
+  Count,
+}
+
+table LocatorState {
+  formNo:ushort;
+  type:LocatorType;
+  filePath:string;
+}
+
+// ポケモンユニーク番号
+table PokeUniqueNo {
+  devNo:ushort;
+  formNo:ushort;
+  sex:Sex;
+}
+
+table ResourcePath {
+  pokeUniqueNo:PokeUniqueNo;
+  trMdlFilePath:string;
+  trMmtFilePath:string;
+  trPokeCfgFilePath:string;
+  trAcnStateList:[State];
+  trSklStateList:[LocatorState];
+  iconFilePath:string;
+  metaDataPattern:int = -1;
+}
+
+table PmCatalog {
+  version:Version;
+  resourcePaths:[ResourcePath];
+}
+
+root_type PmCatalog;

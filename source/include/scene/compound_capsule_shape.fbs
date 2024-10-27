@@ -1,0 +1,12 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+table CompoundCapsuleShape {
+    resourceName:string;
+    pos:gfl.math.fb.Vector3f;
+    radius:float;
+    height:float;
+    rot:gfl.math.fb.Vector3f;
+}
+
+root_type CompoundCapsuleShape;

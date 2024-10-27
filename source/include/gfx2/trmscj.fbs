@@ -1,0 +1,28 @@
+﻿namespace gfl.gfx2.fbj;
+
+file_extension "trmscj";
+
+enum MeshParamType : uint {
+  Values,
+  SubMesh,
+}
+
+table MeshParamNode {
+  mesh_name:string;
+  param_name:string;
+}
+
+table MeshParamDependency {
+  source:MeshParamNode;
+  target:MeshParamNode;
+  type:MeshParamType;
+  index:int = 0;
+}
+
+table MeshConfig {
+  version:uint = 1;
+  source_path_list:[string];
+  dependency_list:[MeshParamDependency];
+}
+
+root_type MeshConfig;

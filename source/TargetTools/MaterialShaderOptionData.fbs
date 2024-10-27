@@ -1,0 +1,10 @@
+namespace GenericEditor.Plugin.Material;
+
+table ShaderOptionData {
+  materialName:string;
+  techniqueName:string;
+  optionName:string;
+  optionChoice:string;
+}
+
+root_type ShaderOptionData;

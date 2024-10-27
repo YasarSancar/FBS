@@ -1,0 +1,27 @@
+//include "traef.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "trett";
+
+// ---------------------------------------------------------
+// ■イベントトラックテンプレート
+
+table EventValuePreset {
+  name:string;
+  value:string;
+}
+
+table EventPreset {
+  eventTemplate:string;           // イベントテンプレート
+  beginFrame:string;              // 開始フレーム
+  eventValues:[EventValuePreset]; // 初期値リスト
+}
+
+table EventTrackTemplate {
+  comment:string;                 // コメント
+  trackName:string;               // トラック名
+  events:[EventPreset];           // 配置できるイベントリスト
+}
+
+// ルートタイプ
+root_type EventTrackTemplate;

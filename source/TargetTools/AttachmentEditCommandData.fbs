@@ -1,0 +1,93 @@
+include "../include/math/math.fbs";
+
+namespace GenericEditor.Plugin.Attachment;
+
+// ---------------------------------------------------------
+// アタッチメントライトアニメーション編集カーブデータ受け渡し用
+
+// 補間の種類
+enum CurveInterpType : uint {
+  Constant,         // コンスタントキー
+  Linear,           // リニアキー
+  TangentAuto,      // 傾き自動計算
+  TangentBreak,     // 左右傾き個別設定
+  TangentUser,      // 傾きユーザー設定
+}
+
+// カーブキー
+table RuntimeCurveKey {
+  time:float;                 // 時間
+  value:float;                // 値
+  tangentLeft:float;          // 傾き左側
+  tangentRight:float;         // 傾き右側
+  interpType:CurveInterpType; // 補間タイプ
+}
+
+// ランタイム用カーブfloat
+table RuntimeCurveFloat {
+  keys:[RuntimeCurveKey];
+}
+
+// ランタイム用カーブfloat4
+table RuntimeCurveFloat4 {
+  x:RuntimeCurveFloat;
+  y:RuntimeCurveFloat;
+  z:RuntimeCurveFloat;
+  w:RuntimeCurveFloat;
+}
+
+table LightFloatParam {
+  name:string;
+  value:float;
+}
+
+table LightVector4fParam {
+  name:string;
+  value:gfl.math.fb.Vector4f;
+}
+
+table LightTextureParam {
+  name:string;
+  file_path:string;
+}
+
+table LightItem {
+  name:string;
+  type:string;
+  transform:gfl.math.fb.SRT;
+  float_param_list:[LightFloatParam];
+  vector4f_param_list:[LightVector4fParam];
+  texture_param_list:[LightTextureParam];
+}
+
+// float パラメータ
+table LightAnimationFloatParam {
+  attributeName:string;     // アトリビュート名
+  curveData:RuntimeCurveFloat; // floatパラメータキー
+}
+
+// float4 パラメータ
+table LightAnimationFloat4Param {
+  attributeName:string;      // アトリビュート名
+  curveData:RuntimeCurveFloat4; // float4カーブ
+}
+
+
+table AttachmentItem {
+  name:string;
+  type:string;
+  locatorName:string;
+  light:LightItem;
+  filePath:string;
+  animationFloatParam:LightAnimationFloatParam;   // float パラメータリスト
+  animationFloat4Param:LightAnimationFloat4Param; // float4 パラメータリスト
+}
+
+table AttachmentEditCommandData {
+  commandName:string;
+  instanceName:string;
+  attachmentName:string;
+  attachmentItem:AttachmentItem;
+}
+
+root_type AttachmentEditCommandData;

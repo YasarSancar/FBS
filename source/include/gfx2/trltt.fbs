@@ -1,0 +1,24 @@
+﻿include "types.fbs";
+
+namespace gfl.gfx2.fb;
+
+table LatticePart {
+  name:string;
+  element:[Vector3i];  // == null : blendShape, != null : ffd
+}
+
+table Lattice {
+  name:string;
+  transform:string;
+  division:Vector3i;
+  connected_mesh:[string];
+  connected_lattice:[LatticePart];
+  point:[Vector3f];
+}
+
+table LatticeList {
+  version:uint = 1;
+  lattice:[Lattice];
+}
+
+root_type LatticeList;

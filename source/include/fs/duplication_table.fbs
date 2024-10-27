@@ -1,0 +1,8 @@
+namespace gfl.fs.fb;
+
+table HashToFilePathTable {
+    hashlist:[uint64];
+    pathlist:[string];
+}
+
+root_type HashToFilePathTable;

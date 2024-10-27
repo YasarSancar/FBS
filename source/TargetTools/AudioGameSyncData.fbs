@@ -1,0 +1,9 @@
+namespace GenericEditor.Plugin.Audio;
+
+table AudioGameSyncData {
+  groupName:string;
+  nameValue:string;
+  floatValue:float;
+}
+
+root_type AudioGameSyncData;

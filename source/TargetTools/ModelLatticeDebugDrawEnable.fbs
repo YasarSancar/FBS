@@ -1,0 +1,12 @@
+include "DataType.fbs";
+
+namespace GenericEditor.Plugin.Model;
+
+table ModelLatticeDebugDrawEnable {
+  instanceName:string;
+  debugDrawEnable:bool;
+
+  dataType:DataType = ModelLatticeDebugDrawEnable;
+}
+
+root_type ModelLatticeDebugDrawEnable;

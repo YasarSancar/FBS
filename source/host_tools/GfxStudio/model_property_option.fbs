@@ -1,0 +1,10 @@
+namespace GfxStudio.UI;
+
+// trmdljと同階層に保存。モデルファイルのパスから自動で読み込む。
+
+// モデルプロパティのオプション
+table ModelPropertyOption {
+  baseSkeletonFilePath: string; // ベーススケルトンのファイルパス
+}
+
+root_type ModelPropertyOption;

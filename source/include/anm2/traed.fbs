@@ -1,0 +1,22 @@
+﻿include "animation_common2.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "traed";
+
+// イベントデータ
+table EventData {
+  trackIndex:int;           // トラック番号
+  name:string;              // イベント名。どのテンプレートファイルから作成されたかを保存
+  beginFrame:int;           // イベント開始フレーム
+  endFrame:int;             // イベント開始フレーム
+
+  values:[EventValue];      // イベント値
+}
+
+// トラックデータ (中間ファイル)
+table AnimationEventTrackData {
+  events:[EventData];
+}
+
+// ルートタイプ
+root_type AnimationEventTrackData;

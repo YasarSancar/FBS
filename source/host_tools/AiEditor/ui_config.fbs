@@ -1,0 +1,21 @@
+namespace AiEditor.UI;
+
+// ImGui の Style
+enum Style : int {
+  // ImGui.StyleColorsClassic()
+  Classic,
+
+  // ImGui.StyleColorsLight()
+  Light,
+
+  // ImGui.StyleColorsDark()
+  Dark,
+}
+
+// 保存する UI 情報
+table UIConfig {
+  Style: Style = Dark;
+  NavEnableKeyboard: bool = true;
+}
+
+root_type UIConfig;

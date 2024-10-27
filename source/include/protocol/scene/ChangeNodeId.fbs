@@ -1,0 +1,8 @@
+namespace gfl.protocol.scene.fb;
+
+table ChangeNodeId {
+    oldId : string;
+    newId : string;
+}
+
+root_type ChangeNodeId;

@@ -1,0 +1,36 @@
+include "types.fbs";
+
+namespace gfl.gnlyt.fb;
+
+table AnimationLoopSetting {
+  enableLoop:bool;
+  loopFrame:float;
+  enableStartRandom:bool;  
+}
+
+table AnimationTarget {
+  target:int;
+  curveType:CurveType;
+  keyframe:KeyframeAnimation1f;
+}
+
+table Animation {
+  name:string;                              // ペイン名など
+  kind:AnimationKind;
+  targets:[AnimationTarget];
+}
+
+table AnimationSectionTag {
+  name:string;                              // アニメーション区間タグ名
+  groups:[string];
+}
+
+table AnimationSet {
+  name:string;
+  sectionTag:AnimationSectionTag;
+  animations:[Animation];
+  loopSetting:AnimationLoopSetting;
+  frameSize:float;
+}
+
+root_type AnimationSet;

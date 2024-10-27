@@ -1,0 +1,51 @@
+namespace gfl.anm2.fb.trbsm;
+file_identifier  "TRBS";
+file_extension "trbsm";
+
+enum ScalerAxis : ubyte {
+    None = 0x00,
+    X = 0x01,
+    Y = 0x02,
+    XY = 0x03,
+	Z = 0x04,
+	ZX = 0x05,
+	YZ = 0x06,
+	XYZ = 0x07
+}
+
+// 特定の部位の長さを変更する
+table RatioModifier {
+	tag: string;
+	jointNames  : [string];
+	value       : float;
+	descendants : bool;
+}
+
+// 特定の部位の太さを変更する
+table ScalerModifier {
+	tag: string;
+	jointNames : [string];
+	scalerAxis   : ScalerAxis;
+	values       : [float];
+}
+
+// RatioModifier のスケール値を指定したジョイントのTranslationに掛ける
+table RatioToTransModifier {
+	ratioTag: string; 		// RatioModifier のタグ名
+	jointNames: [string]; 	// RatioModifierのスケール値をTranslationに乗算するジョイント名リスト
+}
+
+// RatioModifier のスケール値をルートモーションのTranslateionに掛ける
+table RatioToRootMotionTransScale {
+	ratioTag: string; 		// RatioModifier のタグ名
+}
+
+// 体形変更情報のトップ
+table Root {
+	ratioModifiers  : [RatioModifier];
+	scalerModifiers : [ScalerModifier];
+	ratioToTransModifiers : [RatioToTransModifier];
+	ratioToRootMotionTransScale : RatioToRootMotionTransScale;
+}
+
+root_type Root;

@@ -1,0 +1,60 @@
+include "animation_common2.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "trmdd";
+
+table VelocityDetectorParam {
+  base:MotionDetectorBaseParam;
+  jointName:string;
+}
+table MoveDetectorParam {
+  base:MotionDetectorBaseParam;
+  jointName:string;
+  axis:AxisType;
+  basePosition:Vector3;
+}
+table RotationDetectorParam {
+  base:MotionDetectorBaseParam;
+  jointName:string;
+  axis:RotateAxisType;
+}
+table AngleDetectorParam {
+  base:MotionDetectorBaseParam;
+  jointNameCenter:string;
+  jointName1:string;
+  jointName2:string;
+  axis:RotateAxisType;
+  useAbsoluteValue:bool;
+  triggerWhenUnder:bool;
+  triggerWhenOver:bool;
+}
+table TwistDetectorParam {
+  base:MotionDetectorBaseParam;
+  jointName1:string;
+  jointName2:string;
+  axis:RotateAxisType;
+  baseTwist:float;
+  useAbsoluteValue:bool;
+  triggerWhenUnder:bool;
+  triggerWhenOver:bool;
+}
+table FootContactDetectorParam {
+  base:MotionDetectorBaseParam;
+  jointName:string;
+  upThreashold:float;
+  downThreashold:float;
+}
+union MotionDetectorParamType{
+  VelocityDetectorParam,
+  MoveDetectorParam,
+  RotationDetectorParam,
+  AngleDetectorParam,
+  TwistDetectorParam,
+  FootContactDetectorParam,
+}
+
+table MotionDetectorParamList {
+  params:[MotionDetectorParamType];
+}
+
+root_type MotionDetectorParamList;

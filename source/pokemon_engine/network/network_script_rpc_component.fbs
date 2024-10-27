@@ -1,0 +1,9 @@
+namespace pe.network.fb;
+
+table NetworkScriptRPCComponent {
+    index:int;
+    stackSize:int;
+    bufferSize:int;
+}
+  
+root_type NetworkScriptRPCComponent;

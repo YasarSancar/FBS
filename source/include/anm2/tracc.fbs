@@ -1,0 +1,32 @@
+﻿// ---------------------------------------------------------
+//■クリップコンフィグ
+// メッシュ＋ジョイント用アニメーションファイルの組み合わせデータ
+namespace gfl.anm2.fb;
+
+file_extension "tracc";
+
+// ジョイントアニメファイルパス
+table JointAnimeFilePath {
+  path : string;
+}
+
+// メッシュアニメコンフィグファイルパス
+table MeshAnimeConfigFilePath {
+  path : string;
+}
+
+// キーイベントファイルパス
+table KeyEventFilePath {
+  path : string;
+}
+
+// ---------------------------------------------------------
+// ■クリップコンフィグ
+table AnimationClipConfigData {
+  jointAnimeFilePath:JointAnimeFilePath;           // tranm:JointAnimeのファイルパス
+  meshAnimeConfigFilePath:MeshAnimeConfigFilePath; // tracm:メッシュアニメのコンフィグファイルパス(複数モデルに対応するため、配列になるかも)
+  keyEventFilePath:KeyEventFilePath;               // traef:キーイベントのファイルパス
+}
+
+// ルートタイプ
+root_type AnimationClipConfigData;

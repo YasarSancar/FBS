@@ -1,0 +1,12 @@
+﻿include "light_common.fbs";
+
+namespace gfl.gfx2.fb;
+
+file_extension "trlgt";
+
+table Light {
+  version:uint = 1;
+  item_list:[LightItem];
+}
+
+root_type Light;

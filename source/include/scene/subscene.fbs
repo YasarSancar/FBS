@@ -1,0 +1,11 @@
+namespace gfl.scene.fb;
+
+table SubScene {
+  name:string;      // 名前
+  group:string;     // グループ
+  padding1:string;  //
+  padding2:string;  //
+  data:[ubyte];     // データ
+}
+
+root_type SubScene;

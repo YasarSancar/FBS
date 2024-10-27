@@ -1,0 +1,11 @@
+namespace gfl.atmosphere.fb;
+
+file_extension "atmsphr";
+
+table AtmosphereComponent {
+    multi_scattering_path:string;
+    irradiance_path:string;
+    transmittance_path:string;
+}
+
+root_type AtmosphereComponent;

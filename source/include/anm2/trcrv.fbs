@@ -1,0 +1,16 @@
+include "animation_common2.fbs";
+include "fbj_common.fbs";
+
+namespace gfl.anm2.fb;
+
+file_extension "trcrv";
+
+// ---------------------------------------------------------
+// ■Floatカーブデータ
+table CurveData {
+  editorCurve:EditorCurveType;      // エディット時用カーブ
+  runtimeCurve:RuntimeCurveType;    // ランタイム用カーブ
+}
+
+// ルートタイプ
+root_type CurveData;

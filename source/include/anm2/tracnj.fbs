@@ -1,0 +1,24 @@
+﻿namespace gfl.anm2.fbj;
+
+file_extension "tracnj";
+
+// ---------------------------------------------------------
+// ■サブコンポーネント
+
+table SubComponentConfig {
+  type:string;
+  file_path:string;
+}
+
+// ---------------------------------------------------------
+// ■コンフィグ
+
+// アニメーションコンフィグ
+table AnimationConfig {
+  subComponentConfig:[SubComponentConfig];  // サブコンポーネント設定
+  modelPath:string;                         // 設定に使用したモデルファイルパス
+  metadataPath:string;                      // 設定に使用したモデルメタデータファイルパス
+}
+
+// ルートタイプ
+root_type AnimationConfig;

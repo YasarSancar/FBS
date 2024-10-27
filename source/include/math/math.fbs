@@ -1,0 +1,77 @@
+namespace gfl.math.fb;
+
+// 2次元実数パラメータ
+struct Vector2f {
+  x:float;
+  y:float;
+}
+
+// 3次元実数パラメータ
+struct Vector3f {
+  x:float;
+  y:float;
+  z:float;
+}
+
+// 4次元実数パラメータ
+struct Vector4f {
+  x:float;
+  y:float;
+  z:float;
+  w:float;
+}
+
+// 2次元実数パラメータ
+struct Vector2i {
+  x:int;
+  y:int;
+}
+
+// 3次元実数パラメータ
+struct Vector3i {
+  x:int;
+  y:int;
+  z:int;
+}
+
+// 4次元実数パラメータ
+struct Vector4i {
+  x:int;
+  y:int;
+  z:int;
+  w:int;
+}
+
+// 4x3行列パラメータ
+table Matrix4x3f {
+  axis_x:Vector3f;
+  axis_y:Vector3f;
+  axis_z:Vector3f;
+  axis_w:Vector3f;
+}
+
+// 4x4行列パラメータ
+table Matrix4x4f {
+  axis_x:Vector4f;
+  axis_y:Vector4f;
+  axis_z:Vector4f;
+  axis_w:Vector4f;
+}
+
+table SRT {
+  scale:Vector3f;
+  rotate:Vector3f;
+  translate:Vector3f;
+}
+
+// AABB
+table AABB {
+  min:Vector3f;
+  max:Vector3f;
+}
+
+// Sphere
+table Sphere {
+  center:Vector3f;
+  radius:float;
+}

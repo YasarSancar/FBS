@@ -1,0 +1,19 @@
+﻿//include "traef.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "tratg";
+
+// ---------------------------------------------------------
+// ■ タグリスト
+
+table AnimationTag {
+  comment:string;               // コメント
+  tag:string;                   // タグ
+}
+
+table AnimationTagList {
+  tags:[AnimationTag];          // タグリスト
+}
+
+// ルートタイプ
+root_type AnimationTagList;

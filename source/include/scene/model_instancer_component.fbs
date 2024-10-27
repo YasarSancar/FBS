@@ -1,0 +1,7 @@
+namespace gfl.scene.fb;
+
+table ModelInstancerComponent {
+    filePath:string;
+}
+
+root_type ModelInstancerComponent;

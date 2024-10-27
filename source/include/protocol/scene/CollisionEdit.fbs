@@ -1,0 +1,14 @@
+namespace gfl.protocol.scene.fb;
+
+enum CollisionObjectType : ubyte {
+    Body,
+    Character,
+}
+
+table CollisionEdit {
+    nodeName: string;
+    collisionName: string;
+    objectType: CollisionObjectType;
+}
+
+root_type CollisionEdit;

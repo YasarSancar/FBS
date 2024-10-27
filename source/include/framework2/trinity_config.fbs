@@ -1,0 +1,172 @@
+namespace gfl.framework2.fb;
+
+// フレームレート
+enum FrameRate : byte {
+  FPS60 = 0,
+  FPS30,
+  FPS20,
+  FPS15,
+  FPS12,  // SDK 3.1でサポートされている最低値
+}
+
+// ヒープタイプ
+enum MemoryResourceType : byte {
+  TaggedResource = 0,
+  BranchResource,
+}
+
+// ファイルの読み替えモードの設定
+enum FileReplacementMode : byte {
+  Newer = 0,       // タイムスタンプを比較して新しいファイルを選択(デフォルト)
+  PrecedeArchive,  // アーカイブに含まれていればそれを優先(リリース相当)
+  PrecedeHost,     // ホストにあればそれを優先(開発中限定)
+}
+
+table FileSystemDescriptor {
+  // ファイルスレッドのスタックサイズ
+  stackSize: ulong = 65536;  // 64KB
+
+  // ファイルを開くときのキャッシュサイズ
+  fileCacheSize: ulong = 262144;  // 256KB
+
+  // 強制ROMアクセス。Hostアクセスを無効化
+  forceRomAccess: bool = false;
+
+  // ファイルの読み替えモードの設定
+  fileReplacementModeSetting: FileReplacementMode = Newer;
+}
+
+table GraphicsDescriptor {
+  // GraphicsFirmwareのメモリサイズ
+  firmwareMemorySize: ulong = 16777216;  // 16MB
+
+  // GraphicsDirverのメモリサイズ
+  dirverMemorySize: ulong = 50331648;  // 48MB
+
+  // GraphicsDevtoolsのメモリサイズ
+  devtoolsMemorySize: ulong = 33554432;  // 32MB
+
+  // CpuUncached_GpuCached
+  memorySize_CpuUncached_GpuCached: ulong = 402653184;  // 384MB
+
+  // CpuInvisible_GpuCached
+  memorySize_CpuInvisible_GpuCached: ulong = 335544320;  // 320MB
+
+  // CpuUncached_GpuUncached
+  memorySize_CpuUncached_GpuUncached: ulong = 50331648;  // 48MB
+
+  // Textureのデスクリプタの最大数
+  textureDescriptorMax: ulong = 8192;
+
+  // Samplerのデスクリプタの最大数
+  samplerDescriptorMax: ulong = 512;
+
+  // 解放済みテクスチャチェック有効
+  enableCheckRemovedTexture: bool = false;
+}
+
+table AnimationDescriptor {
+  skipLookAtLOD: int = 3;       // LODがこの値以上だとLookAtComponentをスキップ
+  skipIKLOD: int = 2;           // LODがこの値以上だとIKをスキップ
+  skipSpringBoneLOD: int = 2;   // LODがこの値以上だとSpringBoneComponentをスキップ
+  skipTreeLOD: int = 3;         // LODがこの値以上だとTreeComponentをスキップ
+  skipSpineAnimationLOD: int = 1; // LODがこの値以上だとSpineAnimationComponentをスキップ
+
+  springBoneUpdateUpperNumFrames: int = 1; // 揺れ骨更新時に一度に進める時間（デルタタイム）の上限フレーム数
+  springBoneResetObjectSpeed: float = 30.0;  // 揺れ骨がリセットされる速さ(m/s)。この速さ以上のときはワープと見なしリセットする
+}
+
+table DynamicResolution {
+  baseFrameRate: FrameRate = FPS30;
+  lowResolutionRaito: float = 0.8;
+  backGroundResolutionRaito: float = 0.0001;
+  unstableThreshold: float = 0.920;
+  stableThreshold: float = 0.7;
+}
+
+table AppMemoryHeap {
+  system: ulong = 33554432;       // 32MB
+  gfx2: ulong = 805306368;        // 768MB
+  vfx2: ulong = 100663296;        // 96MB
+  physics: ulong = 67108864;      // 64MB
+  ui2d: ulong = 67108864;         // 64MB
+  fs: ulong = 1073741824;         // 1024MB
+  lua: ulong = 100663296;         // 96MB
+  sound: ulong = 67108864;        // 64MB
+  eventSystem: ulong = 67108864;  // 64MB
+  object: ulong = 0;               // 0にするとのこりすべてを利用
+}
+
+table DebugMemoryHeap {
+  // デバッグ用ヒープサイズ
+  initialUsingSizeOnDebugHeap: ulong = 150994944;
+
+  // GPUデバッガが使用するメモリサイズ
+  // 最低値は gfx: : MinimumGpuDebuggerMemorySize
+  gpuDebuggerMemorySize: ulong = 0;
+}
+
+table DebugModelViewItem {
+  r: float;
+  g: float;
+  b: float;
+  threshold: float;
+}
+
+table DebugModelView {
+  cpu: [DebugModelViewItem];
+  gpu: [DebugModelViewItem];
+  memory: [DebugModelViewItem];
+  vertex: [DebugModelViewItem];
+  joint: [DebugModelViewItem];
+  mesh: [DebugModelViewItem];
+}
+
+table TrinityConfig {
+  // メモリ
+  appHeap: AppMemoryHeap;     // アプリケーションメモリ
+  debugHeap: DebugMemoryHeap; // デバッグメモリ
+  
+  // スクリーンサイズ
+  screenWidth: ulong = 1920;
+  screenHeight: ulong = 1080;
+
+  // フレームレート
+  refreshRate: FrameRate = FPS30; // 最大フレームレート
+  enableVFR: bool = false;        // 可変フレームレート設定
+
+  // 動的解像度
+  dynamicResolution: DynamicResolution;
+
+  // 影
+  shadowResolution: int = 2048;  // 影解像度
+  maxShadowCascades: int = 4;    // カスケードシャドウ設定
+
+  // File関係
+  fileSystem: FileSystemDescriptor;
+
+  // Graphics関係
+  graphics: GraphicsDescriptor;
+
+  // 起動シーン
+  startupScene: string;
+
+  // DebugLine
+  debugLineMax: int = 2048;      // デバッグライン描画最大数
+
+  // メモリリソースタイプ
+  memoryResourceType: MemoryResourceType = BranchResource;
+
+  // JobThread数
+  jobThreadCount: int = 3;
+
+  // DebugModelViewの色設定
+  debugModelView : DebugModelView;
+
+  detailMode: bool = false;
+
+  // Animation関係
+  animation: AnimationDescriptor;
+}
+
+root_type TrinityConfig;

@@ -1,0 +1,399 @@
+﻿namespace gfl.gnlyt.fb;
+
+// 2次元実数パラメータ
+struct Vector2f {
+  x:float;
+  y:float;
+}
+
+// 3次元実数パラメータ
+struct Vector3f {
+  x:float;
+  y:float;
+  z:float;
+}
+
+// 4次元実数パラメータ
+struct Vector4f {
+  x:float;
+  y:float;
+  z:float;
+  w:float;
+}
+
+// クォータニオン
+struct Quaternion {
+  x:float;
+  y:float;
+  z:float;
+  w:float;
+}
+
+// 2次元実数パラメータ
+struct Vector2i {
+  x:int;
+  y:int;
+}
+
+// 3次元実数パラメータ
+struct Vector3i {
+  x:int;
+  y:int;
+  z:int;
+}
+
+// 4次元実数パラメータ
+struct Vector4i {
+  x:int;
+  y:int;
+  z:int;
+  w:int;
+}
+
+// 4x3行列パラメータ
+table Matrix4x3f {
+  axis_x:Vector3f;
+  axis_y:Vector3f;
+  axis_z:Vector3f;
+  axis_w:Vector3f;
+}
+
+// 4x4行列パラメータ
+table Matrix4x4f {
+  axis_x:Vector4f;
+  axis_y:Vector4f;
+  axis_z:Vector4f;
+  axis_w:Vector4f;
+}
+
+table SRT {
+  scale:Vector3f;
+  rotate:Vector3f;
+  translate:Vector3f;
+}
+
+// AABB
+table AABB {
+  min:Vector3f;
+  max:Vector3f;
+}
+
+// Sphere
+table Sphere {
+  center:Vector3f;
+  radius:float;
+}
+
+// Color4
+struct Color4 {
+  r:uint;
+  g:uint;
+  b:uint;
+  a:uint;
+}
+
+// Color3
+struct Color3 {
+  r:uint;
+  g:uint;
+  b:uint;
+}
+
+//// pane types ////
+
+enum PaneKind : ubyte {
+  PaneKind_Pane,
+  PaneKind_Null,
+  PaneKind_Picture,
+  PaneKind_Window,
+  PaneKind_Bounding,
+  PaneKind_Textbox,
+  PaneKind_Alignment,
+  PaneKind_Scissor,
+  PaneKind_Parts,
+}
+
+enum PaneFlag : ubyte {
+  PaneFlag_Visible,
+  PaneFlag_InfluencedAlpha,
+  PaneFlag_LocationAdjust,
+  PaneFlag_UserAllocated,
+  PaneFlag_IsGlobalMatrixDirty,
+  PaneFlag_UserMatrix,
+  PaneFlag_UserGlobalMatrix,
+  PaneFlag_IsConstantBufferReady,
+  PaneFlag_MaxPaneFlag,
+}
+
+enum PaneFlagEx : ubyte {
+  PaneFlagEx_IgnorePartsMagnify,
+  PaneFlagEx_PartsMagnifyAdjustToPartsBound,
+  PaneFlagEx_ExtUserDataAnimationEnabled,
+  PaneFlagEx_ViewerInvisible,
+  PaneFlagEx_IsConstantBufferReadySelf,
+  PaneFlagEx_IsCalculationFinishedSelf,
+  PaneFlagEx_DynamicExtUserDataEnabled,
+  PaneFlagEx_MaxPaneFlagEx,
+}
+
+enum HorizontalPosition : ubyte {
+  HorizontalPosition_Center,
+  HorizontalPosition_Left,
+  HorizontalPosition_Right,
+  HorizontalPosition_MaxHorizontalPosition,
+}
+
+enum VerticalPosition : ubyte {
+  VerticalPosition_Center,
+  VerticalPosition_Top,
+  VerticalPosition_Bottom,
+  VerticalPosition_MaxVerticalPosition,
+}
+
+struct BasePosition {
+  horizontal:HorizontalPosition;
+  vertical:VerticalPosition;
+}
+
+enum TextAlignment : ubyte {
+    TextAlignment_Synchronous,
+    TextAlignment_Left,
+    TextAlignment_Center,
+    TextAlignment_Right,
+    TextAlignment_MaxTextAlignment
+}
+
+enum PaneVertex : ubyte {
+  PaneVertex_LeftTop,
+  PaneVertex_RightTop,
+  PaneVertex_LeftBottom,
+  PaneVertex_RightBottom,
+  PaneVertex_MaxPaneVertex,
+}
+
+enum VertexColor : ubyte {
+  VertexColor_LeftTop,
+  VertexColor_RightTop,
+  VertexColor_LeftBottom,
+  VertexColor_RightBottom,
+  VertexColor_MaxVertexColor,
+}
+
+table InterpolateColor {
+    blackColor:Color4;
+    whiteColor:Color4;
+    interpolateAlpha:bool;
+}
+
+table Material {
+    texMap:[TextureMap];
+    texMatrix:[TextureSRT];
+    texPattern:[TexturePattern];
+    texCoordGen:[TextureCoordGen];
+    alphaCompare:AlphaCompare;
+    combiner:[CombinerMode];
+    indirectScale:Vector2f;
+    indirectRotate:float;
+    interpolateCol:InterpolateColor;
+}
+
+table TexturePattern {
+    images:[string];
+}
+
+enum TexWrap : ubyte {
+  TexWrap_Clamp,
+  TexWrap_Repeat,
+  TexWrap_Mirror,
+  TexWrap_MaxTexWrap,
+}
+
+enum TexGenSrc : ubyte {
+  TexGenSrc_Tex0,
+  TexGenSrc_Tex1,
+  TexGenSrc_Tex2,
+  TexGenSrc_OrthoProjection,
+  TexGenSrc_PaneBaseOrthoProjection,
+  TexGenSrc_PerspectiveProjection,
+  TexGenSrc_PaneBasePerspectiveProjection,
+  TexGenSrc_BrickRepeat,
+  TexGenSrc_MaxTexGenSrc,
+}
+
+enum CombineType : ubyte{
+  CombineType_Replace,
+  CombineType_Modulate,
+  CombineType_Add,
+  CombineType_Subtract,
+  CombineType_Exclusion,
+  CombineType_Overlay,
+  CombineType_Dodge,
+  CombineType_Burn,
+  CombineType_Lighten,
+  CombineType_Darken,
+  CombineType_Indirect,
+  CombineType_BlendIndirect,
+  CombineType_EachIndirect,
+  CombineType_MaxCombine,
+}
+
+enum CombineAlphaType : ubyte{
+  CombineAlphaType_Max,
+  CombineAlphaType_Min,
+  CombineAlphaType_MaxCombineAlpha,
+}
+
+enum AlphaTest : ubyte {
+  AlphaTest_Never,
+  AlphaTest_Less,
+  AlphaTest_LessEqual,
+  AlphaTest_Equal,
+  AlphaTest_NotEqual,
+  AlphaTest_GreaterEqual,
+  AlphaTest_Greater,
+  AlphaTest_Always,
+  AlphaTest_MaxAlphaTest
+}
+
+enum BlendOp : ubyte {
+  BlendOp_Disable,
+  BlendOp_Add,
+  BlendOp_Subtract,
+  BlendOp_ReverseSubtract,
+  BlendOp_SelectMin,
+  BlendOp_SelectMax,
+  BlendOp_MaxBlendOp,
+}
+
+enum BlendFactor : ubyte {
+  BlendFactor_0,
+  BlendFactor_1,
+  BlendFactor_DstColor,
+  BlendFactor_InvDstColor,
+  BlendFactor_SrcAlpha,
+  BlendFactor_InvSrcAlpha,
+  BlendFactor_DstAlpha,
+  BlendFactor_InvDstAlpha,
+  BlendFactor_SrcColor,
+  BlendFactor_InvSrcColor,
+  BlendFactor_MaxBlendFactor
+}
+
+enum BlendType : ubyte {
+  BlendType_None,
+  BlendType_Blend,
+  BlendType_MaxBlendType
+}
+
+//// texture params ////
+
+struct TextureWrap {
+  s:float;
+  t:float;
+}
+
+table TextureCoord {
+  tex_LT:TextureWrap;
+  tex_RT:TextureWrap;
+  tex_LB:TextureWrap;
+  tex_RB:TextureWrap;
+}
+
+table HsbAdjustment {
+    hOffset:int;
+    sScale:int;
+    bScale:int;
+}
+
+table TextureMap {
+  imageName:string;
+  wrap_s:TexWrap;
+  wrap_t:TexWrap;
+  textureStage:uint;
+}
+
+table TextureSRT {
+  rotate:float;
+  scale:Vector2f;
+  translate:Vector2f;
+}
+
+table TextureCoordGen {
+  srcParam:TexGenSrc;
+  projectionScale:Vector2f;
+  projectionTrans:Vector2f;
+}
+
+table AlphaCompare {
+  comp:AlphaTest;
+  ref:float;
+}
+
+table BlendMode {
+  type:BlendType;
+  srcFactor:BlendFactor;
+  dstFactor:BlendFactor;
+  blendOp:BlendOp;
+}
+
+table CombinerMode {
+  rgb:CombineType;
+  alpha:CombineAlphaType;
+}
+
+//// animation params ////
+
+table KeyframeAnimation1f {
+  keyframes:[float];
+  times:[float];
+  slopes:[float];
+}
+
+enum CurveType : ubyte  {
+  CurveType_Linear,
+  CurveType_Hermite,
+  CurveType_Step,
+}
+
+enum AnimationKind : ubyte {
+  AnimationKind_Pane_Translate,
+  AnimationKind_Pane_Rotate,
+  AnimationKind_Pane_Scale,
+  AnimationKind_VertexColor,
+  AnimationKind_WhiteColor,
+  AnimationKind_BlackColor,
+  AnimationKind_Texture_Translate,
+  AnimationKind_Texture_Rotate,
+  AnimationKind_Texture_Scale,
+  AnimationKind_Texture_Pattern,
+  AnimationKind_Indirect_Rotate,
+  AnimationKind_Indirect_Scale,
+  AnimationKind_Visibility,
+  AnimationKind_Alpha,
+  AnimationKind_WindowFrame,
+  AnimationKind_GlyphTransform,
+}
+
+enum AnimTargetGlyphTransform : ubyte {
+  AnimTargetGlyphTransform_Offset,
+  AnimTargetGlyphTransform_Width,
+}
+
+enum CurveTypeGlyphTransform : ubyte {
+  CurveTypeGlyphTransform_TranslateX,
+  CurveTypeGlyphTransform_TranslateY,
+  CurveTypeGlyphTransform_TranslateZ,
+  CurveTypeGlyphTransform_RotateX,
+  CurveTypeGlyphTransform_RotateY,
+  CurveTypeGlyphTransform_RotateZ,
+  CurveTypeGlyphTransform_ScaleX,
+  CurveTypeGlyphTransform_ScaleY,
+  CurveTypeGlyphTransform_ColorTopR,
+  CurveTypeGlyphTransform_ColorTopG,
+  CurveTypeGlyphTransform_ColorTopB,
+  CurveTypeGlyphTransform_ColorTopA,
+  CurveTypeGlyphTransform_ColorBottomR,
+  CurveTypeGlyphTransform_ColorBottomG,
+  CurveTypeGlyphTransform_ColorBottomB,
+  CurveTypeGlyphTransform_ColorBottomA,
+}

@@ -1,0 +1,12 @@
+namespace gfl.protocol.scene.fb;
+
+table SceneMessage {
+    targetSceneId: string;      // 対象となるシーンId
+    targetGroupId: string;      // 対象となるグループId
+    targetObjectId: string;     // 対象となるオブジェクトId
+    messageType:string;         // メッセージタイプ
+    data:[ubyte];               // メッセージデータ
+    isSystemMessage:bool;       // システムメッセージフラグ
+}
+
+root_type SceneMessage;

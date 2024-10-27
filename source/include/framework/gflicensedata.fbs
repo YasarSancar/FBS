@@ -1,0 +1,10 @@
+﻿namespace gfl.framework.fb;
+
+table GfLicenseData {
+  userName:string;
+  companyName:string;
+  projectName:string;
+  extraFlags:[string];
+}
+
+root_type GfLicenseData;

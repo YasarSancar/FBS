@@ -1,0 +1,13 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+table ObjectTemplate {
+    name:string;
+    scopeName:string;
+    filePath:string;
+    isExpanded:bool;
+    entityType:string;
+    entityData:[ubyte];
+}
+
+root_type ObjectTemplate;

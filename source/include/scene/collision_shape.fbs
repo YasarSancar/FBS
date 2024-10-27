@@ -1,0 +1,54 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+union CollisionShapeData {
+  SphereShape,
+  BoxShape,
+  CapsuleShape,
+  ModelShape,
+  CompoundShape,
+  PencilShape,
+}
+
+table SphereShape {
+    pos:gfl.math.fb.Vector3f;
+    radius:float;
+}
+
+table BoxShape {
+    pos:gfl.math.fb.Vector3f;
+    extend:gfl.math.fb.Vector3f;
+    rot:gfl.math.fb.Vector3f;
+}
+
+table CapsuleShape {
+    pos:gfl.math.fb.Vector3f;
+    radius:float;
+    height:float;
+    rot:gfl.math.fb.Vector3f;
+}
+
+table ModelShape {
+    modelFilePath:string;
+    pos:gfl.math.fb.Vector3f;
+    rot:gfl.math.fb.Vector3f;
+    scale:gfl.math.fb.Vector3f;
+}
+
+table CompoundShape {
+}
+
+table PencilShape {
+    pos:gfl.math.fb.Vector3f;
+    radius:float;
+    cylinderHeight:float;
+    tipHeight:float;
+    sliceCount:int;
+    rot:gfl.math.fb.Vector3f;
+}
+
+table CollisionShape {
+    data:CollisionShapeData;
+}
+
+root_type CollisionShape;

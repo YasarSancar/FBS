@@ -1,0 +1,8 @@
+namespace gfl.scene.fb;
+
+table TerrainTreeTemplate {
+    treeModelPathHash:uint64;
+    treeTemplatePath:string;
+}
+
+root_type TerrainTreeTemplate;

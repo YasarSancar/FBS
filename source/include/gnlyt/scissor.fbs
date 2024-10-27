@@ -1,0 +1,8 @@
+include "types.fbs";
+include "pane.fbs";
+
+namespace gfl.gnlyt.fb;
+
+table Scissor {
+    base:Pane;
+}

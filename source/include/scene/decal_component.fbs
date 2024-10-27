@@ -1,0 +1,46 @@
+include "../../include/math/math.fbs";
+
+namespace gfl.scene.fb;
+
+enum BlendStateColorPreset : uint {
+  Opaque,
+  Blend,
+  BlendPremultiAlpha,
+  BlendSrc1Color,
+  Add,
+  AddAlphaOne,
+  Mul,
+  Screen,
+  Sub,
+  RevSub,
+  Min,
+  Max,
+}
+
+table DecalComponent {
+  resourceName:string;
+  filePath:string;
+  color:gfl.math.fb.Vector4f;
+  blendState:BlendStateColorPreset;
+  showWireFrame:bool;
+  isColorPolarCordinate:bool;
+  mainColorUV:gfl.math.fb.Vector4f;
+  maskTexturePath:string;
+  isMaskPolarCordinate:bool;
+  maskUV:gfl.math.fb.Vector4f;
+  distortionTexturePath:string;
+  isDistortionPolarCordinate:bool;
+  distortionUV:gfl.math.fb.Vector4f;
+  disolveTexturePath:string;
+  isDisolvePolarCordinate:bool;
+  disolveUV:gfl.math.fb.Vector4f;
+  distortionCorrectX:float;
+  distortionCorrectY:float;
+  maskCorrect:float;
+  disolveCorrect:float;
+  lightenColor:bool;
+  disableCategory:gfl.math.fb.Vector4f;
+  lightenRatio:float;
+}
+
+root_type DecalComponent;

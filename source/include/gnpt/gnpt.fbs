@@ -1,0 +1,1052 @@
+﻿include "types.fbs";
+
+namespace gfl.gnpt.fb;
+
+table KeyframeAnimation1f {
+  keyframes:[float];
+  times:[float];
+}
+
+table KeyframeAnimation2f {
+  keyframes:[Vector2f];
+  times:[float];
+}
+
+table KeyframeAnimation3f {
+  keyframes:[Vector3f];
+  times:[float];
+}
+
+table KeyframeAnimation4f {
+  keyframes:[Vector4f];
+  times:[float];
+}
+
+table KeyframeAnimation1f2 {
+  x:KeyframeAnimation1f;
+  y:KeyframeAnimation1f;
+}
+
+table KeyframeAnimation1f3 {
+  x:KeyframeAnimation1f;
+  y:KeyframeAnimation1f;
+  z:KeyframeAnimation1f;
+}
+
+table EmitterTimeAnimation1f {
+  enable:bool;
+  animationTable:KeyframeAnimation1f;
+  enableLoop:bool;
+}
+
+table EmitterTimeAnimation3f {
+  enable:bool;
+  animationTable:KeyframeAnimation3f;
+  enableLoop:bool;
+}
+
+table AnimationLoopSetting {
+  enableLoop:bool;
+  loopFrame:int;
+  enableStartRandom:bool;
+}
+
+enum CompareFuncKind : uint {
+  Never,
+  Less,
+  Equal,
+  LEqual,
+  Greater,
+  NotEqual,
+  GEqual,
+  Always
+}
+
+enum BlendFuncKind : uint {
+  Zero,
+  One,
+  SrcColor,
+  OneMinusSrcColor,
+  SrcAlpha,
+  OneMinusSrcAlpha,
+  DstAlpha,
+  OneMinusDstAlpha,
+  DstColor,
+  OneMinusDstColor,
+  SrcAlphaSaturate,
+  Src1Color,
+  OneMinusSrc1Color,
+  Src1Alpha,
+  OneMinusSrc1Alpha,
+  ConstantColor,
+  OneMinusConstantColor,
+  ConstantAlpha,
+  OneMinusConstantAlpha,
+}
+
+enum BlendOperatorKind : uint {
+  Add,
+  Sub,
+  ReverseSub,
+  Min,
+  Max,
+}
+
+enum DrawFaceKind : uint {
+  None,
+  Front,
+  Back,
+  Both,
+}
+
+enum ParticleSortOrder : uint {
+  None,
+  Ascending,
+  Descending,
+  ZSort,
+}
+
+table RenderState {
+  depthTestEnable:bool;
+  depthFunc:CompareFuncKind;
+  depthWriteEnable:bool;
+  alphaTestEnable:bool;
+  alphaTestFunc:CompareFuncKind;
+  alphaTestThreshold:float;
+  blendEnable:bool;
+  blendColorOperator:BlendOperatorKind;
+  blendColorSrcFactor:BlendFuncKind;
+  blendColorDstFactor:BlendFuncKind;
+  blendAlphaOperator:BlendOperatorKind;
+  blendAlphaSrcFactor:BlendFuncKind;
+  blendAlphaDstFactor:BlendFuncKind;
+  drawFace:DrawFaceKind;
+  particleSortOrder:ParticleSortOrder;
+  drawPath:int;
+}
+
+enum RandomType : uint {
+  ChangeEveryTime,
+  CommonWithinEmitterSet,
+  Fixed,
+}
+
+table Random {
+  randomType:RandomType;
+  fixedRandomSeed:int;
+}
+
+table Lod {
+  emissionRangeNear:float;
+  emissionRangeFar:float;
+  testAlways:bool;
+  interpolateEmissionAmount:bool;
+  emissionRatioFar:int;
+}
+
+enum ParticleFollowMode : uint {
+  None,
+  AllSrt,
+  OnlyTranslation,
+}
+
+enum EmitProcMode : uint {
+  Time,
+  Distance,
+}
+
+table RandomField {
+  randomAmplitude:Vector3f;                 // ランダム幅
+  randomApplicationInterval:int;            // ランダム適用間隔
+}
+
+table GpuNoiseField {
+  noiseIntensity:Vector3f;                  // ノイズの強さ
+  basicCycle:int;                           // 基本周期
+  addAirResistance:bool;                    // 「空気抵抗」を加味
+  unifyPhaseEachComponent:bool;             // 各成分で位相を統一
+  unifyPhaseSpeed:float;                    // 各成分の位相の変化速度
+  unifyPhaseDistribution:float;             // 各依存の位相のばらつき
+  settingEachComponent:bool;                // 各成分の設定
+  settingWaveCycleRate:ValueFloat4;         // 各成分の設定成分
+  settingWaveAddParam:ValueFloat4;          // 各成分の設定成分(±)
+}
+
+table MagneticForceField {
+  magneticForce:float;                      // 磁力
+  targetCoordinateAxisX:bool;               // 対象座標軸X
+  targetCoordinateAxisY:bool;               // 対象座標軸Y
+  targetCoordinateAxisZ:bool;               // 対象座標軸Z
+  followPositionToEmitter:bool;             // 位置をエミッタに追従
+  position:Vector3f;                        // 位置
+}
+
+enum RotationAxis : uint {
+  X,
+  Y,
+  Z,
+}
+
+table SpinField {
+  rotationSpeed:float;                      // 回転速度
+  rotationAxis:RotationAxis;                // 回転軸
+  DiffusionSpeed:float;                     // 拡散速度
+}
+
+table ConvergenceField {
+  convergence:float;                        // 収束力
+  followPositionToEmitter:bool;             // 位置をエミッタに追従
+  position:Vector3f;                        // 位置
+}
+
+table OffsetField {
+  offset:Vector3f;                          // 位置に加算
+  isGlobalOffset:bool;                      // グローバル座標で加算
+}
+
+enum BehaviorOnHit : uint {
+  Reflection,                               // 反射
+  Extinguish,                               // 消滅
+  HandledByCustomShaders,                   // カスタムシェーダで処理
+}
+
+table SimpleCollisionField {
+  appliedInWorldCoordinate:bool;            // ワールド座標系で適用
+  behaviorOnHit:BehaviorOnHit;              // ヒット時の挙動
+  collisionPlaneYCoordinate:float;          // コリジョン面Y座標
+  reflectionRate:float;                     // 反射率
+  numberOfReflections:int;                  // 反射回数
+  frictionCoefficient:float;                // 摩擦係数
+}
+
+table CurlNoiseField {
+  impactStrength:Vector3f;                  // 影響の強さ
+  interpolatingNoiseTable:bool;             // ノイズテーブルを補間
+  appliedInWorldCoordinate:bool;            // ワールド座標系で適用
+  noiseScale:float;                         // ノイズのスケール
+  noiseMoveSpeed:Vector3f;                  // ノイズの移動速度
+  noiseOffset:float;                        // ノイズのオフセット
+  randomNoiseOffset:bool;                   // ノイズのオフセットランダム
+}
+
+table CustomField {
+  bit:ValueBool16;                        // ビット
+  value:ValueFloat16;                     // 数値
+}
+
+enum CalculationMethod : uint {
+  BillboardStripes,                         // ビルボードストライプ
+  EmitterMatrixStripe,                      // エミッタ行列ストライプ
+  ExtendAboveAndBelowTheEmitter,            // エミッタの上下に伸ばす
+}
+
+enum Options : uint {
+  Normal,                                   // 通常
+  Cross,                                    // クロス
+}
+
+enum Texturing : uint {
+  PasteAll,                                 // 全て貼る
+  PasteToTheDrawingArea,                    // 描画範囲に合わせて貼る
+}
+
+enum ConnectionType : uint {
+  Normal,                                   // 通常
+  ConnectToTheTip,                          // 先端に繋ぐ
+  ConnectToTheEmitter,                      // エミッタに繋ぐ
+}
+
+table ConnectableStripesEmitterPlugin {
+  calculationMethod:CalculationMethod;      // 計算方法
+  options:Options;                          // オプション
+  texturing:Texturing;                      // テクスチャリング
+  numberOfDivisions:int;                    // 分割数
+  connectionType:ConnectionType;            // 接続タイプ
+  tipAlpha:float;                           // 先端α
+  endAlpha:float;                           // 末端α
+  historyInterpolationParameters:float;     // 履歴補間パラメータ
+  directionalInterpolationRate:float;       // 方向補間率
+}
+
+table HistoricalStripesEmitterPlugin {
+  calculationMethod:CalculationMethod;      // 計算方法
+  perfectlyFollowsTheEmitter:bool;          // エミッタに完全追従
+  options:Options;                          // オプション
+  texturing:Texturing;                      // テクスチャリング
+  numberOfDivisions:float;                  // 分割数
+  numberOfHistories:int;                    // 履歴数（ストライプの長さ）
+  historyPolygonizationInterval:float;      // 履歴ポリゴン化の間隔
+  tipAlpha:float;                           // 先端α
+  endAlpha:float;                           // 末端α
+  historyInterpolationParameters:float;     // 履歴補間パラメータ
+  directionalInterpolationRate:float;       // 方向補間率
+}
+
+enum CalculationMethod2 : uint {
+  BillboardStripes,                         // ビルボードストライプ
+  EmitterMatrixStripe,                      // エミッタ行列ストライプ
+  ExtendAboveAndBelowTheEmitter,            // エミッタの上下に伸ばす
+  BillboardStripes2,                        // ビルボードストライプ2
+}
+
+enum UvAssignment : uint {
+  FixedPercentageForEachHistory,            // 履歴毎に固定割合
+  DependsOnHistoryDistance,                 // 履歴距離に依存
+}
+
+table HistoricalStripes2EmitterPlugin {
+  calculationMethod:CalculationMethod;      // 計算方法
+  options:Options;                          // オプション
+  uvAssignment:UvAssignment;                // UV割り当て
+  perfectlyFollowsTheEmitter:bool;          // エミッタに完全追従
+  lengthOfHistory:float;                    // 履歴の長さ
+  texturing0:Texturing;                     // テクスチャリング0
+  texturing1:Texturing;                     // テクスチャリング1
+  texturing2:Texturing;                     // テクスチャリング2
+  numberOfDivisions:float;                  // 分割数
+  initialSPeedOfTheHistory:float;           // 履歴の初速
+  changeCycleOfTheHistory:Vector3f;         // 履歴の変化周期
+  directionalChangeRate:float;              // 方向変化率
+  accelerationOfHistory:Vector3f;           // 履歴の加速度
+  airResistanceOfHistory:float;             // 履歴の空気抵抗
+  tipAlpha:float;                           // 先端α
+  endAlpha:float;                           // 末端α
+  tipScale:float;                           // 先端スケール
+  endScale:float;                           // 末端スケール
+}
+
+enum ClippingSettings : uint {
+  NoClipping,                               // クリップしない
+  ClipUpperSide,                            // 上側をクリップ
+  ClipLowerSide,                            // 下側をクリップ
+}
+
+table IntraRangeLoopEmitterPlugin {
+  locationOfTheBox:Vector3f;                // 箱の位置
+  sizeOfTheBox:Vector3f;                    // 箱の大きさ
+  amountOfRotationOfTheBox:Vector3f;        // 箱の回転量
+  rateOfThinningAlphaAtTheEdge:Vector3f;    // 端でαを薄くする割合
+  fixTheBoxInFrontOfTheCamera:bool;         // 箱をカメラ前に固定
+  numberOfRepeat:float;                     // リピート数
+  offsetPerRepeat:Vector3f;                 // リピート毎のオフセット
+  clippingSettings:ClippingSettings;        // クリッピング設定
+  heightOfClippingPlane:float;              // クリッピング平面の高さ
+}
+
+union EmitterPlugin {
+  ConnectableStripesEmitterPlugin,
+  HistoricalStripesEmitterPlugin,
+  HistoricalStripes2EmitterPlugin,
+  IntraRangeLoopEmitterPlugin,
+}
+
+table CustomAction {
+  callBackId:[uint];                        // コールバックID
+  bit:[ValueBool16];                        // ビット
+  value:[ValueInt16];                       // 数値
+  valueFloat:[ValueFloat16];                // 数値（float）
+}
+
+table EmitterExpansionParameters {
+  bit:[ValueBool16];                        // ビット
+  value:[ValueInt16];                       // 数値
+  valueFloat:[ValueFloat16];                // 数値（float）
+}
+
+table Inheritance {
+  preDrawBeforeParent:bool;                 // 親より先に描画するか
+  enableVelocity:bool;                      // 速度の継承
+  velocityRate:float;                       // 速度継承係数
+  enableScale:bool;                         // スケールの継承
+  scaleRate:float;                          // スケール継承係数
+  enableRotate:bool;                        // 回転の継承
+  enableColorScale:bool;                    // カラースケールの継承
+  enableColor0:bool;                        // カラー0の継承
+  enableColor1:bool;                        // カラー1の継承
+  enableAlpha0:bool;                        // アルファ0の継承
+  enableAlpha1:bool;                        // アルファ1の継承
+  enableAlpha0EachFrame:bool;               // アルファ0毎フレーム継承
+  enableAlpha1EachFrame:bool;               // アルファ1毎フレーム継承
+  enableEmitterParticle:bool;               // パーティクルへのエミッタ割り当て
+}
+
+enum ShapeKind : uint {
+  Quad,
+  Mesh,
+}
+
+enum ParticleBehaviorKind : uint {
+  BillboardParallel,
+  BillboardFollow,
+  YAxisBillboardParallel,
+  YAxisBillboardFollow,
+  XYPlanePolygon,
+  XZPlanePolygon,
+  DirectionalBillboard,
+  DirectionalPolygon,
+}
+
+enum ParticleOffsetKind : uint {
+  None,
+  ZDirection,
+  Camera,
+  FixedSize,
+}
+
+enum WaveKind : uint {
+  SinWave,
+  SawWave,
+  SquareWave,
+}
+
+table Fluctutaion {
+  waveType:WaveKind;
+  applyAlpha:bool;
+  applyScale:bool;
+  applyScaleY:bool;
+  amplitude:Vector2f;
+  frequency:Vector2i;
+  initPhase:Vector2i;
+  phaseRandom:bool;
+  phaseRandomY:bool;
+}
+
+enum CombinerOperation : uint {
+  Multiply,
+  Add,
+  Sub,
+}
+
+enum CombinerChannel : uint {
+  C1,
+  OneMinusC1,
+  C2,
+  OneMinusC2,
+  One,
+}
+
+enum CombinerColorExpression : uint {
+  C0,
+  C0_Mul_R,
+  C0_Mul_R_Plus_C1_Mul_OneMinusR,
+  C0_Mul_R_Plus_C1,
+}
+
+enum CombinerAlphaExpression : uint {
+  R_Mul_A0,
+  R_Mul_A0_Mul_A1,
+  R_Minus_OneMinusA0_Mul_2,
+  R_Minus_A0_Mul_A1,
+  Clamp_R_Minus_A0_Mul_4_Mul_A1,
+}
+
+enum ShaderKind : uint {
+  Basic,
+  Refract,
+  Distortion,
+}
+
+enum FilterMode : uint {
+  Linear,
+  Nearest,
+}
+
+enum WrapMode : uint {
+  Mirror,
+  Repeat,
+  Clamp,
+}
+
+enum TexturePatternAnimationKind : uint {
+  None,
+  LifeFit,
+  Clamp,
+  Loop,
+  Random,
+  Surface,
+}
+
+enum RepeatCountKind : uint {
+  OneXOne,
+  TwoXOne,
+  OneXTwo,
+  TwoXTwo,
+}
+
+table AssetTag {
+  id:string;
+  tag:string;
+  path:string;
+}
+
+table AssetPath {
+  tagId:string;
+  fileName:string;
+}
+
+table Texture {
+  // EmitterTextureFileData
+  assetPath:AssetPath;
+  patternDivU:int;
+  patternDivV:int;
+  wrapTypeU:WrapMode;
+  wrapTypeV:WrapMode;
+  randomInvU:bool;
+  randomInvV:bool;
+  repeatCount:RepeatCountKind;
+  filterMode:FilterMode;
+  availableMipMapLevel:float;
+  mipMapBias:float;
+  mipMapLevelLimit:bool;
+  sphericalMap:bool;
+  uvChannel:float;
+  isSquareRGB:bool;
+
+  // EmitterTextureUvAnimationData
+  enableUvScrollAnimation:bool;
+  enableUvRotAnimation:bool;
+  enableUvScaleAnimation:bool;
+  uvScrollAddValue:Vector2f;
+  uvScrollInitialValue:Vector2f;
+  uvScrollInitialRandomValue:Vector2f;
+  uvRotationAddValue:float;
+  uvRotationInitialValue:float;
+  uvRotationInitialRandomValue:float;
+  uvScaleAddValue:Vector2f;
+  uvScaleInitialValue:Vector2f;
+  uvScaleInitialRandomValue:Vector2f;
+
+  // EmitterTexturePatternAnimationData
+  patternAnimType:TexturePatternAnimationKind;
+  loopCount:int;
+  enableCrossfade:bool;
+  durationCountPerFrame:int;
+  patternTableCount:int;
+  randomPatternTableCount:int;
+  enableSimpleTableRandom:bool;
+  patternTable:[int];
+  enablePatternBlend:bool;
+
+  // EmitterTextureOptionData
+  isDensityFixedU:bool;
+  isDensityFixedV:bool;
+}
+
+enum ColorBehaviorType : uint {
+  Fixed,
+  Animation,
+  Random,
+}
+
+enum AlphaBehaviorType : uint {
+  Fixed,
+  Animation,
+}
+
+table RandomColorTable {
+  colors:[Vector3f];
+  enables:[bool];
+}
+
+enum AlphaProcessKind : uint {
+  None,
+  Vertex,
+  Fragment,
+}
+
+enum SoftParticleProcessKind : uint {
+  None,
+  Vertex,
+  Fragment,
+  ShieldingCheck,
+}
+
+enum RotationOrder : uint {
+  Y_Z_X,
+  X_Y_Z,
+  Z_X_Y
+}
+
+table Rotation {
+  initialRotation:float;
+  initialRotationRandom:float;
+  enableRotationRandom:bool;
+  rotationSpeed:float;
+  rotationSpeedRandom:float;
+}
+
+enum EmitterTypeKind : uint {
+  Point,
+  Circle,
+  CircleEqualDivision,
+  CircleVolume,
+  Sphere,
+  SphereEqualDivision,
+  SphereEqualDivision64,
+  SphereVolume,
+  Cylinder,
+  CylinderVolume,
+  Cube,
+  CubeVolume,
+  Line,
+  LineEqualDivision,
+  Rectangle,
+  Primitives,
+}
+
+enum EmitterShapeArcTypeKind : uint {
+  Longitude,
+  Latitude,
+}
+
+enum EmitterShapeEmissionTypeKind : uint {
+  AllAtOnce,
+  Random,
+  IndexOrder,
+}
+
+enum EmitterShapeSphereAxisKind : uint {
+  PlusX,
+  MinusX,
+  PlusY,
+  MinusY,
+  PlusZ,
+  MinusZ,
+}
+
+enum EmitterShapeSphereAndDivisionDivisionKind : uint {
+  Division2,
+  Division3,
+  Division4,
+  Division6,
+  Division8,
+  Division12,
+  Division20,
+  Division32,
+}
+
+struct CustomShaderParameterValueInt {
+  value:int;
+}
+
+struct CustomShaderParameterValueFloat {
+  value:float;
+}
+
+struct CustomShaderParameterValueBool {
+  value:bool;
+}
+
+union CustomShaderParameterValue {
+  Int:CustomShaderParameterValueInt,
+  Float:CustomShaderParameterValueFloat,
+  Bool:CustomShaderParameterValueBool,
+}
+
+table CustomShaderParameter {
+  name:string;
+  value:CustomShaderParameterValue;
+}
+
+table Emitter {
+  name:string;                              // 名前
+
+  followMode:ParticleFollowMode;            // エミッタへの追従モード
+  enableStopOnEnd:bool;                     // 終了時に放出停止
+  enableAlphaFadeOut:bool;                  // アルファフェードアウト
+  enableScaleFadeOut:bool;                  // スケールフェードアウト
+  fadeOutTime:int;                        // フェードアウト時間
+  enableAlphaFadeIn:bool;                   // アルファフェードイン
+  enableScaleFadeIn:bool;                   // スケールフェードイン
+  fadeInTime:int;                         // フェードイン時間
+
+  renderState:RenderState;                  // レンダーステート
+
+  random:Random;
+
+  lod:Lod;
+
+  inheritance:Inheritance;                  // 継承関連の設定
+
+  // EmitterEmitterData
+  // EmitterEmitterShapeData
+  emitterType:EmitterTypeKind;
+  emitterTypeEmitterRadius:Vector3f;
+  emitterShapeLongitudeArcLength:float;
+  emitterShapeLatitudeArcLength:float;
+  emitterShapeStartArc:float;
+  emitterShapeStartArcRandom:bool;
+  emitterShapeRandomPos:float;
+  emitterShapeHollowRatio:float;
+  emitterShapeArcType:EmitterShapeArcTypeKind;
+  emitterShapeLineCenter:float;
+  emitterShapeLineLength:float;
+  emitterShapeEmissionType:EmitterShapeEmissionTypeKind;
+  emitterShapeSphereAxis:EmitterShapeSphereAxisKind;
+  emitterShapeSphereAndDivisionDivision:EmitterShapeSphereAndDivisionDivisionKind;
+  emitterShapeSphereAndDivision64Division:int;
+  emitterShapeCircleDivision:int;
+  emitterShapeCircleDivisionRandom:int;
+  emitterShapeLineDivision:int;
+  emitterShapeLineDivisionRandom:int;
+  emitterShapeScale:Vector3f;
+  emitterShapePrimitiveFilePath:AssetPath;
+  randomPosition:float;
+
+  shapeScaleAnimation:EmitterTimeAnimation3f;
+
+  // EmitterEmitterTransformData
+  emitterScale:Vector3f;
+  emitterScaleAnimation:EmitterTimeAnimation3f;
+
+  emitterRotation:Vector3f;
+  emitterRotationRandom:Vector3f;
+  emitterRotationAnimation:EmitterTimeAnimation3f;
+
+  emitterPosition:Vector3f;
+  emitterPositionRandom:Vector3f;
+  emitterPositionAnimation:EmitterTimeAnimation3f;
+
+  enableUpdateRandom:bool;
+
+  // EmitterEmissionData
+  // EmitterEmissionTimingData
+  enableOneShot:bool;                       // ワンショットエミッタか否か
+  oneShotDuration:int;                    // ワンショット放出時間
+
+  emitStartFrame:int;                     // 放出開始フレーム(親エミッタ用)
+  emitTimingRate:float;                     // 放出タイミング(子エミッタ用)
+
+  emitProcMode:EmitProcMode;                // 放出モード
+
+  // 時間ベースの放出設定
+  emitTimeEmissionRate:float;               // 1回の放出で発生するパーティクル数
+  emitTimeEmissionRateRandom:int;         // 1回の放出で発生するパーティクル数のランダム幅
+  emitTimeEmissionRateAnimation:EmitterTimeAnimation1f;
+  emitTimeDistUnit:int;                   // 放出発生間隔
+  emitTimeDistUnitRandom:int;             // 放出発生間隔のランダム幅
+
+  // 距離ベースの放出設定
+  emitDistDistUnit:float;                   // 放出間隔
+  emitDistParticleMax:int;
+  emitDistMaxDistPerFrame:float;            // 1フレームあたりの最大
+  emitDistMinDistPerFrame:float;
+  emitDistMargin:float;
+
+  // EmitterEmissionVelocityData
+  omnidirectionalVelocity:float;
+  omnidirectionalVelocityAnimation:EmitterTimeAnimation1f;
+
+  orientedVelocity:float;
+  orientedVelocityAnimation:EmitterTimeAnimation1f;
+
+  enableOrientedVelocityOnWorldCoordinate:bool;
+  orientedDirection:Vector3f;
+  orientedDirectionalDiffusionAngle:float;
+
+  yaxisDiffusionVelocity:float;
+  diffusionVelocity:Vector3f;
+  velocityRandom:float;
+
+  // EmitterEmissionGravityData
+  airRegist:float;
+
+  gravityVolume:float;
+  gravityVolumeAnimation:EmitterTimeAnimation1f;
+  enableWorldCoordinate:bool;
+  gravityDir:Vector3f;
+
+  velocityInheritRate:float;
+  momentumRandom:float;
+
+  // EmitterParticleData
+  // EmitterParticleLifeData
+  enableInfinityLife:bool;
+  life:float;
+  lifeRandom:float;
+  lifeAnimation:EmitterTimeAnimation1f;
+
+  // EmitterParticleShapeData
+  shapeType:ShapeKind;
+  enableTrimming:bool;
+  connectPtclScaleToZOffset:bool;
+  particleType:ParticleBehaviorKind;
+  particleOffset:Vector2f;
+  cameraOffsetProcessType:ParticleOffsetKind;
+  cameraOffsetValue:float;
+  primitiveFilePath:AssetPath;
+  enableAvoidZFighting:bool;
+
+  // EmitterParticleFluctutaionData
+  fluctutation:Fluctutaion;
+
+  // EmitterCombinerData
+  // EmitterCombinerEquationData
+  colorTexture0BlendType:CombinerOperation;
+  colorTexture0Channel:CombinerChannel;
+  colorTexture1BlendType:CombinerOperation;
+  colorTexture1Channel:CombinerChannel;
+  colorTexture2BlendType:CombinerOperation;
+  colorTexture2Channel:CombinerChannel;
+  colorTextureExpression:CombinerColorExpression;
+  colorPrimitiveExpression:CombinerOperation;
+  colorPrimitiveChannel:CombinerChannel;
+  alphaTexture0BlendType:CombinerOperation;
+  alphaTexture0Channel:CombinerChannel;
+  alphaTexture1BlendType:CombinerOperation;
+  alphaTexture1Channel:CombinerChannel;
+  alphaTexture2BlendType:CombinerOperation;
+  alphaTexture2Channel:CombinerChannel;
+  alphaPrimitiveExpression:CombinerOperation;
+  alphaPrimitiveChannel:CombinerChannel;
+  alphaExpression:CombinerAlphaExpression;
+
+  // EmitterCombinerShaderData
+  shaderType:ShaderKind;
+  coefficient:Vector2f;
+  coefficientAnimationTable:KeyframeAnimation2f;
+  particleApplyAlphaValue:bool;
+  isDistortionByCameraDistance:bool;
+
+  // EmitterCombinerEditorData
+  combinerEditorProjectPath:string;
+  // EmitterCombinerEditorAnimationCurveData0
+  combinerEditorAnimation:KeyframeAnimation4f;
+  combinerEditorAnimationLoopSetting:AnimationLoopSetting;
+
+  texture0:Texture;
+  texture1:Texture;
+  texture2:Texture;
+  fixedUvAnim:bool;
+
+  // EmitterColorData
+
+  // ParticleColor
+  colorScale:float;
+
+  color0BehaviorType:ColorBehaviorType;
+  color1BehaviorType:ColorBehaviorType;
+  alpha0BehaviorType:AlphaBehaviorType;
+  alpha1BehaviorType:AlphaBehaviorType;
+
+  color0Value:Vector3f;
+  color1Value:Vector3f;
+  alpha0Value:float;
+  alpha1Value:float;
+
+  color0Animation:KeyframeAnimation3f;
+  color0AnimationLoopSetting:AnimationLoopSetting;
+  color1Animation:KeyframeAnimation3f;
+  color1AnimationLoopSetting:AnimationLoopSetting;
+  alpha0Animation:KeyframeAnimation1f;
+  alpha0AnimationLoopSetting:AnimationLoopSetting;
+  alpha1Animation:KeyframeAnimation1f;
+  alpha1AnimationLoopSetting:AnimationLoopSetting;
+
+  color0Random:RandomColorTable;
+  color1Random:RandomColorTable;
+
+  // EmitterColorAlphaProcessData
+  softParticleProcessType:SoftParticleProcessKind;
+  alphaFadeStartAlphaOffset:float;
+  alphaSamplingRadius:float;
+  fresnelAlphaProcessType:AlphaProcessKind;
+  minimumAlphaAngle:float;
+  maximumAlphaAngle:float;
+  enableNearAlpha:bool;
+  nearAlphaZeroDistance:float;
+  nearAlphaOneDistance:float;
+  enableFarAlpha:bool;
+  farAlphaOneDistance:float;
+  farAlphaZeroDistance:float;
+  enableDecal:bool;
+  decalAlphaOneDistance:float;
+  feedStartDistance:float;
+  volumeValue:float;
+
+  // EmitterColor
+  emitterColor0Value:Vector3f;
+  emitterColor1Value:Vector3f;
+  emitterAlpha0Value:float;
+  emitterAlpha1Value:float;
+  emitterColor0Animation:EmitterTimeAnimation3f;
+  emitterColor1Animation:EmitterTimeAnimation3f;
+  emitterAlpha0Animation:EmitterTimeAnimation1f;
+  emitterAlpha1Animation:EmitterTimeAnimation1f;
+
+  // EmitterScaleData
+
+  // EmitterScaleBasicData
+  scaleBasicValue:Vector3f;
+  scaleBasicRandom:Vector3f;
+  scaleBasicAnimation:EmitterTimeAnimation3f;
+
+  // EmitterScaleAnimationData
+  enableScaleVelAddY:bool;
+  scaleVelAddY:float;
+  enableScalingByCameraDistNear:bool;
+  enableScalingByCameraDistFar:bool;
+  scaleLimitDistNear:float;
+  scaleLimitDistFar:float;
+  enableLinkFovyToScaleValue:bool;
+
+  // EmitterScaleAnimationCurveData
+  scaleAnimation:KeyframeAnimation3f;
+  scaleAnimationLoopSetting:AnimationLoopSetting;
+
+  // EmitterRotationData
+  rotationType:RotationOrder;
+  rotationAttenuation:float;
+  enableRotationAxisX:bool;
+  enableRotationAxisY:bool;
+  enableRotationAxisZ:bool;
+
+  rotationX:Rotation;
+  rotationY:Rotation;
+  rotationZ:Rotation;
+
+  customShaderSelectShaderName:string;
+  customShaderParameters:[CustomShaderParameter];
+
+  // fieldList:object;
+  // userDataList:object;
+  // stripeData:object;
+  // // EmitterCustomShaderData
+  // selectedSettingIndex:float;
+  // // Settings
+  // emitterCustomShaderSettingData:[object];
+
+  // customActionData:object;
+  // reservedShader:object;
+  // emitterExtParams:object;
+
+  childEmitters:[Emitter];                  // 子エミッタ
+
+  randomField:RandomField;                                // ランダム
+  gpuNoiseField:GpuNoiseField;                            // GPUノイズ
+  magneticForceField:MagneticForceField;                  // 磁力
+  spinField:SpinField;                                    // スピン
+  convergenceField:ConvergenceField;                      // 収束
+  offsetField:OffsetField;                                // 「位置に加算」フィールド
+  simpleCollisionField:SimpleCollisionField;              // シンプルコリジョン
+  curlNoiseField:CurlNoiseField;                          // カールノイズ
+  customField:CustomField;                                // カスタム
+  emitterPlugin:EmitterPlugin;                            // エミッタプラグイン
+  customAction:CustomAction;                              // カスタムアクション
+  emitterExpansionParameters:EmitterExpansionParameters;  // エミッタ拡張パラメータ
+}
+
+table ToolEmitter {
+  base:Emitter;
+  childToolEmitters:[ToolEmitter];
+
+  shapeScaleAnimation:KeyframeAnimation1f3;
+  emitterPositionAnimation:KeyframeAnimation1f3;
+  emitterRotationAnimation:KeyframeAnimation1f3;
+  emitterScaleAnimation:KeyframeAnimation1f3;
+  scaleBasicAnimation:KeyframeAnimation1f3;
+
+  scaleAnimation:KeyframeAnimation1f3;
+
+  coefficientAnimationTable:KeyframeAnimation1f2;
+
+  color0Animation:KeyframeAnimation1f3;
+  color1Animation:KeyframeAnimation1f3;
+}
+
+table EmitterSet {
+  name:string;
+  emitters:[Emitter];
+}
+
+table ToolEmitterSet {
+  base:EmitterSet;
+  toolEmitters:[ToolEmitter];
+}
+
+table PreviewNode {
+}
+
+table ViewerNode {
+}
+
+table ModelSettingNode {
+}
+
+table Workspace {
+  previewNode:PreviewNode;
+  viewerNode:ViewerNode;
+  modelSettingNode:ModelSettingNode;
+  emitterSets:[string];
+}
+
+table DrawPath {
+  id:int;
+  name:string;
+}
+
+enum CustomShaderParameterDefineType : uint {
+  Int,
+  Float,
+  Bool,
+}
+
+table CustomShaderParameterDefine {
+  name:string;
+  type:CustomShaderParameterDefineType;
+}
+
+table CustomShaderDefine {
+  name:string;
+  parameters:[CustomShaderParameterDefine];
+}
+
+table ProjectConfig {
+  assetTags:[AssetTag];
+  drawPaths:[DrawPath];
+  customShaderDefines:[CustomShaderDefine];
+}
+
+enum PreviewMode : uint {
+  Restart,
+  Stop,
+  Pause,
+  Step,
+  Fade,
+  LoopOn,
+  LoopOff,
+}
+
+table Preview {
+  mode:PreviewMode;
+  loopFrame:int;
+}
+
+union LiveEditNode
+{
+  Workspace,
+  EmitterSet,
+  Emitter,
+  Preview,
+}
+
+enum LiveEditMode : uint
+{
+  Reload,
+  Update,
+  Preview,
+}
+
+table LiveEditItem
+{
+  path:[string];
+  mode:LiveEditMode;
+  node:LiveEditNode;
+  assetBasePath:string;
+}
+
+table LiveEdit {
+  items:[LiveEditItem];
+  projectConfigPath:string;
+  projectConfig:ProjectConfig;
+}

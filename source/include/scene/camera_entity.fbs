@@ -1,0 +1,33 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+enum ProjectionType : ubyte {
+    Perspective,
+    Ortho,
+}
+
+enum CameraMode : ubyte {
+    Immediate,
+    Free,
+    Relative,
+    Tracking,
+}
+
+table CameraEntity {
+    instanceName:string;
+    active:bool;
+    position:gfl.math.fb.Vector3f;
+    rotation:gfl.math.fb.Vector3f;
+    distance:float;
+    fovy:float;
+    Near:float;
+    Far:float;
+    projectionType:ProjectionType;
+    cameraMode:CameraMode;
+    targetName:string;
+    useRoll:bool;
+    roll:float;
+    attachTransform:bool;
+}
+
+root_type CameraEntity;

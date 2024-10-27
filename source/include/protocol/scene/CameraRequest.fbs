@@ -1,0 +1,18 @@
+include "../../math/math.fbs";
+namespace gfl.protocol.scene.fb;
+
+union CameraRequestData {
+    FocusToTarget,
+}
+
+table FocusToTarget {
+    useCameraName:string;
+    location:gfl.math.fb.Vector3f;
+    targetId:string;
+}
+
+table CameraRequest {
+    data:CameraRequestData;
+}
+
+root_type CameraRequest;

@@ -1,0 +1,33 @@
+﻿
+namespace gfl.gfx2.fb;
+
+// 補間の種類
+enum CurveInterpType : uint {
+  Constant,         // コンスタントキー
+  Linear,           // リニアキー
+  TangentAuto,      // 傾き自動計算
+  TangentBreak,     // 左右傾き個別設定
+  TangentUser,      // 傾きユーザー設定
+}
+
+// カーブキー
+table RuntimeCurveKey {
+  time:float;                 // 時間
+  value:float;                // 値
+  tangentLeft:float;          // 傾き左側
+  tangentRight:float;         // 傾き右側
+  interpType:CurveInterpType; // 補間タイプ
+}
+
+// ランタイム用カーブfloat
+table RuntimeCurveFloat {
+  keys:[RuntimeCurveKey];
+}
+
+// ランタイム用カーブfloat4
+table RuntimeCurveFloat4 {
+  x:RuntimeCurveFloat;
+  y:RuntimeCurveFloat;
+  z:RuntimeCurveFloat;
+  w:RuntimeCurveFloat;
+}

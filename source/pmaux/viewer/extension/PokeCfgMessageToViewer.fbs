@@ -1,0 +1,90 @@
+namespace pmaux.extension;
+
+enum SelectedIndexMode : ubyte {
+  Select,
+  Delete,
+}
+
+enum InFrameRotationMode : ubyte {
+  Left,
+  Right,
+}
+
+enum InFrameScreenOriginMode : ubyte {
+  Bottom,
+  Center,
+}
+
+enum OffsetMode : ubyte {
+  None,
+  Ground,
+  Swimming,
+  Floating,
+}
+
+union MessageType {
+  SelectedIndexMessage,
+  LoadMessage,
+  OffsetModeMessage,
+  SetScaleMessage,
+  SetInframeMessage,
+  SetHideBoxMessage,
+  SetLodMessage,
+}
+
+// 操作対象Index
+table SelectedIndexMessage {
+  mode:SelectedIndexMode;
+  index:uint;
+}
+
+// ファイル読み込み
+table LoadMessage {
+  fileName:string;
+  data:[ubyte];
+}
+
+// オフセットモード
+table OffsetModeMessage {
+  mode:OffsetMode;
+}
+
+// 大きさ
+table SetScaleMessage {
+  scale:float = 1.0;
+}
+
+// インフレーム
+table SetInframeMessage {
+  inFrameEnable:bool;
+  inFrameRotationMode:InFrameRotationMode;
+  inFrameScreenOriginMode:InFrameScreenOriginMode;
+  inFrameVerticalRotation:float;
+}
+
+// 隠し床
+table SetHideBoxMessage {
+  isHideFloor:bool;
+  sizeX:float = 1.0;
+  sizeY:float = 1.0;
+  sizeZ:float = 1.0;
+  centerX:float = 0.0;
+  centerY:float = 0.0;
+  centerZ:float = 0.0;
+}
+
+// LOD
+table SetLodMessage {
+  useSize:bool;
+  size:int = 0;
+  useDistance:bool;
+  distance0:float = 0.0;
+  distance1:float = 0.0;
+  distance2:float = 0.0;
+}
+
+table PokeCfgMessageToViewer {
+  message:MessageType;
+}
+
+root_type PokeCfgMessageToViewer;

@@ -1,0 +1,8 @@
+namespace pe.scene.fb;
+  
+table PokeConfigComponent {
+  filePath:string;
+  scalePercentage:float;
+}
+  
+root_type PokeConfigComponent;

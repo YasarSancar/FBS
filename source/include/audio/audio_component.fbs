@@ -1,0 +1,12 @@
+namespace gfl.audio.fb;
+
+table AudioComponent {
+  shouldUpdatePosition:bool = true;
+  updatePositionIntervalMin:int = 0;
+  stopOnDestroy:bool = true;
+  updatePositionIntervalMax:int = 0;
+  updatePositionMaxDistance:float = 0.0;
+  shouldRegisterOnlyWhenActive:bool = false;
+}
+
+root_type AudioComponent;

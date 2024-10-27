@@ -1,0 +1,30 @@
+namespace GenericEditor.Plugin.CharacterCreate.ToEditor;
+
+union MessageType {
+  LoadCompleteMessage,
+  TypeParameterChangedMessage,
+}
+
+// 読み込み完了
+table LoadCompleteMessage {
+  __dummy__:int;
+}
+
+table TypeParameter {
+  partsName:string;
+  paramName:string;
+  value:uint;
+}
+
+// タイプパラメータ変更
+table TypeParameterChangedMessage {
+  params:[TypeParameter];
+}
+
+// エディターへのメッセージ
+table CharaCreateViewerToEditor {
+  modelInstanceId:string; // 対象のモデルインスタンスId
+  message:MessageType;    // メッセージ
+}
+
+root_type CharaCreateViewerToEditor;

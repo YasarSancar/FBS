@@ -1,0 +1,8 @@
+namespace GfxStudio.UI;
+
+// 保存する UI 情報
+table EventEditorConfig {
+  TimelineScale: float = 1.0;
+}
+
+root_type EventEditorConfig;

@@ -1,0 +1,30 @@
+include "types.fbs";
+
+namespace gfl.gfx2.fb;
+
+table JointInfo {
+  segment_scale_compensate:bool;
+  influence_skinning:bool;
+  inverse_bind_pose_matrix:Matrix4x3f;
+}
+
+table HelperBoneInfo {
+  output:string;
+  target:string;
+  reference:string;
+  type:string;
+  up_type:string;
+  weight:Vector3f;
+  adjust:Quaternion;
+}
+
+table Skeleton {
+  version:uint = 2;
+  node_list:[TransformNode];
+  joint_info_list:[JointInfo];
+  helper_bone_list:[HelperBoneInfo];
+  skinning_palette_offset:int = -1;
+  is_interior_map:bool = false;
+}
+
+root_type Skeleton;

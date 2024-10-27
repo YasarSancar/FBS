@@ -1,0 +1,14 @@
+include "types.fbs";
+include "pane.fbs";
+
+namespace gfl.gnlyt.fb;
+
+table Picture {
+    base:Pane;
+    vtxColLT:Color4;
+    vtxColRT:Color4;
+    vtxColLB:Color4;
+    vtxColRB:Color4;
+    texCoord:[TextureCoord];
+    material:Material;
+}

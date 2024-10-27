@@ -1,0 +1,20 @@
+﻿include "types.fbs";
+
+namespace gfl.gfx2.fb;
+
+enum CameraControlType : uint {
+  Srt,
+  LookAtUpVec,
+  LookAtTwist,
+  Count,
+}
+
+table Camera {
+  type:CameraControlType = Srt;
+  near_length:float = 1.0;
+  far_length:float = 1000.0;
+  fovy:float = 30.0;
+  aim_pos:Float3;
+  twist:float = 0.0;
+}
+

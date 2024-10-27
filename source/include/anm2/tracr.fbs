@@ -1,0 +1,80 @@
+﻿include "tranm.fbs";
+include "tracc.fbs";
+
+namespace gfl.anm2.fb;
+
+file_extension "tracr";
+
+// ---------------------------------------------------------
+// ■リソース設定
+
+enum BlendParameterType : uint {
+  Int,                            // 整数
+  Float,                          // 浮動小数点数
+}
+
+table BlendParameter {
+  name:string;                    // パラメータ名
+  type:BlendParameterType;        // パラメータタイプ
+}
+
+table FileResource {
+  name:string;                      // リソース名
+  filePath:string;                  // tranmjファイルパス : 下位互換用
+  animationData:AnimationData;      // アニメーションデータ : 直接 gfbanm を内包する版。ファイルパスより優先
+  clipData:AnimationClipConfigData; // ファイルパス
+}
+
+table Blend1DPoint {
+  resourceLabel:ResourceLabel;    // 再生対象のリソースラベル
+  positionX:float;                // ポイントの位置ｘ
+}
+
+table Blend1DResource {
+  name:string;                    // リソース名
+  parameter:BlendParameter;       // ブレンドパラメータ
+  points:[Blend1DPoint];          // ブレンドポイントリスト
+}
+
+table Blend2DPoint {
+  resourceLabel:ResourceLabel;    // 再生対象のリソースラベル
+  positionX:float;                // ポイントの位置ｘ
+  positionY:float;                // ポイントの位置ｙ
+}
+
+struct Blend2DTriangle {
+  p0:ubyte;
+  p1:ubyte;
+  p2:ubyte;
+}
+
+struct Blend2DEdge {
+  p0:ubyte;
+  p1:ubyte;
+}
+
+table Blend2DResource {
+  name:string;                    // リソース名
+  parameterX:BlendParameter;      // パラメータｘ
+  parameterY:BlendParameter;      // パラメータｙ
+  points:[Blend2DPoint];          // ブレンドポイントリスト
+  triangles:[Blend2DTriangle];    // 三角形リスト
+  edges:[Blend2DEdge];            // エッジリスト
+}
+
+table ResourceConfig {
+  fileResources:[FileResource];       // ファイルリソースリスト
+  blend1dResources:[Blend1DResource]; // ブレンド1Dリソースリスト
+  blend2dResources:[Blend2DResource]; // ブレンド2Dリソースリスト
+}
+
+// ---------------------------------------------------------
+// ■コンフィグ
+
+// アニメーションリソースコンフィグ
+table AnimationResourceConfig {
+  resourceConfig:ResourceConfig;            // リソース設定
+}
+
+// ルートタイプ
+root_type AnimationResourceConfig;

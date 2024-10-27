@@ -1,0 +1,8 @@
+namespace GfxStudio;
+
+// 起動設定
+table BootConfig {
+  UserGuideURL: string;
+}
+
+root_type BootConfig;

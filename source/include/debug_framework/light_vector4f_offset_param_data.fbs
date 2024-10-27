@@ -1,0 +1,14 @@
+include "../math/math.fbs";
+
+namespace gfl.debug_framework.fb.light;
+
+table Vector4fOffsetParamData {
+  offsetTypeName:string;
+  lightName:string;
+  typeName:string;
+  paramaterName:string;
+  value:gfl.math.fb.Vector4f;
+  lightUniqueId:string;
+}
+
+root_type Vector4fOffsetParamData;

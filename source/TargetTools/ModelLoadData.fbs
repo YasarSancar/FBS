@@ -1,0 +1,19 @@
+include "DataType.fbs";
+
+namespace GenericEditor.Plugin.Model;
+
+table ModelLoadData {
+  instanceName:string;
+  filePath:string;
+  nodeName:string;
+  skeletonPath:string;
+  trmmtFilePath:string; // Trmmtファイルパス
+  metadataName:string;  // メタデータ名
+  
+  dataType:DataType = ModelLoad;
+  
+  isolateMaterial:bool = true;
+  modelType:int = 0;  // ポケモン、キャラ、背景などのタイプ
+}
+
+root_type ModelLoadData;

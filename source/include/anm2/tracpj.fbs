@@ -1,0 +1,47 @@
+﻿namespace gfl.anm2.fbj;
+
+file_extension "tracpj";
+
+// ---------------------------------------------------------
+// ■パラメータ
+
+table IntValue {
+  min:int;                      // 最小値
+  max:int;                      // 最大値
+  defaultValue:int;             // デフォルト値
+}
+
+table FloatValue {
+  min:float;                    // 最小値
+  max:float;                    // 最大値
+  defaultValue:float;           // デフォルト値
+}
+
+table BoolValue {
+  defaultValue:bool;            // デフォルト値
+}
+
+table TriggerValue {
+  _dummy_:bool;                 // ダミー
+}
+
+union Values {
+  IntValue,
+  FloatValue,
+  BoolValue,
+  TriggerValue,
+}
+
+table Parameter {
+  name:string;                  // パラメータ名
+  value:Values;
+  trigger:bool = false;         // トリガーフラグ
+}
+
+table ParameterConfig {
+  parameterList:[Parameter];    // パラメータリスト
+  overrideList:[Parameter];     // default 値を上書きするパラメータリスト
+}
+
+// ルートタイプ
+root_type ParameterConfig;

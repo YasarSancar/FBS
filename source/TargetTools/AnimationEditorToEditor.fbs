@@ -1,0 +1,124 @@
+namespace GenericEditor.Plugin.AnimationEditor.ToEditor;
+
+// 3次元ベクトル
+struct Vector3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+// 4次元ベクトル
+struct Vector4 {
+  x:float;
+  y:float;
+  z:float;
+  w:float;
+}
+
+union MessageType {
+  StartCompleteMessage,
+  StopCompleteMessage,
+  StateInfoMessage,
+  SetIntParameterMessage,
+  SetFloatParameterMessage,
+  SetBoolParameterMessage,
+  SetTriggerParameterMessage,
+  EventInfoMessage,
+  ReturnUnitOperatorMessage,
+  ReturnLookAtMessage
+}
+
+// 開始完了
+table StartCompleteMessage {
+}
+
+// 停止完了
+table StopCompleteMessage {
+}
+
+// ステート再生状態
+
+table StateInfoUnit {
+  name:string;        // ステート名
+  time:float;         // 再生時間 (0.0 ～ 1.0)
+  blendWeight:float;  // ブレンド率 (0.0 ～ 1.0)
+  totalFrame:uint;    // 総フレーム数
+}
+
+table StateInfoSet {
+  current:StateInfoUnit;
+  to:StateInfoUnit;
+}
+
+table StateInfoMessage {
+  layerList:[StateInfoSet];
+}
+
+// パラメータ設定 : int
+table SetIntParameterMessage {
+  name:string;
+  value:int;
+}
+
+// パラメータ設定 : float
+table SetFloatParameterMessage {
+  name:string;
+  value:float;
+}
+
+// パラメータ設定 : bool
+table SetBoolParameterMessage {
+  name:string;
+  value:bool;
+}
+
+// パラメータ設定 : trigger
+table SetTriggerParameterMessage {
+  name:string;
+  value:bool;
+}
+
+enum EventTiming : uint {
+  OnEnter,
+  OnExit,
+  OnEnterWithWeight,
+  OnExitWithWeight,
+  OnTopWeightChanged,
+}
+
+// イベント情報
+table EventInfoMessage {
+  timing:EventTiming;
+  name:string;
+  statePath:string;
+  frame:int;
+  valuesTexts:[string];
+  isTopWeighted:bool;
+  weight:float;
+}
+
+// UnitOperatorの返信情報
+table ReturnUnitOperatorMessage {
+  length:float = 0.0;
+}
+
+table LookAtGroup {
+  name:string;
+  lookAtAxis:Vector3;
+  lookUpAxis:Vector3;
+}
+
+table ReturnLookAtMessage {
+  position0:Vector3;
+  position1:Vector3;
+  gameObjectPosition:Vector3;
+  groups:[LookAtGroup];
+}
+
+// エディターへのメッセージ
+table AnimationEditorToEditor {
+  modelInstanceName:string;
+  message:MessageType;
+}
+
+root_type AnimationEditorToEditor;

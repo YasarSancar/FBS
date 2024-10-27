@@ -1,0 +1,62 @@
+include "types.fbs";
+include "pane.fbs";
+include "null.fbs";
+include "picture.fbs";
+include "window.fbs";
+include "bounding.fbs";
+include "textbox.fbs";
+include "alignment.fbs";
+include "scissor.fbs";
+include "parts.fbs";
+include "group.fbs";
+include "animation.fbs";
+include "control.fbs";
+
+namespace gfl.gnlyt.fb;
+
+union AnyPane {
+    Pane,
+    Null,
+    Picture,
+    Window,
+    Bounding,
+    TextBox,
+    Alignment,
+    Scissor,
+    Parts,
+}
+
+table PaneSet {
+    pane:AnyPane;
+}
+
+table PaneTree {
+    name:string;
+    children:[PaneTree];
+}
+
+table Grid {
+    thickLineInterval:int;
+    thinDivisionNum:int;
+    visible:bool;
+    moveMethod:string;
+    color:Color4;
+}
+
+table ScreenSetting {
+    origin:string;
+    layoutSize:Vector2f;
+    backGround:Color4;
+    grid:Grid;
+}
+
+table Layout {
+    name:string;
+    paneSet:[PaneSet];
+    paneHierarchy:PaneTree;
+    groupset:GroupSet;
+    screenSetting:ScreenSetting;
+    controlSet:[Control];
+}
+
+root_type Layout;

@@ -1,0 +1,103 @@
+﻿namespace gfl.tml.fb;
+
+// イベント種別
+enum EventKind : uint {
+  Normal,       // 通常のイベント
+  Awaitable,    // 待機可能イベント
+  CuePoint,     // キューポイント
+}
+
+// 3次元ベクトル
+struct Vector3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+// イベント値タイプ
+union EventValueType {
+  EventValueType_Int,     // int
+  EventValueType_Float,   // float
+  EventValueType_Bool,    // bool
+  EventValueType_String,  // string
+  EventValueType_Vector3, // vector3
+}
+
+table EventValueType_Int {
+  value:int;
+}
+
+table EventValueType_Float {
+  value:float;
+}
+
+table EventValueType_Bool {
+  value:bool;
+}
+
+table EventValueType_String {
+  value:string;
+}
+
+table EventValueType_Vector3 {
+  value:Vector3;
+}
+
+table EventValue {
+  name:string;            // 値名
+  value:EventValueType;   // 値型
+  suggestionsSource:string;    // オートコンプリートのデータソース(runtime側不要)
+  acceptOnlySuggestions:bool;  // 入力がサジェスションに制限するフラグ(runtime側不要)
+  constantSuggestions:bool;    // 定数定義フラグ(＝コンバート時に文字ではなく数値情報となる)(runtime側不要)
+  displayName:string;          // ツール表示名(runtime側不要)
+}
+
+// イベントデータ
+table Event {
+  track:string;                   // トラック名
+  name:string;                    // イベント名
+  beginFrame:int;                 // イベント開始フレーム
+  endFrame:int;                   // イベント終了フレーム
+  resizable:bool;                 // サイズ変更可能か(runtime側不要)
+  kind:EventKind;                 // イベント種別
+  comment:string;                 // コメント(runtime側不要)
+  isExcluded:bool;                // イベント除外フラグ
+  color:Vector3;                  // カラー(runtime側不要)
+  eventValueList:[EventValue];    // イベント値
+}
+
+// サブトラックデータ
+table SubTrack {
+  name:string;               // トラック名
+  isDebug:bool;              // Editor経由の再生のみ有効(runtime側不要)
+  eventList:[Event];         // イベントデータ配列
+}
+
+// 条件データ
+table Conditions {
+  name:string;                 // 条件の主名
+  type:string;                 // 条件の種類名
+  suggestionsSource:string;    // オートコンプリートのデータソース(runtime側不要)
+}
+
+// トラックデータ
+table Track {
+  name:string;                    // トラック名
+  color:Vector3;                  // カラー(runtime側不要)
+  subTrackList:[SubTrack];        // サブトラックデータ配列
+  conditionsTable:[Conditions];   // 条件データ配列
+  conditionsSource:string;        // 条件設定ソース(runtime側不要)
+}
+
+// タイムラインデータ
+table TimelineData {
+  trackList:[Track];      // トラックデータ配列
+  frameLength:uint;       // 総フレーム数
+  fps:uint = 60;          // FPS
+  normalEventCount:uint;  // 通常イベント個数
+  awaitableCount:uint;    // 待機可能イベント個数
+  cuePointCount:uint;     // キューポイント個数
+}
+
+// ルートタイプ
+root_type TimelineData;

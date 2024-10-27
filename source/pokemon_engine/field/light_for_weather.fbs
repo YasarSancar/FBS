@@ -1,0 +1,17 @@
+namespace pe.field.fb;
+
+table LightForWeather {
+    filePath:string;
+    timeSpan:float;
+    currentTime:float;
+    startWithOffsetData:bool;
+    offsetDataName:string;
+    offsetBlendWeight:float;
+    priority:int = 0;
+    areaFilePath:string;
+    areaTimeSpan:float;
+    offsetFilePath:string;
+    offsetTimeSpan:float;
+}
+
+root_type LightForWeather;

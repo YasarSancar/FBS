@@ -1,0 +1,10 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+table GrassCollisionComponent {
+    instanceName:string;
+    offsetY:float;
+    radius:float;
+}
+
+root_type GrassCollisionComponent;

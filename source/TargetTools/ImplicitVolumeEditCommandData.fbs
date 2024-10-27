@@ -1,0 +1,11 @@
+include "../include/math/math.fbs";
+
+namespace GenericEditor.Plugin.ImplicitVolume;
+
+table ImplicitVolumeEditCommandData {
+  instanceName:string;
+  commandName:string;
+  value:int;
+}
+
+root_type ImplicitVolumeEditCommandData;

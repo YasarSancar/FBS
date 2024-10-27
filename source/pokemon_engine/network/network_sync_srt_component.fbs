@@ -1,0 +1,7 @@
+namespace pe.network.fb;
+
+table NetworkSyncSRTComponent {
+    index:int;
+}
+  
+root_type NetworkSyncSRTComponent;

@@ -1,0 +1,24 @@
+namespace gfl.framework2.fb;
+
+enum TestEnum : int {
+  AAA,
+  BBB,
+}
+
+table TestTable {
+  aaa:string;
+  bbb:[float];
+}
+
+struct TestStruct {
+  aaa:int;
+}
+
+table TestConfig {
+  aaa:[TestTable];
+  bbb:TestTable;
+  ccc:TestEnum = AAA;
+  ddd:[TestStruct];
+}
+
+root_type TestConfig;

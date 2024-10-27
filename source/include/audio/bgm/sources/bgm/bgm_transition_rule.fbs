@@ -1,0 +1,22 @@
+include "flatbuffers_editor.fbs";
+include "includes/audio_curve_type.fbs";
+include "sources/bgm/bgm_layer.fbs";
+
+namespace gfl.audio.fb;
+
+table BGMTransition {
+  fadeInTime:float = 0.0;
+  fadeOutTime:float = 0.0;
+  delayTime:float = 0.0;
+  holdTime:float = 0.0;
+  fadeInCurve:gfl.audio.fb.AudioCurveType = 4 (fbe_default_value: "Linear");
+  fadeOutCurve:gfl.audio.fb.AudioCurveType = 4 (fbe_default_value: "Linear");
+  storeBehaviour:gfl.audio.fb.BGMStoreBehaviour = 0 (fbe_default_value: "None");
+}
+
+table BGMTransitionRule {
+  layerName:string;
+  transition:gfl.audio.fb.BGMTransition;
+}
+
+root_type gfl.audio.fb.BGMTransitionRule;

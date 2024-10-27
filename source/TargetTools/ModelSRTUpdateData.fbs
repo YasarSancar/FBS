@@ -1,0 +1,15 @@
+include "DataType.fbs";
+include "../include/math/math.fbs";
+
+namespace GenericEditor.Plugin.Model;
+
+table ModelSRTUpdateData {
+  instanceName:string;
+  scale:gfl.math.fb.Vector3f;
+  rotation:gfl.math.fb.Vector3f;
+  translation:gfl.math.fb.Vector3f;
+
+  dataType:DataType = ModelSRTUpdate;
+}
+
+root_type ModelSRTUpdateData;

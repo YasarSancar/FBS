@@ -1,0 +1,26 @@
+include "types.fbs";
+include "pane.fbs";
+
+namespace gfl.gnlyt.fb;
+
+table FrameSize {
+    left:float;
+    right:float;
+    top:float;
+    bottom:float;
+}
+
+table Window {
+    base:Pane;
+    vtxColLT:Color4;
+    vtxColRT:Color4;
+    vtxColLB:Color4;
+    vtxColRB:Color4;
+    matCorner:Material;
+    matLR:Material;
+    matTB:Material;
+    matContent:Material;
+    frameSize:FrameSize;
+    textureFrameSize:FrameSize;
+    texCoord:TextureCoord;
+}

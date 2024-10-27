@@ -1,0 +1,8 @@
+include "../../include/math/math.fbs";
+namespace pe.field.fb;
+  
+table ReceiveWindSpringBoneComponent {
+  instanceName:string;
+}
+
+root_type ReceiveWindSpringBoneComponent;

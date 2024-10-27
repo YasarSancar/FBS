@@ -1,0 +1,18 @@
+namespace GenericEditor.Plugin.Animation;
+
+table Vector3 {
+  x: float;
+  y: float;
+  z: float;
+}
+
+table TwoBoneIKGroupUpdateData {
+  groupName: string;
+  targetPosition: Vector3;
+}
+
+table TwoBoneIKUpdateData {
+  groups: [TwoBoneIKGroupUpdateData];
+}
+
+root_type TwoBoneIKUpdateData;

@@ -1,0 +1,83 @@
+namespace GenericEditor.Plugin.AnimationController.ToViewer;
+
+enum State : uint {
+  Play,
+  Pause,
+}
+
+enum AnimationMasks : uint (bit_flags) {
+  Joint,
+  Material,
+  Visibility,
+}
+
+table FrameSetting {
+  frame:float;
+  fps:uint;
+}
+
+union MessageType {
+  LoadMessage,
+  StateMessage,
+  SetFrameMessage,
+  SetSpeedMessage,
+  SetLoopMessage,
+  SetSyncAllMessage,
+  SetAnimationMasksMessage,
+  SetSkeletonMaxPriorityMessage,
+  SetCameraAnimationEnabledMessage,
+}
+
+// ファイル読み込み
+table LoadMessage {
+  filename:string;
+}
+
+// ステート切り替え
+table StateMessage {
+  state:State;
+  frameSetting:FrameSetting;
+}
+
+// フレーム設定
+table SetFrameMessage {
+  frameSetting:FrameSetting;
+}
+
+// 再生速度設定
+table SetSpeedMessage {
+  speed:float;
+}
+
+// ループ設定
+table SetLoopMessage {
+  loopEnabled:bool;
+}
+
+// 全体操作設定
+table SetSyncAllMessage {
+  enabled:bool;
+}
+
+// アニメーションマスク設定
+table SetAnimationMasksMessage {
+  animationMasks:AnimationMasks;
+}
+
+// SkeletonPriority設定
+table SetSkeletonMaxPriorityMessage {
+  isEnabled:bool;
+  maxPriority:uint;
+}
+
+// カメラアニメーション有効無効設定
+table SetCameraAnimationEnabledMessage {
+  enabled:bool;
+}
+
+// ビューアーへのメッセージ
+table AnimationControllerToViewer {
+  message:MessageType;
+}
+
+root_type AnimationControllerToViewer;

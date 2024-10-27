@@ -1,0 +1,8 @@
+namespace GenericEditor.Plugin.Environment;
+
+table EnvironmentFloatParamData {
+  paramaterName:string;
+  value:float;
+}
+
+root_type EnvironmentFloatParamData;

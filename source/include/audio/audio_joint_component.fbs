@@ -1,0 +1,7 @@
+namespace gfl.audio.fb;
+
+table AudioJointComponent {
+  defaultPartName:string;
+}
+
+root_type AudioJointComponent;

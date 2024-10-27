@@ -1,0 +1,44 @@
+﻿namespace gfl.anm2.fb;
+
+file_extension "truno";
+
+table UnitData {
+  node:string;
+  animation_node:string;
+  foot_offset_y:float = 0.0;
+  min_x:float = -0.05;
+  max_x:float = 0.05;
+  min_y:float = -0.0;
+  max_y:float = 0.0;
+  min_z:float = -0.05;
+  max_z:float = 0.05;
+  translate_xz_time:float = 0.0;
+  translate_y_time:float = 0.0;
+  pitch_limit_in_degrees:float = 0.0;
+  roll_limit_in_degrees:float = 0.0;
+  rotate_speed:float = 0.5;
+  ray_cast_distance:float = 2.0;
+  ray_cast_height_offset:float = 1.0;
+  ray_cast_front_offset:float = 0.25;
+  ray_cast_behind_offset:float = -0.25;
+  ray_cast_left_offset:float = -0.25;
+  ray_cast_right_offset:float = 0.25;
+  delay_threshold_translate:float = 0.0;
+  delay_translate_time:float = 0.0;
+}
+
+table StateData {
+  state:string;
+  interpolation_time:float = 0.0;
+}
+
+table UnitOperatorConfig {
+  leader:UnitData;
+  children:[UnitData];
+  terrain_layer:uint = 2;
+  rotation_enable_state_list:[StateData];
+  translate_enable_state_list:[StateData];
+  land_enable_state_list:[StateData];
+}
+
+root_type UnitOperatorConfig;

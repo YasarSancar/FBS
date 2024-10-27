@@ -1,0 +1,10 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+table ScenePoint {
+  name: string;
+  point: gfl.math.fb.Vector3f;
+  attachParent: bool;
+}
+
+root_type ScenePoint;

@@ -1,0 +1,12 @@
+namespace gfl.scene.fb;
+
+table ScriptComponent {
+    filePath:string;
+    packageName:string;
+    isParallelized:bool;
+    priority:float;
+    isStatic:bool;
+    resourceName:string;
+}
+
+root_type ScriptComponent;

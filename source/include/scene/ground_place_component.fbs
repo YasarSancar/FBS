@@ -1,0 +1,8 @@
+namespace gfl.scene.fb;
+
+table GroundPlaceComponent {
+    layerId:int = -1;
+    enabled:bool = true;
+}
+
+root_type GroundPlaceComponent;

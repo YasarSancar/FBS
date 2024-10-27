@@ -1,0 +1,42 @@
+namespace gfl.scene.fb;
+
+enum LodType : byte {
+    Direct,
+    CameraDistance,
+}
+
+table DetailInfo {
+    overrideParameter:bool;
+    minScale:float;
+    maxScale:float;
+    spread:float;
+    noiseScaleH:float;
+    noiseScaleV:float;
+    noiseOffsetX:float;
+    noiseOffsetZ:float;
+    noiseOffsetS:float;
+    tileSize:float;
+    cellResolutionPerTile:int;
+    tileResolutionLevel:int;
+    overrideFileName:string;
+}
+
+table TerrainEntity {
+    name:string;
+    filePath:string;
+    lodType:LodType;
+    lodLevel:int;
+    lodDistance:float;
+    terrainMaterialLow:string;
+    terrainMaterialMiddle:string;
+    terrainMaterialHigh:string;
+    detailInfos:[DetailInfo];
+    overrideTreeLodDistance:bool = false;
+    treeLodDistance0:float;
+    treeLodDistance1:float;
+    treeLodDistance2:float;
+    detailFilePaths:[string];
+    enable:bool = true;
+}
+
+root_type TerrainEntity;

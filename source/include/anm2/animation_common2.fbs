@@ -1,0 +1,419 @@
+namespace gfl.anm2.fb;
+
+// 再生モード
+enum PlayMode : uint {
+  Once, // 一度だけ再生
+  Loop, // ループ再生
+}
+
+// 3次元ベクトル
+struct Vector3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+// 4次元ベクトル
+struct Vector4 {
+  x:float;
+  y:float;
+  z:float;
+  w:float;
+}
+
+// クォータニオン
+struct Quaternion {
+  x:float;
+  y:float;
+  z:float;
+  w:float;
+}
+
+// 48bitクォータニオン
+struct Quaternion48bit {
+  buf0:ubyte;
+  buf1:ubyte;
+  buf2:ubyte;
+  buf3:ubyte;
+  buf4:ubyte;
+  buf5:ubyte;
+
+  // ビットフィールド使えないのでサイズだけ。実際はこっち
+  // uint64_t maxComponent : 2;
+  // uint64_t sign : 1;
+  // uint64_t component0 : 15;
+  // uint64_t component1 : 15;
+  // uint64_t component2 : 15;
+}
+
+// SRT
+struct _SRT {
+  scale:Vector3;
+  rotate:Quaternion;
+  translate:Vector3;
+}
+
+// キーデータ：float
+union KeyData_Float {
+  OneFrame_Float,           // 1フレームだけのキー
+  AllFrame_Float,           // 全フレーム出力
+  CatmullRom_Float_u16,     // Catmull-Rom圧縮されたキー : u16
+  CatmullRom_Float_u8,      // Catmull-Rom圧縮されたキー : u8
+}
+
+// キーデータ：Vector3
+union KeyData_Vector3 {
+  OneFrame_Vector3,         // 1フレームだけのキー
+  AllFrame_Vector3,         // 全フレーム出力
+  CatmullRom_Vector3_u16,   // Catmull-Rom圧縮されたキー : u16
+  CatmullRom_Vector3_u8,    // Catmull-Rom圧縮されたキー : u8
+}
+
+// キーデータ：Vector4
+union KeyData_Vector4 {
+  OneFrame_Vector4,         // 1フレームだけのキー
+  AllFrame_Vector4,         // 全フレーム出力
+  CatmullRom_Vector4_u16,   // Catmull-Rom圧縮されたキー : u16
+  CatmullRom_Vector4_u8,    // Catmull-Rom圧縮されたキー : u8
+}
+
+// キーデータ：Quaternion48bit
+union KeyData_Quaternion48bit {
+  OneFrame_Quaternion48bit,        // 1フレームだけのキー
+  AllFrame_Quaternion48bit,        // 全フレーム出力
+  CatmullRom_Quaternion48bit_u16,  // Catmull-Rom圧縮されたキー : u16
+  CatmullRom_Quaternion48bit_u8,   // Catmull-Rom圧縮されたキー : u8
+}
+
+// キーデータ：bool
+union KeyData_Bool {
+  OneFrame_Bool,    // 1フレームだけのキー
+  AllFrame_Bool,    // 全フレーム出力
+  Step_Bool_u16,    // ステップキー : u16
+  Step_Bool_u8,     // ステップキー : u8
+}
+
+// ---------------------------------------------------------
+// ■OneFrame
+
+table OneFrame_Float {
+  value:float;
+}
+
+table OneFrame_Vector3 {
+  value:Vector3;
+}
+
+table OneFrame_Vector4 {
+  value:Vector4;
+}
+
+table OneFrame_Quaternion48bit {
+  value:Quaternion48bit;
+}
+
+table OneFrame_Bool {
+  value:bool;
+}
+
+// ---------------------------------------------------------
+// ■AllFrame
+
+table AllFrame_Float {
+  values:[float];
+}
+
+table AllFrame_Vector3 {
+  values:[Vector3];
+}
+
+table AllFrame_Vector4 {
+  values:[Vector4];
+}
+
+table AllFrame_Quaternion48bit {
+  values:[Quaternion48bit];
+}
+
+table AllFrame_Bool {
+  values_bit:[ubyte];  // 1フレーム1bitで出力
+}
+
+// ---------------------------------------------------------
+// ■CatmullRom
+
+table CatmullRom_Float_u16 {
+  frames:[ushort];
+  values:[float];
+}
+
+table CatmullRom_Float_u8 {
+  frames:[ubyte];
+  values:[float];
+}
+
+table CatmullRom_Vector3_u16 {
+  frames:[ushort];
+  values:[Vector3];
+}
+
+table CatmullRom_Vector3_u8 {
+  frames:[ubyte];
+  values:[Vector3];
+}
+
+table CatmullRom_Vector4_u16 {
+  frames:[ushort];
+  values:[Vector4];
+}
+
+table CatmullRom_Vector4_u8 {
+  frames:[ubyte];
+  values:[Vector4];
+}
+
+table CatmullRom_Quaternion48bit_u16 {
+  frames:[ushort];
+  values:[Quaternion48bit];
+}
+
+table CatmullRom_Quaternion48bit_u8 {
+  frames:[ubyte];
+  values:[Quaternion48bit];
+}
+
+// ---------------------------------------------------------
+// ■Step
+
+table Step_Bool_u16 {
+  frames:[ushort];
+  values_bit:[ubyte];  // 1フレーム1bitで出力
+}
+
+table Step_Bool_u8 {
+  frames:[ubyte];
+  values_bit:[ubyte];  // 1フレーム1bitで出力
+}
+
+// ---------------------------------------------------------
+// ■フレーム設定
+table FrameSetting {
+  playMode:PlayMode;  // 再生モード
+  frameLength:uint;   // 総フレーム数
+  fps:uint;           // FPS
+}
+
+// ---------------------------------------------------------
+// ■マスク
+
+table MaskUnit {
+  name:string;                  // マスクする要素名 (ジョイント名 or メッシュ名 or パラメータ名)
+}
+
+table MaskSet {
+  enabled:bool;                 // マスク有効かどうか
+  masks:[MaskUnit];             // マスクリスト
+}
+
+table MaterialMask {
+  name:string;             // マスクするマテリアル名
+  floatMaskSet:MaskSet;    // floatパラメータマスクセット
+  vector4MaskSet:MaskSet;  // vector3パラメータマスクセット
+}
+
+table MaterialMaskSet {
+  enabled:bool;            // マテリアルマスク有効かどうか
+  masks:[MaterialMask];    // マテリアルマスクリスト
+}
+
+table Mask {
+  jointMaskSet:MaskSet;             // ジョイントマスクセット
+  meshMaskSet:MaskSet;              // メッシュマスクセット
+  materialMaskSet:MaterialMaskSet;  // マテリアルマスクセット
+  deformerMaskSet:MaskSet;          // デフォーママスクセット
+}
+
+// ---------------------------------------------------------
+// ■リソース
+
+enum ResourceType : uint {
+  File,                           // ファイル単体
+  Blend1D,                        // 1次元ブレンド
+  Blend2D,                        // 2次元ブレンド
+  Null,                           // null
+}
+
+table ResourceLabel {
+  name:string;                    // リソース名
+  type:ResourceType;              // リソースタイプ
+}
+
+// ---------------------------------------------------------
+// カーブエディタ用
+
+// 補間の種類
+enum CurveInterpType : uint {
+  Constant,         // コンスタントキー
+  Linear,           // リニアキー
+  TangentAuto,      // 傾き自動計算
+  TangentBreak,     // 左右傾き個別設定
+  TangentUser,      // 傾きユーザー設定
+}
+
+// カーブのタイプ定義
+enum CurveType : uint {
+  FloatCurve,
+  Float4Curve,
+}
+
+// カーブキー（EditorCurveKeyと同じだけど、後で変える可能性があるので用意）
+table RuntimeCurveKey {
+  time:float;                 // 時間
+  value:float;                // 値
+  tangentLeft:float;          // 傾き左側
+  tangentRight:float;         // 傾き右側
+  interpType:CurveInterpType; // 補間タイプ
+}
+
+// ランタイム用カーブfloat
+table RuntimeCurveFloat {
+  keys:[RuntimeCurveKey];
+}
+
+// ランタイム用カーブfloat4
+table RuntimeCurveFloat4 {
+  x:RuntimeCurveFloat;
+  y:RuntimeCurveFloat;
+  z:RuntimeCurveFloat;
+  w:RuntimeCurveFloat;
+}
+
+// ランタイム用カーブタイプ
+union RuntimeCurveType
+{
+  RuntimeCurveFloat,
+  RuntimeCurveFloat4,
+}
+
+// ---------------------------------------------------------
+// ■エディター用
+
+// エディタ用カーブキー
+table EditorCurveKey {
+  time:float;                 // 時間
+  value:float;                // 値
+  tangentLeft:float;          // 傾き左側
+  tangentRight:float;         // 傾き右側
+  interpType:CurveInterpType; // 補間タイプ
+}
+
+// エディター用カーブfloat
+table EditorCurveFloat {
+  keys:[EditorCurveKey];
+}
+
+// エディター用カーブfloat4
+table EditorCurveFloat4 {
+  x:EditorCurveFloat;
+  y:EditorCurveFloat;
+  z:EditorCurveFloat;
+  w:EditorCurveFloat;
+}
+
+// エディタ用カーブタイプ
+union EditorCurveType
+{
+  EditorCurveFloat,
+  EditorCurveFloat4,
+}
+
+// ---------------------------------------------------------
+// ■アニメーションイベントトラック
+
+// イベント値タイプ
+union EventValueType {
+  EventValueType_Int,    // int
+  EventValueType_Float,  // float
+  EventValueType_Bool,   // bool
+  EventValueType_String, // string
+}
+
+table EventValueType_Int {
+  value:int;
+}
+
+table EventValueType_Float {
+  value:float;
+}
+
+table EventValueType_Bool {
+  value:bool;
+}
+
+table EventValueType_String {
+  value:string;
+}
+
+table EventValue {
+  name:string;              // 値名
+  value:EventValueType;
+}
+
+// ---------------------------------------------------------
+// MotionDetector
+
+
+table MotionEventParam {
+  threashold:float;
+  values:[EventValue];      // イベント値
+}
+
+table MotionDetectorBaseParam {
+  events:[MotionEventParam];
+  templateName:string;
+  repeatPreventTime:float;
+  canTriggerMultipleEvents:bool;
+  isEnabled:bool;
+}
+
+enum AxisType : uint {
+  None,
+  X,
+  Y,
+  Z,
+}
+
+enum RotateAxisType : uint {
+  None,
+  Yaw,
+  Pitch,
+  Roll,
+}
+
+// ---------------------------------------------------------
+// StateMachine
+
+union StateDetail {
+  StateDetail_Any,
+}
+
+enum AnyType : uint {
+  Normal,                         // 現在の階層からのみ遷移
+  All,                            // 全階層からの遷移
+}
+
+table StateDetail_Any {
+  type:AnyType;                   // Any の動作タイプ
+}
+
+// Float定数もしくはパラメータから参照される値
+table FloatOrParameter {
+  constant:float = 1.0;           // 定数
+  parameterName:string;           // constant の代わりに使うパラメータ名
+}
+
+enum AdditionalParameterType : uint {
+  Physics,                        // Havok : Physics
+  Wind,                           // Havok : 風の影響
+  WindNoise,                      // Havok : 風ノイズ
+}

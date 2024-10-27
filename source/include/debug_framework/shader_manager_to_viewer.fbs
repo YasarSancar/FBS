@@ -1,0 +1,21 @@
+namespace gfl.debug_framework.fb.shader.viewer;
+
+union MessageType {
+  ReloadShaderMessage,
+  ReloadTechniqueDefListMessage
+}
+
+table ReloadShaderMessage {
+  name:string;
+  file_path:string;
+}
+
+table ReloadTechniqueDefListMessage {
+  file_path:string;
+}
+
+table ShaderManagerToViewer {
+  message:MessageType;
+}
+
+root_type ShaderManagerToViewer;

@@ -1,0 +1,85 @@
+{
+  "name": "animation2",
+  "frameSize": 100.0,
+  "loopSetting": {
+    "enableLoop": true,
+    "loopFrame": 100.0,
+    "enableStartRandom": false
+  },
+  "sectionTag": {
+    "name": "Rotate",
+    "groups": [ "group_test2" ]
+  },
+  "animations": [
+    {
+      "name": "picture_test_r",
+      "kind": "AnimationKind_Pane_Rotate",
+      "targets": [
+        {
+          "target": 2,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ -1.04, 1.04, -1.04 ],
+            "times": [ 0.0, 50.0, 100.0 ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "picture_test_r",
+      "kind": "AnimationKind_Texture_Translate",
+      "targets": [
+        {
+          "target": 0,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 0.0, 1.0 ],
+            "times": [ 0.0, 100.0 ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "picture_test_r",
+      "kind": "AnimationKind_Visibility",
+      "targets": [
+        {
+          "target": 0,
+          "curveType": "CurveType_Step",
+          "keyframe": {
+            "keyframes": [ 1.0, 0.0 ],
+            "times": [ 0.0, 80.0 ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "scissor",
+      "kind": "AnimationKind_Alpha",
+      "targets": [
+        {
+          "target": 0,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 0.0, 0.0, 255.0 ],
+            "times": [ 0.0, 20.0, 100.0 ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "text_test",
+      "kind": "AnimationKind_GlyphTransform",
+      "targets": [
+        {
+          "target": 0,
+          "curveType": "CurveType_Linear",
+          "keyframe": {
+            "keyframes": [ 0.0, 100.0 ],
+            "times": [ 0.0, 100.0 ]
+          }
+        }
+      ]
+    }
+  ]
+}

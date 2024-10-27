@@ -1,0 +1,21 @@
+﻿namespace gfl.scene.fb;
+
+table TrSceneChunk {
+  type:string;   // データタイプ
+  data:[ubyte];  // データ
+  children:[TrSceneChunk];  // 子要素
+}
+
+table TrScene {
+  name:string;                // シーン名
+  timerLevelName:string;      // タイマーレベル名
+  scriptPath:string;          // スクリプトファイル
+  scriptPackageName:string;   // パッケージ名
+  chunk:[TrSceneChunk];       // チャンクデータ
+  subScene:[string];          // サブシーン
+  loadAtStart:bool;           // ロード状態で開始する
+  skipLoadingWithoutTop:bool; // トップシーン以外では読み込まない（常駐シーン）
+  memorySize:int;             // シーン用のメモリサイズ
+}
+
+root_type TrScene;

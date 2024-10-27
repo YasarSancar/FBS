@@ -1,0 +1,20 @@
+include "../include/math/math.fbs";
+
+namespace GenericEditor.Plugin.ImplicitVolume;
+
+table ImplicitVolumeParamData {
+  instanceName:string;
+  volumeIndex:int;
+  materialName:string;
+  startJointName:string;
+  endJointName:string;
+  mask0UVDir:gfl.math.fb.Vector2f;
+  mask1UVDir:gfl.math.fb.Vector2f;
+  volume0UVDir:gfl.math.fb.Vector2f;
+  volume1UVDir:gfl.math.fb.Vector2f;
+  axisDir:gfl.math.fb.Vector3f;
+  radius:float;
+  calcType:bool;
+}
+
+root_type ImplicitVolumeParamData;

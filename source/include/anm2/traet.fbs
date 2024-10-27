@@ -1,0 +1,49 @@
+﻿//include "traef.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "traet";
+
+// ---------------------------------------------------------
+// ■アニメーションイベントテンプレート
+
+// イベント値テンプレートタイプ
+union ValueType {
+  IntValue,    // int
+  FloatValue,  // float
+  BoolValue,   // bool
+  StringValue, // string
+}
+
+table IntValue {
+  min_value:int;
+  max_value:int;
+  default_value:int;
+}
+
+table FloatValue {
+  min_value:float;
+  max_value:float;
+  default_value:float;
+}
+
+table BoolValue {
+  default_value:bool;
+}
+
+table StringValue {
+  default_value:string;
+}
+
+table ValueTemplate {
+  name:string;
+  value:ValueType;
+}
+
+table AnimationEventTemplate {
+  comment:string;               // コメント
+  values:[ValueTemplate];       // 値リスト
+  resizable:bool;               // イベントのリサイズ可能か
+}
+
+// ルートタイプ
+root_type AnimationEventTemplate;

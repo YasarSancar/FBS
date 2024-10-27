@@ -1,0 +1,53 @@
+file_extension "trevt";
+
+namespace gfl.engine.fb;
+
+enum EventConditionType:ulong {
+  CONDITION_STATE,
+  CONDITION_TRIGGER,
+  CONDITION_CUSTOMFLAG,
+  CONDITION_INVALID
+}
+
+table EventCondition {
+  eventName:string;
+  type:EventConditionType;
+  eventObjectName:string;
+  eventObjectValue:ulong;
+  isInverted:bool;
+}
+
+table EventConditionGroup {
+  conditions:[EventCondition];
+}
+
+table EventState {
+  name:string;
+  conditionGroups:[EventConditionGroup];
+  routes:[string];
+}
+
+table EventPath {
+  name:string;
+  states:[EventState];
+  triggers:[string];
+  attentionTakers:[string];
+  eventPaths:[Event];
+  customFlags:[string];
+}
+
+table Event {
+  name:string;
+  states:[EventState];
+  triggers:[string];
+  attentionTakers:[string];
+  eventPaths:[EventPath];
+  customFlags:[string];
+}
+
+table EventSystem {
+  version:uint = 1;
+  events:[Event];
+}
+
+root_type EventSystem;

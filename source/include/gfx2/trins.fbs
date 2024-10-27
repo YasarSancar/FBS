@@ -1,0 +1,25 @@
+﻿include "types.fbs";
+
+namespace gfl.gfx2.fb;
+
+file_extension "trins";
+
+table InstanceParticle {
+  srt:SRT;
+}
+
+enum InstanceType: uint {
+  Unknown,
+  Srt,
+  Count
+}
+
+table InstanceBuffer {
+  name:string;
+  type:InstanceType = Unknown;
+  particle_count:int = 0;
+  particle_list:[InstanceParticle];
+  buffer:Blob;
+}
+
+root_type InstanceBuffer;

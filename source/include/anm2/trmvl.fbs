@@ -1,0 +1,11 @@
+include "animation_common2.fbs";
+include "trmdd.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "trmvl";
+
+table VelocityParamList {
+  params:[VelocityDetectorParam];
+}
+
+root_type VelocityParamList;

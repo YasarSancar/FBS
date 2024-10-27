@@ -1,0 +1,9 @@
+namespace GenericEditor.Plugin.Audio;
+
+table AudioEngineInitializationData {
+  bankPath:string;
+  initEventName:string;
+  packageNames:[string];
+}
+
+root_type AudioEngineInitializationData;

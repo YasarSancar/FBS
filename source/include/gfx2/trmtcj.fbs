@@ -1,0 +1,37 @@
+﻿namespace gfl.gfx2.fbj;
+
+file_extension "trmtcj";
+
+enum ParamType : uint {
+  Int,
+  Vector2i,
+  Vector3i,
+  Vector4i,
+  Float,
+  Vector2f,
+  Vector3f,
+  Vector4f,
+  Matrix4x4f,
+  Texture,
+  ShaderOption,
+  Sampler
+}
+
+table ParamNode {
+  material_name:string;
+  param_name:string;
+}
+
+table ParamDependency {
+  source:ParamNode;
+  target:ParamNode;
+  type:ParamType;
+}
+
+table MaterialConfig {
+  version:uint = 1;
+  source_path_list:[string];
+  dependency_list:[ParamDependency];
+}
+
+root_type MaterialConfig;

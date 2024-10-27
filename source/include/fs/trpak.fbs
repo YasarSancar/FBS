@@ -1,0 +1,35 @@
+include "file_meta.fbs";
+
+namespace gfl.fs.fb;
+
+enum CodeKind : byte {
+    None = -1,
+    Zlib = 0,
+    LZ4Default,
+    LZ4HC,
+    Plugin,
+}
+
+table FileData {
+    meta:FileMeta;
+    compCodec:CodeKind;
+    compLevel:byte;
+    srcSize:ulong;
+    dstData:[ubyte];
+}
+
+table PackData {
+    compCodec:CodeKind;
+    compLevel:byte;
+    srcSize:ulong;
+    dstData:[ubyte];
+    indexs:[ushort];
+}
+
+table ArchiveFile {
+    pathHashs:[ulong];
+    fileDatas:[FileData];
+    packData:PackData;
+}
+
+root_type ArchiveFile;

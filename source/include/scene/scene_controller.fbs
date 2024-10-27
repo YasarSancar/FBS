@@ -1,0 +1,11 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+table SceneController {
+  realizingDistance:float;
+  unrealizingDistance:float;
+  loadingDistance:float;
+  unloadingDistance:float;
+}
+
+root_type SceneController;

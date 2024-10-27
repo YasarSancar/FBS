@@ -1,0 +1,17 @@
+namespace GenericEditor.Plugin.CharacterCreate.ToViewer;
+
+union MessageType {
+  ReceiveAllAnimEditorMessages,
+}
+
+// ModelInstanceIdを無視して、AnimationEditorのメッセージを受け取るようにする
+table ReceiveAllAnimEditorMessages {
+  enable:bool;
+}
+
+// Viewerへのメッセージ
+table CharaCreateEditorToViewer {
+  message:MessageType;  // メッセージ
+}
+
+root_type CharaCreateEditorToViewer;

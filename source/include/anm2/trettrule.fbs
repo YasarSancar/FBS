@@ -1,0 +1,30 @@
+namespace gfl.anm2.fb;
+
+file_extension "trettrule";
+
+// ---------------------------------------------------------
+// ■イベントトラック設定ルールテンプレート
+
+enum TextSearchType : uint {
+  StartWith,
+  EndWith,
+  Contains,
+  ContainsAt,
+}
+
+table ResourceNameRule {
+  target:string;        // 検索テキスト
+  type:TextSearchType;  // targetを適用するタイプ
+  exclude:bool = false; // 条件が適合したものを除外する場合はtrue(falseの場合は適合したものを選択する)
+  targetIndex:int;      // 検索テキストを検出するインデックス
+}
+
+table EventTrackBakeRule {
+  trettPath:string;         // trettファイルへのパス
+  overwrite:bool;           // 同名のトラックファイルがあった場合に上書きするかどうか
+  rules:[ResourceNameRule]; // 対象とするリソース名が満たすべきルール
+  andOrFlag:bool;           // ルールをAndで繋げるかOrで繋げるか
+}
+
+// ルートタイプ
+root_type EventTrackBakeRule;

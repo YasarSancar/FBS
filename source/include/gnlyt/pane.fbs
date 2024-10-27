@@ -1,0 +1,20 @@
+include "types.fbs";
+
+namespace gfl.gnlyt.fb;
+
+table Pane {
+    kind:PaneKind; // ペインの種別
+    flag:PaneFlag; // フラグ
+    flagEx:PaneFlagEx; // 追加のフラグ
+    name:string; // ペインの名前
+    alpha:uint; // アルファ値
+    isInfluencedAlpha:bool; // アルファ値を下位のペインに影響させるか
+    basePosition:BasePosition; // 位置基準
+    parentRelativePosition:BasePosition; // 親の位置基準
+    rotate:Vector3f; // ローテート値
+    scale:Vector2f; // スケール値
+    size:Vector2f; // サイズ
+    translate:Vector3f; // トランスレート値
+    userData:string; // ユーザーデータ
+    comment:string; // コメント
+}

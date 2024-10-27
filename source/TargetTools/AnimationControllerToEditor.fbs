@@ -1,0 +1,37 @@
+namespace GenericEditor.Plugin.AnimationController.ToEditor;
+
+union MessageType {
+  LoadCompleteMessage,
+  SetFrameMessage,
+  PlayCompleteMessage,
+}
+
+// フレーム関連の設定
+table FrameSetting {
+  frameCount:uint;
+  loopEnabled:bool;
+  fps:uint;
+}
+
+// ロード完了
+table LoadCompleteMessage {
+  frameSetting:FrameSetting;
+}
+
+// フレーム設定
+table SetFrameMessage {
+  frame:float;
+  frameSetting:FrameSetting;
+}
+
+// 再生終了
+table PlayCompleteMessage {
+  dummy:int;  // 他と合わせるためのダミー
+}
+
+// エディダーへのメッセージ
+table AnimationControllerToEditor {
+  message:MessageType;
+}
+
+root_type AnimationControllerToEditor;

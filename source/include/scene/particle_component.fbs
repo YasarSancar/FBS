@@ -1,0 +1,18 @@
+namespace gfl.scene.fb;
+
+table ParticleComponent {
+  filePath:string;
+  attachNodeName:string;
+  emitOnCreate:bool;
+  resourceName:string;
+  groupDrawer:string;
+  debugShowEmitterSetSRT: bool;
+  trackingToCurrentCamera:bool;
+  trackingToCurrentCameraIgnoreX:bool;
+  trackingToCurrentCameraTranslationX:float;
+  trackingToCurrentCameraTranslationY:float;
+  trackingToCurrentCameraTranslationZ:float;
+  emitterCullingEnable:bool = true;
+}
+  
+root_type ParticleComponent;

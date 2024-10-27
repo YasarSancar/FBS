@@ -1,0 +1,15 @@
+﻿namespace gfl.cc.fb;
+
+// CCDataの管理単位
+table CCDataUnit {
+    label:string;               // 管理用ラベル
+    ccdataPath:string;          // CCData のファイルパス
+    variation:string;           // バリエーション名
+}
+
+// マスターデータ
+table CCDataMaster {
+    ccdataList:[CCDataUnit];    // CCData リスト
+}
+
+root_type CCDataMaster;

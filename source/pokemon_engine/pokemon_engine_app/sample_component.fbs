@@ -1,0 +1,16 @@
+include "../../include/math/math.fbs";
+namespace pe.scene.fb;
+
+table SubProperty {
+	name: string;
+	file: string;
+}
+  
+table SampleComponent {
+    filePath: string;
+	value0: int;
+	srt: gfl.math.fb.SRT;
+	subProperty: SubProperty;
+}
+  
+root_type SampleComponent;

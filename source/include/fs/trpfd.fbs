@@ -1,0 +1,21 @@
+include "file_meta.fbs";
+namespace gfl.fs.fb;
+
+table FileInfo {
+    index:uint64;
+    fileMeta:FileMeta;
+}
+
+table ArchiveInfo {
+    size:uint64;
+    count:uint64;
+}
+
+table PackFileDictionary {
+    hashs:[uint64];       // 1. パスのハッシュ値をここから探してインデックスを得る(二分探索できるようにソートしておくこと)
+    paths:[string];       // 3. 2で得たインデックスの要素が1のパスのファイルを含むアーカイブファイルのパスとなる
+    datas:[FileInfo];     // 2. 1で得たインデックスの要素からアーカイブファイルのパスへのインデックスを得る
+    infos:[ArchiveInfo];  // 4. 2で得たインデックスの要素にアーカイブファイルの情報が格納される
+}
+
+root_type PackFileDictionary;

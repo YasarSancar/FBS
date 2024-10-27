@@ -1,0 +1,28 @@
+namespace gfl.audio.fb;
+
+enum BGMStoreBehaviour : int {
+  None = 0,
+  Stop = 1,
+  AutoPlay = 2,
+  Suspend = 3,
+  AutoResume = 4
+}
+
+table BGMLayer {
+  ///レイヤー名
+  layerName:string;
+  ///レイヤー優先度。大きい方が優先度が高い
+  priority:int = 0;
+  ///Store()時の挙動
+  storeBehaviour:gfl.audio.fb.BGMStoreBehaviour = 4 (fbe_default_value: "AutoResume");
+  ///Stop時に必ずSetしたイベントをリセットしたい場合はtrue
+  shouldResetAfterStop:bool = 0;
+  ///ワンショット再生終了後に下位レイヤーを自動復帰させたい場合はtrue
+  shouldRestoreAfterFinish:bool = 0;
+  ///Play中の同じ音楽の鳴り直しを許可するか。ジングル等では許可
+  allowReTriggerEvent:bool = 0;
+  ///物語世界内で鳴る音楽を扱うレイヤーか
+  isDiegeticMusic:bool = 0;
+}
+
+root_type gfl.audio.fb.BGMLayer;

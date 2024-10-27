@@ -1,0 +1,33 @@
+include "animation_common2.fbs";
+include "fbj_common.fbs";
+include "trcrv.fbs";
+
+namespace gfl.anm2.fb;
+
+file_extension "travs";
+
+// ---------------------------------------------------------
+// ■for editor
+// ---------------------------------------------------------
+table EditorVisibilityParam {
+  trcrvPath:string;     // カーブデータパス
+  curveData:CurveData;  // カーブデータ
+}
+
+// ---------------------------------------------------------
+// ■for runtime
+// ---------------------------------------------------------
+table VisibilityParam {
+  params:KeyData_Bool; // ビジビリティデータ
+}
+
+// ---------------------------------------------------------
+// ■ビジビリティデータ
+table VisibilityMeshAnimationData {
+  frameSetting:fb.FrameSetting;                 // フレーム設定
+  editorVisibilityParam:EditorVisibilityParam;  // エディット時用ビジビリティデータ
+  visibilityParam:VisibilityParam;              // ランタイム用ビジビリティデータ
+}
+
+// ルートタイプ
+root_type VisibilityMeshAnimationData;

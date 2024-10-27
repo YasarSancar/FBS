@@ -1,0 +1,30 @@
+﻿include "types.fbs";
+
+namespace gfl.gfx2.fb;
+
+table VariationChoice {
+  name:string;
+  value:int;
+}
+
+table VariationOption {
+  name:string;
+  choice_list:[VariationChoice];
+  default_choice_id:ubyte;
+  key_chunk_offset:ubyte;
+  key_chunk_id:ubyte;
+  bit_shift:ubyte;
+  bit_mask:uint;
+}
+
+table ShaderArchive {
+  name:string;
+  shader_binary_path:string;
+  static_option_list:[VariationOption];
+  dynamic_option_list:[VariationOption];
+  key_chunk_list:[uint];
+  static_key_chunk_length:ubyte;
+  dynamic_key_chunk_length:ubyte;
+}
+
+root_type ShaderArchive;

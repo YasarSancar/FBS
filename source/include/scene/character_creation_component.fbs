@@ -1,0 +1,25 @@
+namespace gfl.scene.fb;
+
+table CharacterCreationComponent {
+    filePath:string;            // ccdata へのファイルパス
+    animationSlot:int = 0;      // 再生したいスロット番号
+
+    // LOD距離
+    overrideLodDistance:bool;
+    lodDistance0:float;
+    lodDistance1:float;
+    lodDistance2:float;
+
+    // JointPriority
+    jointPriorityEnabled:bool;
+    jointPriorityDistance0:float;
+    jointMaxPriority0:int;
+    jointPriorityDistance1:float;
+    jointMaxPriority1:int;
+    jointPriorityDistance2:float;
+    jointMaxPriority2:int;
+    jointPriorityDistance3:float;
+    jointMaxPriority3:int;
+}
+
+root_type CharacterCreationComponent;

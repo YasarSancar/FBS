@@ -1,0 +1,43 @@
+namespace gfl.physics.fb;
+
+table Vector
+{
+  x : float;
+  y : float;
+  z : float;
+}
+
+table Layer
+{
+  name : string;
+  pixels : [uint8];
+}
+
+table Mask
+{
+  pixels : [uint8];
+}
+
+table HeightField
+{
+  position: Vector;
+  scale: Vector;
+  size: Vector;
+  row: int;
+  column: int;
+  heights: [float];
+  layerWidth: int;
+  layerHeight: int;
+  layers: [Layer];
+  mask: Mask;
+  detailWidth: int;
+  detailHeight: int;
+  detailNames: [string];
+  detailDatas32 : [int];
+  detailDatas64 : [long];
+  layerNames: [string];
+  useBoundingVolumeFile: bool;
+  boundingVolumePath: string;
+}
+
+root_type HeightField;

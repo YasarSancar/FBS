@@ -1,0 +1,8 @@
+namespace pe.anm.fb;
+
+  
+table AnimationContainerComponent {
+	file_path: [string];
+}
+  
+root_type AnimationContainerComponent;

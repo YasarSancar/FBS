@@ -1,0 +1,29 @@
+namespace gfl.communicator.fb;
+
+table SendMessage {
+  id:uint;
+  name:string;
+  data:[ubyte];
+}
+
+table ReplayMessage {
+  id:uint;
+  data:[ubyte];
+}
+
+table HotReload {
+  path:string;
+  data:[ubyte];
+}
+
+union LiveEditBody {
+  SendMessage,
+  ReplayMessage,
+  HotReload,
+}
+
+table LiveEditProtocol {
+  body:LiveEditBody;
+}
+
+root_type LiveEditProtocol;

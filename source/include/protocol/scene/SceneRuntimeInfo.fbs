@@ -1,0 +1,7 @@
+namespace gfl.protocol.scene.fb;
+
+table SceneRuntimeInfo {
+    timerLevelNames:[string];
+}
+
+root_type SceneRuntimeInfo;

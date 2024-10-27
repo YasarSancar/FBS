@@ -1,0 +1,14 @@
+include "DataType.fbs";
+
+namespace GenericEditor.Plugin.Model;
+
+table ModelBlendShapeUpdateData {
+  instanceName:string;
+  baseMeshName:string;
+  targetShapeId:int;
+  targetWeight:float;
+
+  dataType:DataType = ModelBlendShapeUpdateData;
+}
+
+root_type ModelBlendShapeUpdateData;

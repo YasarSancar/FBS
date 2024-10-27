@@ -1,0 +1,7 @@
+namespace pokemon_engine.text.fb;
+  
+table TextComponent {
+  filePath:string;
+}
+  
+root_type TextComponent;

@@ -1,0 +1,6 @@
+namespace pe.network.fb;
+
+table NetworkViewComponent {
+}
+  
+root_type NetworkViewComponent;

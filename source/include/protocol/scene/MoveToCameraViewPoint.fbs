@@ -1,0 +1,7 @@
+namespace gfl.protocol.scene.fb;
+
+table MoveToCameraViewPoint {
+    nodeId:string;
+}
+
+root_type MoveToCameraViewPoint;

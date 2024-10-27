@@ -1,0 +1,9 @@
+namespace GenericEditor.Plugin.Model;
+
+table ModelStateVisibleForCapture {
+  instanceName:string;
+  baseMeshName:string;
+  state:int;
+}
+
+root_type ModelStateVisibleForCapture;

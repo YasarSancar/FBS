@@ -1,0 +1,7 @@
+namespace gfl.protocol.scene.fb;
+
+table RemoveComponent {
+    instanceName:string;
+}
+
+root_type RemoveComponent;

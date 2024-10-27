@@ -1,0 +1,12 @@
+namespace gfl.protocol.scene.fb;
+
+table CreateNewScene {
+    nodeId: string;             // ノードId
+    sceneName:string;           // シーン名
+    isLoaded:bool;              // Loadされた状態か
+    memorySize:int;             // シーン用のメモリサイズ
+    scenePath:string;           // シーンパス（仮想）
+    loadAtStart:bool = true;    // 最初から読み込まれているか
+}
+
+root_type CreateNewScene;

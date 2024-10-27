@@ -1,0 +1,137 @@
+﻿include "tranm.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "tracs";
+
+// ---------------------------------------------------------
+// ■ステート
+
+enum StateType : uint {
+  Normal,                         // 通常ステート
+  Entry,                          // 必ず最初に実行されるエントリーポイント
+  Exit,                           // 終了判定用ステート、Entryに繋ぐ
+  Any,                            // 現在の接続を無視して遷移するためのステート
+  Top,                            // 一つだけ存在するトップステート
+}
+
+enum ConditionFunc : uint {
+  Less,                           // ＜
+  LEqual,                         // ≦
+  Greater,                        // ＞
+  GEqual,                         // ≧
+  Equal,                          // ＝
+  NotEqual,                       // ≠
+}
+
+enum LogicalOperator : uint {
+  And,                            // &&
+  Or,                             // ||
+}
+
+enum DurationMode : uint {
+  NormalizedFrame,                // 正規化フレーム
+  Second,                         // 秒
+  SubStateRate,                   // 親からの倍率
+}
+
+enum OffsetMode : uint {
+  NormalizedFrame,                // 正規化フレーム
+  Sync,                           // 前回ステートから同期
+}
+
+union ConditionValue {
+  ConditionValue_Int,
+  ConditionValue_Float,
+  ConditionValue_Bool,
+  ConditionValue_Trigger,
+}
+
+table ConditionValue_Int {
+  value:int;
+}
+
+table ConditionValue_Float {
+  value:float;
+}
+
+table ConditionValue_Bool {
+  value:bool;
+}
+
+table ConditionValue_Trigger {
+  value:bool;
+}
+
+table Condition {
+  parameterName:string;             // パラメータ名
+  func:ConditionFunc;               // 比較関数
+  value:ConditionValue;             // 比較する値
+  logicalOperator:LogicalOperator;  // 論理演算子
+}
+
+table Transition {
+  stateName:string;               // 遷移先のステート名
+  hasExitTime:bool;               // 終了時間を持っているか
+  exitTime:float;                 // 終了時間
+  duration:float;                 // 遷移にかける時間
+  offset:float;                   // 遷移先の開始時間オフセット
+  canInterruption:bool;           // 遷移を中断できるか
+  conditions:[Condition];         // 遷移条件リスト
+  durationMode:DurationMode;      // 遷移モード
+  offsetMode:OffsetMode;          // オフセットモード
+  canSelfTransition:bool;         // 自分への遷移が可能か
+  exitTimeParameterName:string;   // exitTime の代わりに使うパラメータ名
+  durationParameterName:string;   // duration の代わりに使うパラメータ名
+  offsetParameterName:string;     // offset の代わりに使うパラメータ名
+  priority:int;                   // 遷移プライオリティ（チェック用）
+  logicalOperator:LogicalOperator;// 論理演算子
+}
+
+table Source {
+  resourceLabel:ResourceLabel;          // リソースラベル
+  speed:float;                          // 再生速度
+  speedParameterName:string;            // speed の代わりに使うパラメータ名
+
+  // 削除予定 ここから
+  physicsWeight:float;                  // Physicsウェイト
+  physicsWeightParameterName:string;    // physicsWeight の代わりに使うパラメータ名
+  windWeight:float;                     // 風の影響ウェイト
+  windWeightParameterName:string;       // windWeight の代わりに使うパラメータ名
+  windNoiseWeight:float;                // 風の影響ウェイト
+  windNoiseWeightParameterName:string;  // windWeight の代わりに使うパラメータ名
+  // 削除予定 ここまで
+
+  additionalParameterList:[FloatOrParameter]; // 追加パラメータリスト
+  additionalParameterNameList:[string];       // 追加パラメータの名前
+}
+
+table State {
+  name:string;                    // ステート名
+  type:StateType;                 // ステートタイプ
+  tag:string (deprecated);        // タグ (古い定義なので下のタグリスト使ってください)
+  source:Source;                  // ソース
+  transitions:[Transition];       // 遷移リスト
+  subStates:[State];              // サブステート
+  tags:[string];                  // タグリスト
+  detail:StateDetail;             // 各タイプ別の詳細
+}
+
+table TopState {
+  layerName:string;               // レイヤー名
+  state:State;                    // ステート
+}
+
+table StateConfig {
+  topStates:[TopState];          // トップステートリスト
+}
+
+// ---------------------------------------------------------
+// ■コンフィグ
+
+// アニメーションコンフィグ
+table AnimationStateConfig {
+  stateConfig:StateConfig;                  // ステート設定
+}
+
+// ルートタイプ
+root_type AnimationStateConfig;

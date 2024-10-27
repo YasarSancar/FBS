@@ -1,0 +1,103 @@
+﻿include "fbj_common.fbs";
+namespace gfl.anm2.fbj;
+
+file_extension "tranmj";
+
+// ---------------------------------------------------------
+// ■ルートモーション
+
+table RootMotion {
+  basePose:SRT;
+}
+
+// ---------------------------------------------------------
+// ■キーリスト
+
+table KeyList {
+  scaleX:[KeyBase];
+  scaleY:[KeyBase];
+  scaleZ:[KeyBase];
+
+  rotateX:[KeyBase];
+  rotateY:[KeyBase];
+  rotateZ:[KeyBase];
+
+  translateX:[KeyBase];
+  translateY:[KeyBase];
+  translateZ:[KeyBase];
+}
+
+// ---------------------------------------------------------
+// ■ジョイントアニメーション
+
+table Node {
+  name:string;            // ノード名
+  parentName:string;      // 親ノード名
+  bindPose:SRT;           // バインドポーズ
+  rootMotion:RootMotion;  // ルートモーション
+  keyList:KeyList;        // キーリスト
+}
+
+table JointAnimation {
+  nodeList:[Node];      // ノードリスト
+}
+
+// ---------------------------------------------------------
+// ■ビジビリティアニメーション
+
+table Mesh {
+  name:string;  // メッシュ名
+  keyList:[BoolKey];  // ビジビリティキー
+}
+
+table VisibilityAnimation {
+  meshList:[Mesh];     // メッシュリスト
+}
+
+// ---------------------------------------------------------
+// ■マテリアルアニメーション
+
+enum InterpType : uint {
+  Linear, // リニア補間
+  Step,   // ステップ補間
+}
+
+table AttributeKey {
+  interpType:InterpType;  // 補間
+  frame:int;              // フレーム
+  value:double;           // キー
+}
+
+table Attribute {
+  name:string;            // アトリビュート名
+  x:[AttributeKey];          // x キー
+  y:[AttributeKey];          // y キー
+  z:[AttributeKey];          // z キー
+  w:[AttributeKey];          // w キー
+}
+
+table Material {
+  name:string;                // マテリアル名
+  attributeList:[Attribute];  // アトリビュートデータリスト
+}
+
+table MaterialAnimation {
+  materialList:[Material];  // マテリアルリスト
+}
+
+// ---------------------------------------------------------
+// ■アニメーション
+
+table Animation{
+  exporterInfo:ExporterInfo;                // 出力時のエクスポーターバージョン
+  source:DccSource;                         // 入力ソース
+  frameSetting:FrameSetting;                // フレーム設定
+
+  jointAnimation:JointAnimation;            // ジョイントアニメーション
+  visibilityAnimation:VisibilityAnimation;  // ビジビリティアニメーション
+  materialAnimation:MaterialAnimation;      // マテリアルアニメーション
+}
+
+// ルートタイプ
+root_type Animation;
+

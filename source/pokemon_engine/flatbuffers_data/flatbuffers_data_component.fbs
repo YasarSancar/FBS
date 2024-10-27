@@ -1,0 +1,13 @@
+namespace pe.flatbuffers_data.fb;
+
+table TableData {
+  keyName:string;
+  filePath:string;
+}
+
+table FlatbuffersDataComponent {
+  bfbsFilePath:string;
+  tableDataList:[TableData];
+}
+
+root_type FlatbuffersDataComponent;

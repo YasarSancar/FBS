@@ -1,0 +1,16 @@
+namespace gfl.scene.fb;
+
+table ModelSubLodSetting {
+    categoryName:string;
+    threshold:float;
+    lodDistances:[float];
+}
+
+table ModelLodSetting {
+    categoryName:string;
+    pattern:string;
+    lodDistances:[float];
+    subSettings:[ModelSubLodSetting];
+}
+
+root_type ModelLodSetting;

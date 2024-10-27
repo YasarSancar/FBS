@@ -1,0 +1,7 @@
+namespace gfl.scene.fb;
+
+table LightDirectApplierComponent {
+    priority:int = 0;
+}
+
+root_type LightDirectApplierComponent;

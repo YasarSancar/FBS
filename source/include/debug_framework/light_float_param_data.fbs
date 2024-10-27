@@ -1,0 +1,15 @@
+include "../math/math.fbs";
+include "../gfx2/object/format/current/fbs/light_curve.fbs";
+
+namespace gfl.debug_framework.fb.light;
+
+table FloatParamData {
+  lightName:string;
+  typeName:string;
+  paramaterName:string;
+  value:float;
+  curveValue:gfl.gfx2.fb.RuntimeCurveFloat;
+  lightUniqueId:string;
+}
+
+root_type FloatParamData;

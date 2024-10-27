@@ -1,0 +1,10 @@
+include "../math/math.fbs";
+namespace gfl.scene.fb;
+
+table CompoundSphereShape {
+    resourceName:string;
+    pos:gfl.math.fb.Vector3f;
+    radius:float;
+}
+
+root_type CompoundSphereShape;

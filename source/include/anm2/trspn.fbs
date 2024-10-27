@@ -1,0 +1,38 @@
+﻿include "animation_common2.fbs";
+namespace gfl.anm2.fb;
+
+file_extension "trspn";
+
+// Subcomponent Data
+table SpineAnimationData {
+  isEnabled:bool;
+  isLastJointLeading:bool;
+  isInitWithBasePose:bool;
+  isIgnoreMotion:bool;
+  isIgnorePosition:bool;
+  isLimitAngleToOriginal:bool;
+  isLateUpdate:bool;
+
+  startJointName:string;
+  endJointName:string;
+
+  angleLimit:float;
+  blendToOriginal:float;
+  posSmooth:float;
+  rotSmooth:float;
+  rotCorrectStrength:float;
+  straightenStrength:float;
+
+  isOverwriteBaseRotation:bool;
+  overwriteRotation:gfl.anm2.fb.Vector3;
+
+  isStraightenToPreviousJoint:bool;
+  straightenThreshold:float;
+}
+
+// Spine Animation Config, holds Subcomponent Data Array
+table SpineAnimationConfig {
+  spineAnimationData:[SpineAnimationData];
+}
+
+root_type SpineAnimationConfig;

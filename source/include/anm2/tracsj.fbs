@@ -1,0 +1,155 @@
+﻿include "animation_common2.fbs";
+namespace gfl.anm2.fbj;
+
+file_extension "tracsj";
+
+// ---------------------------------------------------------
+// ■ステート
+
+enum StateType : uint {
+  Normal,                         // 通常ステート
+  Entry,                          // 必ず最初に実行されるエントリーポイント
+  Exit,                           // 終了判定用ステート、Entryに繋ぐ
+  Any,                            // 現在の接続を無視して遷移するためのステート
+  Top,                            // 一つだけ存在するトップステート
+  Reference,                      // 外部ファイルを参照するステート
+}
+
+enum ConditionFunc : uint {
+  Less,                           // ＜
+  LEqual,                         // ≦
+  Greater,                        // ＞
+  GEqual,                         // ≧
+  Equal,                          // ＝
+  NotEqual,                       // ≠
+}
+
+enum LogicalOperator : uint {
+  And,                            // &&
+  Or,                             // ||
+}
+
+enum DurationMode : uint {
+  NormalizedFrame,                // 正規化フレーム
+  Second,                         // 秒
+  SubStateRate,                   // 親からの倍率
+}
+
+enum OffsetMode : uint {
+  NormalizedFrame,                // 正規化フレーム
+  Sync,                           // 前回ステートから同期
+}
+
+union ConditionValue {
+  ConditionValue_Int,
+  ConditionValue_Float,
+  ConditionValue_Bool,
+  ConditionValue_Trigger,
+}
+
+table ConditionValue_Int {
+  value:int;
+}
+
+table ConditionValue_Float {
+  value:float;
+}
+
+table ConditionValue_Bool {
+  value:bool;
+}
+
+table ConditionValue_Trigger {
+  value:bool;
+}
+
+table Condition {
+  parameterName:string;             // パラメータ名
+  func:ConditionFunc;               // 比較関数
+  value:ConditionValue;             // 比較する値
+  logicalOperator:LogicalOperator;  // 論理演算子
+}
+
+table Transition {
+  priority:int;                   // 評価の優先度
+  isVirtual:bool;                 // 仮想化されているか
+  targetName:string;              // 遷移先のステート名
+
+  hasExitTime:bool;               // 終了時間を持っているか
+  exitTime:float;                 // 終了時間
+  exitTimeParameterName:string;   // exitTime の代わりに使うパラメータ名
+  logicalOperator:LogicalOperator;// 論理演算子
+
+  durationMode:DurationMode;      // 遷移モード
+  duration:float;                 // 遷移にかける時間
+  durationParameterName:string;   // duration の代わりに使うパラメータ名
+
+  offsetMode:OffsetMode;          // オフセットモード
+  offset:float;                   // 遷移先の開始時間オフセット
+  offsetParameterName:string;     // offset の代わりに使うパラメータ名
+
+  canInterruption:bool;           // 遷移を中断できるか
+  canSelfTransition:bool;         // 自分への遷移が可能か
+  conditionList:[Condition];      // 遷移条件リスト
+}
+
+table Source {
+  resourceName:string;                  // リソース名
+  speed:float;                          // 再生速度
+  speedParameterName:string;            // speed の代わりに使うパラメータ名
+
+  // 削除予定 ここから
+  physicsWeight:float = 1.0;            // Physicsウェイト
+  physicsWeightParameterName:string;    // physicsWeight の代わりに使うパラメータ名
+  windWeight:float = 1.0;               // 風の影響ウェイト
+  windWeightParameterName:string;       // windWeight の代わりに使うパラメータ名
+  windNoiseWeight:float = 1.0;          // 風のノイズ影響ウェイト
+  windNoiseWeightParameterName:string;  // windNoiseWeight の代わりに使うパラメータ名
+  // 削除予定 ここまで
+
+  additionalParameterList:[gfl.anm2.fb.FloatOrParameter]; // 追加パラメータリスト
+  additionalParameterNameList:[string];                   // 追加パラメータの名前
+}
+
+table Vector2 {
+  x:float;
+  y:float;
+}
+
+table ResourceOverride {
+  original:string;                // 参照元のオリジナルリソース名
+  override:string;                // 上書きするリソース名
+}
+
+table TransitionOverride {
+  from:string;                    // 遷移元ステート名
+  to:string;                      // 遷移先ステート名
+  enabled:bool;                   // 有効かどうか
+}
+
+table Reference {
+  filePath:string;                              // 参照ファイルパス
+  resourceOverrideList:[ResourceOverride];      // リソースの上書き設定リスト
+  transitionOverrideList:[TransitionOverride];  // 遷移の上書き設定リスト
+}
+
+table State {
+  name:string;                    // ステート名
+  type:StateType;                 // ステートタイプ
+  tag:string (deprecated);        // タグ (古い定義なので下のタグリスト使ってください)
+  position:Vector2;               // エディターで作業中のノード位置
+  source:Source;                  // ソース
+  reference:Reference;            // 外部ファイル参照 (Reference 用)
+  layerName:string;               // レイヤー名 (Top 用)
+  transitionList:[Transition];    // 遷移リスト
+  subStateList:[State];           // サブステートリスト
+  tags:[string];                  // タグリスト
+  detail:gfl.anm2.fb.StateDetail; // 各タイプ別の詳細
+}
+
+table StateConfig {
+  topStateList:[State];           // トップステートリスト
+}
+
+// ルートタイプ
+root_type StateConfig;

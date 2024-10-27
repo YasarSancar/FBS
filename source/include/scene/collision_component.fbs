@@ -1,0 +1,54 @@
+include "../scene/collision_shape.fbs";
+namespace gfl.scene.fb;
+
+union CollisionData {
+    BodyCollision,
+    CharacterCollision,
+}
+
+enum MotionType : int {
+  Static,
+  Keyframed,
+  Dynamic
+}
+
+table CollisionMaterial {
+    mass:float;
+    dynamicFriction:float;
+    staticFriction:float;
+    restitution:float = 0.0;
+}
+
+table BodyCollision {
+    shape:CollisionShapeData;
+    motionType:MotionType;
+    trigger:bool;
+    triggerModifiable:bool;
+    startWithDisabled:bool;
+    layer:int;
+    syncParentScaleEnabled:bool;
+    material:CollisionMaterial;
+    collisionName:string;
+    materialModifiable:bool;
+    notChangeParameters:bool = false;
+    disableEventTrigger:bool = false;
+}
+
+table CharacterCollision {
+    shape:CollisionShapeData;
+    gravity:gfl.math.fb.Vector3f;
+    maxSlope:float;
+    isControl:bool;
+    moveSpeed:float;
+    startWithDisabled:bool;
+    layer:int;
+    syncParentScaleEnabled:bool;
+    collisionName:string;
+    keepDistance:float = 0.0;
+}
+
+table CollisionComponent {
+    data:CollisionData;
+}
+
+root_type CollisionComponent;

@@ -1,0 +1,21 @@
+namespace gfl.scene.fb;
+
+enum ProgressTriggerTiming : int {
+  Is,
+  Was,
+  Trigger,
+  Release,
+  Both,
+  Any,
+  XOR,
+  Not,
+  Always
+}
+
+table ProgressEventTriggerComponent {
+  eventName:string;
+  resourceName:string;
+  triggerTiming:ProgressTriggerTiming;
+}
+  
+root_type ProgressEventTriggerComponent;
