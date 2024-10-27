@@ -1,0 +1,863 @@
+﻿require '../tools/fbs_rake_common.rb'
+
+CsprojDirectory = 'csproj'
+
+MathDirectory = '../include/math'
+MathCsprojDirectory = "#{CsprojDirectory}/math"
+
+Gfx2Directory = '../include/gfx2/object/format/current/fbs'
+Gfx2CsprojDirectory = "#{CsprojDirectory}/gfx2"
+
+AiCharacterDirectory = '../include/ai_character'
+AiCharacterCsprojDirectory = "#{CsprojDirectory}/ai_character"
+
+AtmosphereDirectory = '../include/atmosphere'
+AtmosphereCsprojDirectory = "#{CsprojDirectory}/atmosphere"
+
+Anm2Directory = '../include/anm2/common'
+Anm2CsprojDirectory = "#{CsprojDirectory}/anm2"
+
+Anm2ExtDirectory = '../include/anm2ext'
+Anm2ExtCsprojDirectory = "#{CsprojDirectory}/anm2ext"
+
+TmlDirectory = '../include/tml'
+TmlCsprojDirectory = "#{CsprojDirectory}/tml"
+
+CommunicatorDirectory = '../include/communicator'
+CommunicatorCsprojDirectory = "#{CsprojDirectory}/communicator"
+
+DebugFrameworkDirectory = '../include/debug_framework'
+DebugFrameworkCsprojDirectory = "#{CsprojDirectory}/debug_framework"
+
+EventDirectory = '../include/engine/game/event'
+EventCsprojDirectory = "#{CsprojDirectory}/event"
+
+FrameworkDirectory = '../include/framework'
+FrameworkCsprojDirectory = "#{CsprojDirectory}/framework"
+
+Framework2Directory = '../include/framework2'
+Framework2CsprojDirectory = "#{CsprojDirectory}/framework2"
+
+FsDirectory = '../include/fs'
+FsCsprojDirectory = "#{CsprojDirectory}/fs"
+
+PhysicsDirectory = '../include/physics'
+PhysicsCsprojDirectory = "#{CsprojDirectory}/physics"
+
+AiDirectory = '../include/ai'
+AiCsprojDirectory = "#{CsprojDirectory}/ai"
+
+TerrainDirectory = '../include/terrain'
+TerrainCsprojDirectory = "#{CsprojDirectory}/terrain"
+
+SceneDirectory = '../include/scene'
+SceneCsprojDirectory = "#{CsprojDirectory}/scene"
+
+SceneProtocolDirectory = '../include/protocol/scene'
+SceneProtocolCsprojDirectory = "#{CsprojDirectory}/protocol/scene"
+
+PokemonEngineDirectory = '../pokemon_engine/programs/include'
+PokemonEngineCsprojDirectory = "#{CsprojDirectory}/pokemon_engine_app"
+
+SampleApplicationDirectory = "../Sample/sample_integration/include/resourceHeader/field"
+TestDirectory = "../test/fs/fb_file_test"
+
+TargetToolsDirectory = '../TargetTools'
+GenericViewerDirectory = "#{TargetToolsDirectory}/ViewerLib/include/viewer/flatbuffers"
+
+GenericEditorDirectory = "#{CsprojDirectory}/GenericEditor"
+
+PmauxDirectory = "../include/pmaux"
+PmauxCsprojDirectory = "#{CsprojDirectory}/pmaux"
+
+AudioDirectory = "../include/audio"
+AudioCsprojDirectory = "#{CsprojDirectory}/audio"
+
+CCDirectory = '../include/cc'
+CCCsprojDirectory = "#{CsprojDirectory}/cc"
+
+GnptDirectory = '../include/gnpt'
+GnptCsprojDirectory = "#{CsprojDirectory}/gnpt"
+
+ScriptDebuggerCsprojDirectory = "#{CsprojDirectory}/ScriptDebugger"
+ScriptDebuggerCppDirectory = '../include/haxe_lua/fb'
+
+# tracpj の互換用に置換 'defaultValue' -> 'default'
+def tracpj_replaceDefaultValue(csfilePath)
+    buf = nil
+    File.open(csfilePath,"r") do |f|
+        buf = f.read();
+    end
+    buf.gsub!('JsonProperty("defaultValue")', 'JsonProperty("default")')
+    File.open(csfilePath,"w") do |f|
+        f.write(buf);
+    end
+end
+
+ConvInfo = Struct.new(:source, :type, :outputDirectory, :extraOption, :postEvent)
+convInfoList = [
+    # math
+    ConvInfo.new('include/math/math.fbs', :cs, MathCsprojDirectory, ""),
+    ConvInfo.new('include/math/math.fbs', :cpp, MathDirectory, ""),
+
+    #gfx2
+    ConvInfo.new('include/gfx2/types.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/types.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/trmsh.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/trmsh.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/trmbf.fbs', :cs, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/trmbf.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/trmtr.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/trmtr.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/trskl.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/trskl.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/trltt.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/trltt.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/trmdl.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/trmdl.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/trsha.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/trsha.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/trtch.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/trtch.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/object/format/current/fbs/light_common.fbs', :cs, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/object/format/current/fbs/light_common.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/object/format/current/fbs/light_curve.fbs', :cs, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/object/format/current/fbs/light_curve.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/object/format/current/fbs/trlgt.fbs', :cs, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/object/format/current/fbs/trlgt.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/object/format/current/fbs/tratm.fbs', :cs, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/object/format/current/fbs/tratm.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/trins.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/trins.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/trmtcj.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/trmscj.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/trmmt.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/trmmt.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/trmmr.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/trmmr.fbs', :cpp, Gfx2Directory, ""),
+
+    ConvInfo.new('include/gfx2/trloc.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/trloc.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+    ConvInfo.new('include/gfx2/trskc.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+
+    ConvInfo.new('include/gfx2/trvat.fbs', :cpp, Gfx2Directory, ""),
+    ConvInfo.new('include/gfx2/trvat.fbs', :cs_gf, Gfx2CsprojDirectory, ""),
+
+    #ai_character
+    ConvInfo.new('include/ai_character/trabt.fbs', :cpp, AiCharacterDirectory, ""),
+    ConvInfo.new('include/ai_character/trabb.fbs', :cpp, AiCharacterDirectory, ""),
+
+    #atmosphere
+    ConvInfo.new('include/atmosphere/atmsphr.fbs', :cs_gf, AtmosphereCsprojDirectory, ""),
+    ConvInfo.new('include/atmosphere/atmsphr.fbs', :cpp, AtmosphereDirectory, ""),
+
+    # anm2
+    ConvInfo.new('include/anm2/fbj_common.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/fbj_common.fbs', :cpp, Anm2Directory, ""),
+    ConvInfo.new('include/anm2/animation_common2.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/animation_common2.fbs', :cpp, Anm2Directory, ""),
+    ConvInfo.new('include/anm2/anm2_communication.fbs', :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/tranmj.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tranm.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tranm.fbs', :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/trcmaj.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trcma.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trcma.fbs', :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/gflta2.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/gflta2.fbs', :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/trapc.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tracnj.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tracn.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tracn.fbs', :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/tracpj.fbs', :cs, Anm2CsprojDirectory, "", method(:tracpj_replaceDefaultValue)),
+    ConvInfo.new('include/anm2/tracp.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tracp.fbs', :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/tracrj.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tracr.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tracr.fbs', :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/tracsj.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tracs.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tracs.fbs', :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/traclj.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tracl.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tracl.fbs', :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/trast.fbs', :cs, Anm2CsprojDirectory, ""),
+
+    ConvInfo.new('include/anm2/trspn.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trspn.fbs', :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/trslp.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trslp.fbs', :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/trmae.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trmae.fbs', :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/tralk.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tralk.fbs', :cpp, Anm2Directory, ""),
+
+	ConvInfo.new('include/anm2/trbsm.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trbsm.fbs', :cpp, Anm2Directory, ""),
+
+	ConvInfo.new('include/anm2/trbik.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trbik.fbs', :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/trtik.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trtik.fbs', :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/tramt.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tramt.fbs',  :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/tracm.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tracm.fbs',  :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/travs.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/travs.fbs',  :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/trabs.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trabs.fbs',  :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/tracc.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/tracc.fbs',  :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/trcrv.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trcrv.fbs',  :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/trcvs.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trcvs.fbs',  :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/traed.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/traed.fbs',  :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/traef.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/traef.fbs',  :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/traet.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trett.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trettrule.fbs',  :cs, Anm2CsprojDirectory, ""),
+
+    ConvInfo.new('include/anm2/tratg.fbs',  :cs, Anm2CsprojDirectory, ""),
+
+    ConvInfo.new('include/anm2/truno.fbs', :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/truno.fbs', :cpp, Anm2Directory, ""),
+
+    # motion detector
+    ConvInfo.new('include/anm2/trmdt.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trmdt.fbs',  :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/trmdd.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trmdd.fbs',  :cpp, Anm2Directory, ""),
+
+    ConvInfo.new('include/anm2/trmvl.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trmmv.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trmrt.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trmag.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trmtw.fbs',  :cs, Anm2CsprojDirectory, ""),
+    ConvInfo.new('include/anm2/trmft.fbs',  :cs, Anm2CsprojDirectory, ""),
+
+    # anm2ext
+    ConvInfo.new('include/anm2ext/trspb.fbs', :cs, Anm2ExtCsprojDirectory, ""),
+    ConvInfo.new('include/anm2ext/trspb.fbs', :cpp, Anm2ExtDirectory, ""),
+
+    # tml
+    ConvInfo.new('include/tml/trtml.fbs', :cs, TmlCsprojDirectory, ""),
+    ConvInfo.new('include/tml/trtml.fbs', :cpp, TmlDirectory, ""),
+    ConvInfo.new('host_tools/tml/tmlMessage.fbs', :cs, "#{CsprojDirectory}/host_tools/tml/", ""),
+    ConvInfo.new('host_tools/tml/tmlMessage.fbs', :cpp, TmlDirectory, ""),
+    ConvInfo.new('host_tools/tml/tmlCache.fbs', :cs, "#{CsprojDirectory}/host_tools/tml/", ""),
+
+    # framework
+    ConvInfo.new('include/framework/gflicense.fbs', :cs, "#{CsprojDirectory}/GfLicenseGenerator", "--gen-mutable"),
+    ConvInfo.new('include/framework/gflicense.fbs', :cpp, FrameworkDirectory, " --gen-mutable"),
+    ConvInfo.new('include/framework/gflicensedata.fbs', :cs, "#{CsprojDirectory}/GfLicenseGenerator", ""),
+    ConvInfo.new('include/framework/gflicensedata.fbs', :cpp, FrameworkDirectory, ""),
+
+    # framework2
+    ConvInfo.new('include/framework2/trinity_config.fbs', :cpp, Framework2Directory, "--reflect-names --force-empty --cpp-str-type gfl::String --cpp-str-flex-ctor"),
+    ConvInfo.new('include/framework2/test_config.fbs', :cpp, Framework2Directory, "--reflect-names --force-empty --cpp-str-type gfl::String --cpp-str-flex-ctor"),
+
+    # fs
+    ConvInfo.new('include/fs/file_meta.fbs', :cs, FsCsprojDirectory, ""),
+    ConvInfo.new('include/fs/file_meta.fbs', :cpp, FsDirectory, ""),
+    ConvInfo.new('include/fs/trfmd.fbs', :cs, FsCsprojDirectory, ""),
+    ConvInfo.new('include/fs/trfmd.fbs', :cpp, FsDirectory, ""),
+    ConvInfo.new('include/fs/trpak.fbs', :cs, FsCsprojDirectory, ""),
+    ConvInfo.new('include/fs/trpak.fbs', :cpp, FsDirectory, ""),
+    ConvInfo.new('include/fs/trpfd.fbs', :cs, FsCsprojDirectory, ""),
+    ConvInfo.new('include/fs/trpfd.fbs', :cpp, FsDirectory, ""),
+    ConvInfo.new('include/fs/duplication_table.fbs', :cs, FsCsprojDirectory, ""),
+    ConvInfo.new('include/fs/duplication_table.fbs', :cpp, FsDirectory, ""),
+    ConvInfo.new('include/fs/trpre.fbs', :cs, FsCsprojDirectory, ""),
+    ConvInfo.new('include/fs/trpre.fbs', :cpp, FsDirectory, ""),
+    ConvInfo.new('include/fs/trpfs.fbs', :cs, FsCsprojDirectory, ""),
+    ConvInfo.new('include/fs/trpfs.fbs', :cpp, FsDirectory, ""),
+
+    # communicator
+    ConvInfo.new('include/communicator/live_edit_protocol.fbs', :cpp, CommunicatorDirectory, ""),
+    ConvInfo.new('include/communicator/live_edit_protocol.fbs', :cs, CommunicatorCsprojDirectory, ""),
+
+    # debug_framework
+    ConvInfo.new('include/debug_framework/irradiance_volume_capture_data.fbs', :cpp, DebugFrameworkDirectory, ""),
+    ConvInfo.new('include/debug_framework/irradiance_volume_capture_data.fbs', :cs, DebugFrameworkCsprojDirectory, ""),
+    ConvInfo.new('include/debug_framework/irradiance_volume_capture_result_data.fbs', :cpp, DebugFrameworkDirectory, ""),
+    ConvInfo.new('include/debug_framework/irradiance_volume_capture_result_data.fbs', :cs, DebugFrameworkCsprojDirectory, ""),
+
+    ConvInfo.new('include/debug_framework/light_change_offset_table_data.fbs', :cpp, DebugFrameworkDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_change_offset_table_data.fbs', :cs, DebugFrameworkCsprojDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_float_offset_param_data.fbs', :cpp, DebugFrameworkDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_float_offset_param_data.fbs', :cs, DebugFrameworkCsprojDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_float_param_data.fbs', :cpp, DebugFrameworkDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_float_param_data.fbs', :cs, DebugFrameworkCsprojDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_srt_offset_param_data.fbs', :cpp, DebugFrameworkDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_srt_offset_param_data.fbs', :cs, DebugFrameworkCsprojDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_srt_param_data.fbs', :cpp, DebugFrameworkDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_srt_param_data.fbs', :cs, DebugFrameworkCsprojDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_texture_param_data.fbs', :cpp, DebugFrameworkDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_texture_param_data.fbs', :cs, DebugFrameworkCsprojDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_vector4f_offset_param_data.fbs', :cpp, DebugFrameworkDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_vector4f_offset_param_data.fbs', :cs, DebugFrameworkCsprojDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_vector4f_param_data.fbs', :cpp, DebugFrameworkDirectory, ""),
+    ConvInfo.new('include/debug_framework/light_vector4f_param_data.fbs', :cs, DebugFrameworkCsprojDirectory, ""),
+
+    ConvInfo.new('include/debug_framework/probe_capture_data.fbs', :cpp, DebugFrameworkDirectory, ""),
+    ConvInfo.new('include/debug_framework/probe_capture_data.fbs', :cs, DebugFrameworkCsprojDirectory, ""),
+    ConvInfo.new('include/debug_framework/probe_capture_result_data.fbs', :cpp, DebugFrameworkDirectory, ""),
+    ConvInfo.new('include/debug_framework/probe_capture_result_data.fbs', :cs, DebugFrameworkCsprojDirectory, ""),
+    ConvInfo.new('include/debug_framework/shader_manager_to_viewer.fbs', :cpp, DebugFrameworkDirectory, ""),
+    ConvInfo.new('include/debug_framework/shader_manager_to_viewer.fbs', :cs, DebugFrameworkCsprojDirectory, ""),
+
+    # event
+    ConvInfo.new('include/event/event.fbs', :cpp, EventDirectory, ""),
+    ConvInfo.new('include/event/event.fbs', :cs, EventCsprojDirectory, ""),
+
+    # havok
+    ConvInfo.new('include/havok/havok_keycode.fbs', :cpp, PhysicsDirectory, ""),
+	ConvInfo.new('include/havok/trhf.fbs', :cpp, PhysicsDirectory, ""),
+	ConvInfo.new('include/havok/trhf.fbs', :cs_gf, PhysicsCsprojDirectory, ""),
+
+    # terrain
+    ConvInfo.new('include/terrain/trtrr.fbs', :cs_gf, TerrainCsprojDirectory, ""),
+    ConvInfo.new('include/terrain/trtrr.fbs', :cpp, TerrainDirectory, ""),
+    ConvInfo.new('include/terrain/trtbf.fbs', :cs_gf, TerrainCsprojDirectory, ""),
+    ConvInfo.new('include/terrain/trtbf.fbs', :cpp, TerrainDirectory, ""),
+    ConvInfo.new('include/terrain/trtrcj.fbs', :cs_gf, TerrainCsprojDirectory, ""),
+    ConvInfo.new('include/terrain/trtrcj.fbs', :cpp, TerrainDirectory, ""),
+
+    # cc
+    ConvInfo.new('include/cc/ccacn.fbs', :cs, CCCsprojDirectory, ""),
+    ConvInfo.new('include/cc/ccsav.fbs', :cs, CCCsprojDirectory, ""),
+    ConvInfo.new('include/cc/ccdata.fbs', :cpp, CCDirectory, ""),
+    ConvInfo.new('include/cc/ccdata.fbs', :cs, CCCsprojDirectory, ""),
+    ConvInfo.new('include/cc/ccdatam.fbs', :cpp, CCDirectory, ""),
+    ConvInfo.new('include/cc/ccdatam.fbs', :cs, CCCsprojDirectory, ""),
+    ConvInfo.new('include/cc/cc_communication.fbs', :cpp, CCDirectory, ""),
+    ConvInfo.new('include/cc/cc_communication_opt.fbs', :cpp, CCDirectory, ""),
+
+    # scene
+    ConvInfo.new('include/scene/trscn.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/trscn.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/subscene.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/subscene.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/scene_object.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/scene_object.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/scene_object_reference.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/scene_object_reference.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/scene_point.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/scene_point.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/object_template.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/object_template.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/model_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/model_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/model_lod_setting.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/model_lod_setting.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/model_culling_setting.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/model_culling_setting.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/joint_priority_setting.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/joint_priority_setting.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/locator.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/locator.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/light_applier_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/light_applier_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/light_direct_applier_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/light_direct_applier_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/terrain_entity.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/terrain_entity.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/terrain_collision.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/terrain_collision.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/terrain_streaming_setting.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/terrain_streaming_setting.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/terrain_tree_template.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/terrain_tree_template.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/script_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/script_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/camera_entity.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/camera_entity.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/scene_controller.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/scene_controller.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/collision_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/collision_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/collision_shape.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/collision_shape.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/compound_box_shape.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/compound_box_shape.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/compound_sphere_shape.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/compound_sphere_shape.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/compound_capsule_shape.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/compound_capsule_shape.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/compound_pencil_shape.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/compound_pencil_shape.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/layout_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/layout_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/layout_common_resource_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/layout_common_resource_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/texture_buffer_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/texture_buffer_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/particle_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/particle_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/decal_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/decal_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/navmesh_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/navmesh_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/navigator_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/navigator_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/animation_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/animation_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/camera_animation_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/camera_animation_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/attachment_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/attachment_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/collision_event_trigger_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/collision_event_trigger_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/progress_event_trigger_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/progress_event_trigger_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/event_state_event_trigger_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/event_state_event_trigger_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/character_creation_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/character_creation_component.fbs', :cs, SceneCsprojDirectory, ""),
+    ConvInfo.new('include/scene/character_creation_master_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/character_creation_master_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/object_switcher.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/object_switcher.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/grass_collision_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/grass_collision_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/property_sheet.fbs', :cpp, SceneDirectory, "--cpp-str-type gfl::scene::FbString"),
+    ConvInfo.new('include/scene/property_sheet.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/ground_place_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/ground_place_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/grid_streaming_group.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/grid_streaming_group.fbs', :cs, SceneCsprojDirectory, ""),
+    ConvInfo.new('include/scene/conditional_streaming_group.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/conditional_streaming_group.fbs', :cs, SceneCsprojDirectory, ""),
+    ConvInfo.new('include/scene/conditional_streaming_area.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/conditional_streaming_area.fbs', :cs, SceneCsprojDirectory, ""),
+    ConvInfo.new('include/scene/conditional_streaming_constraint.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/conditional_streaming_constraint.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/combine_lod_entity.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/combine_lod_entity.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/environment_parameter.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/environment_parameter.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/streaming_point.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/streaming_point.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/vat_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/vat_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/model_instancer_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/model_instancer_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    ConvInfo.new('include/scene/combine_object_group.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/combine_object_group.fbs', :cs, SceneCsprojDirectory, ""),
+
+    # protocol scene
+    ConvInfo.new('include/protocol/scene/MessageType.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/MessageType.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/SceneMessage.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/SceneMessage.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/CreateNewScene.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/CreateNewScene.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/PropertyName.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/PropertyName.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/UpdateProperty.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/UpdateProperty.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/RemoveComponent.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/RemoveComponent.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/CameraRequest.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/CameraRequest.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/EditorMessage.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/EditorMessage.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/CreateElement.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/CreateElement.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/RemoveElement.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/RemoveElement.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/SceneRuntimeInfo.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/SceneRuntimeInfo.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/SceneProperty.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/SceneProperty.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/ObjectVisibility.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/ObjectVisibility.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/IssueMessage.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/IssueMessage.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/MoveToCameraViewPoint.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/MoveToCameraViewPoint.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/LoadStatus.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/LoadStatus.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/TerrainTreeTemplate.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/TerrainTreeTemplate.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/CollisionEdit.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/CollisionEdit.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/LogMessage.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/LogMessage.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/ChangeNodeId.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/ChangeNodeId.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    ConvInfo.new('include/protocol/scene/PinMessage.fbs', :cpp, SceneProtocolDirectory, ""),
+    ConvInfo.new('include/protocol/scene/PinMessage.fbs', :cs, SceneProtocolCsprojDirectory, ""),
+
+    # Sample
+    ConvInfo.new('Sample/pokemonParam.fbs', :cs, "#{CsprojDirectory}/Samples/LiveEditMvvmSample/GeneratedCodes/FieldResource", ""),
+    ConvInfo.new('Sample/pokemonParam.fbs', :cpp, SampleApplicationDirectory, ""),
+    ConvInfo.new('Sample/pokemonParam.fbs', :cpp, TestDirectory, ""),
+
+	# pokemon engine scene
+	ConvInfo.new('pokemon_engine/pokemon_engine_app/sample_component.fbs', :cs, "#{CsprojDirectory}/pokemon_engine_app/", ""),
+    ConvInfo.new('pokemon_engine/pokemon_engine_app/sample_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/pokemon_app/", ""),
+
+    # GenericEditor
+    ConvInfo.new('TargetTools/AnimationControllerToEditor.fbs', :cs, "#{GenericEditorDirectory}/AnimationController", ""),
+    ConvInfo.new('TargetTools/AnimationControllerToEditor.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/AnimationControllerToViewer.fbs', :cs, "#{GenericEditorDirectory}/AnimationController", ""),
+    ConvInfo.new('TargetTools/AnimationControllerToViewer.fbs', :cpp, GenericViewerDirectory, ""),
+
+	ConvInfo.new('TargetTools/AnimationEditorToEditor.fbs', :cs, "#{GenericEditorDirectory}/AnimationEditor", ""),
+    ConvInfo.new('TargetTools/AnimationEditorToEditor.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/AnimationEditorToViewer.fbs', :cs, "#{GenericEditorDirectory}/AnimationEditor", ""),
+    ConvInfo.new('TargetTools/AnimationEditorToViewer.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/PrimitiveValuePacket.fbs', :cs_gf, "#{GenericEditorDirectory}/PrimitiveValuePacket", ""),
+    ConvInfo.new('TargetTools/PrimitiveValuePacket.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/DataType.fbs', :cs, "#{GenericEditorDirectory}/Model", ""),
+    ConvInfo.new('TargetTools/DataType.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/ModelLoadData.fbs', :cs, "#{GenericEditorDirectory}/Model", ""),
+    ConvInfo.new('TargetTools/ModelLoadData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/ModelSRTUpdateData.fbs', :cs, "#{GenericEditorDirectory}/Model", ""),
+    ConvInfo.new('TargetTools/ModelSRTUpdateData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/ModelBlendShapeUpdateData.fbs', :cs_gf, "#{GenericEditorDirectory}/Model", ""),
+    ConvInfo.new('TargetTools/ModelBlendShapeUpdateData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/ModelLatticeUpdateData.fbs', :cs_gf, "#{GenericEditorDirectory}/Model", ""),
+    ConvInfo.new('TargetTools/ModelLatticeUpdateData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/ModelLatticeDebugDrawEnable.fbs', :cs, "#{GenericEditorDirectory}/Model", ""),
+    ConvInfo.new('TargetTools/ModelLatticeDebugDrawEnable.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/ModelPreviewSetVisibility.fbs', :cs_gf, "#{GenericEditorDirectory}/Model", ""),
+    ConvInfo.new('TargetTools/ModelPreviewSetVisibility.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/ModelPreviewWireFrame.fbs', :cs, "#{GenericEditorDirectory}/Model", ""),
+    ConvInfo.new('TargetTools/ModelPreviewWireFrame.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/ModelStateVisibleForCapture.fbs', :cs_gf, "#{GenericEditorDirectory}/Model", ""),
+    ConvInfo.new('TargetTools/ModelStateVisibleForCapture.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/ModelSetLODLevel.fbs', :cs_gf, "#{GenericEditorDirectory}/Model", ""),
+    ConvInfo.new('TargetTools/ModelSetLODLevel.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/LocatorUpdateData.fbs', :cs_gf, "#{GenericEditorDirectory}/Model", ""),
+    ConvInfo.new('TargetTools/LocatorUpdateData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/LocatorSRTUpdateData.fbs', :cs, "#{GenericEditorDirectory}/Model", ""),
+    ConvInfo.new('TargetTools/LocatorSRTUpdateData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/LocatorPtclEmitData.fbs', :cs_gf, "#{GenericEditorDirectory}/Model", ""),
+    ConvInfo.new('TargetTools/LocatorPtclEmitData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/CameraSRTUpdateData.fbs', :cs, "#{GenericEditorDirectory}/Camera", ""),
+    ConvInfo.new('TargetTools/CameraSRTUpdateData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/CameraSettingData.fbs', :cs, "#{GenericEditorDirectory}/Camera", ""),
+    ConvInfo.new('TargetTools/CameraSettingData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/EditEnvironmentIntParamData.fbs', :cs, "#{GenericEditorDirectory}/Environment", ""),
+    ConvInfo.new('TargetTools/EditEnvironmentIntParamData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/EditEnvironmentFloatParamData.fbs', :cs, "#{GenericEditorDirectory}/Environment", ""),
+    ConvInfo.new('TargetTools/EditEnvironmentFloatParamData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/EditEnvironmentFloat4ParamData.fbs', :cs, "#{GenericEditorDirectory}/Environment", ""),
+    ConvInfo.new('TargetTools/EditEnvironmentFloat4ParamData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/MaterialFloatParamData.fbs', :cs, "#{GenericEditorDirectory}/Material", ""),
+    ConvInfo.new('TargetTools/MaterialFloatParamData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/MaterialVector4fParamData.fbs', :cs, "#{GenericEditorDirectory}/Material", ""),
+    ConvInfo.new('TargetTools/MaterialVector4fParamData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/MaterialTextureParamData.fbs', :cs, "#{GenericEditorDirectory}/Material", ""),
+    ConvInfo.new('TargetTools/MaterialTextureParamData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/MaterialShaderOptionData.fbs', :cs, "#{GenericEditorDirectory}/Material", ""),
+    ConvInfo.new('TargetTools/MaterialShaderOptionData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/ImplicitVolumeParamData.fbs', :cs, "#{GenericEditorDirectory}/ImplicitVolume", ""),
+    ConvInfo.new('TargetTools/ImplicitVolumeParamData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/ImplicitVolumeEditCommandData.fbs', :cs, "#{GenericEditorDirectory}/ImplicitVolume", ""),
+    ConvInfo.new('TargetTools/ImplicitVolumeEditCommandData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/AttachmentEditCommandData.fbs', :cs, "#{GenericEditorDirectory}/Attachment", ""),
+    ConvInfo.new('TargetTools/AttachmentEditCommandData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/CCPreviewData.fbs', :cs, "#{GenericEditorDirectory}/CharacterCreate", ""),
+    ConvInfo.new('TargetTools/CCPreviewData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/CCPreviewBodyShapeData.fbs', :cs, "#{GenericEditorDirectory}/CharacterCreate", ""),
+    ConvInfo.new('TargetTools/CCPreviewBodyShapeData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/CharaCreateViewerToEditor.fbs', :cs, "#{GenericEditorDirectory}/CharacterCreate", ""),
+    ConvInfo.new('TargetTools/CharaCreateViewerToEditor.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/CharaCreateEditorToViewer.fbs', :cs, "#{GenericEditorDirectory}/CharacterCreate", ""),
+    ConvInfo.new('TargetTools/CharaCreateEditorToViewer.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/MetadataParamToViewer.fbs', :cs, "#{GenericEditorDirectory}/CharacterCreate", ""),
+    ConvInfo.new('TargetTools/MetadataParamToViewer.fbs', :cpp, GenericViewerDirectory, ""),
+
+	ConvInfo.new('TargetTools/MotionDetectorValuesData.fbs', :cs, "#{GenericEditorDirectory}/MotionDetector", ""),
+    ConvInfo.new('TargetTools/MotionDetectorValuesData.fbs', :cpp, GenericViewerDirectory, ""),
+
+	ConvInfo.new('TargetTools/MotionDetectorDebugVisibility.fbs', :cs, "#{GenericEditorDirectory}/MotionDetector", ""),
+    ConvInfo.new('TargetTools/MotionDetectorDebugVisibility.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/AudioEngineInitializationData.fbs', :cs, "#{GenericEditorDirectory}/Audio", ""),
+    ConvInfo.new('TargetTools/AudioEngineInitializationData.fbs', :cpp, AudioDirectory, ""),
+
+    ConvInfo.new('TargetTools/AudioEventData.fbs', :cs, "#{GenericEditorDirectory}/Audio", ""),
+    ConvInfo.new('TargetTools/AudioEventData.fbs', :cpp, AudioDirectory, ""),
+
+    ConvInfo.new('TargetTools/AudioBankLoadData.fbs', :cs, "#{GenericEditorDirectory}/Audio", ""),
+    ConvInfo.new('TargetTools/AudioBankLoadData.fbs', :cpp, AudioDirectory, ""),
+
+    ConvInfo.new('TargetTools/AudioGameSyncData.fbs', :cs, "#{GenericEditorDirectory}/Audio", ""),
+    ConvInfo.new('TargetTools/AudioGameSyncData.fbs', :cpp, AudioDirectory, ""),
+
+    ConvInfo.new('TargetTools/TwoBoneIKUpdateData.fbs', :cs, "#{GenericEditorDirectory}/Animation", ""),
+    ConvInfo.new('TargetTools/TwoBoneIKUpdateData.fbs', :cpp, GenericViewerDirectory, ""),
+
+    ConvInfo.new('TargetTools/PhysicsFilterSetting.fbs', :cs, "#{GenericEditorDirectory}/Physics", ""),
+    ConvInfo.new('TargetTools/PhysicsFilterSetting.fbs', :cpp, GenericViewerDirectory, ""),
+
+    # host_tools
+    ConvInfo.new('host_tools/GfxStudio/ui_config.fbs', :cs, "#{CsprojDirectory}/host_tools/GfxStudio/", ""),
+    ConvInfo.new('host_tools/GfxStudio/ik_previewer.fbs', :cs, "#{CsprojDirectory}/host_tools/GfxStudio/", ""),
+    ConvInfo.new('host_tools/GfxStudio/boot_config.fbs', :cs, "#{CsprojDirectory}/host_tools/GfxStudio/", ""),
+    ConvInfo.new('host_tools/GfxStudio/preference.fbs', :cs, "#{CsprojDirectory}/host_tools/GfxStudio/", ""),
+    ConvInfo.new('host_tools/GfxStudio/event_editor_config.fbs', :cs, "#{CsprojDirectory}/host_tools/GfxStudio/", ""),
+    ConvInfo.new('host_tools/GfxStudio/model_property_option.fbs', :cs, "#{CsprojDirectory}/host_tools/GfxStudio/", ""),
+
+    ConvInfo.new('host_tools/EventEditor/ui_config.fbs', :cs, "#{CsprojDirectory}/host_tools/EventEditor/", ""),
+    ConvInfo.new('host_tools/EventEditor/boot_config.fbs', :cs, "#{CsprojDirectory}/host_tools/EventEditor/", ""),
+
+    ConvInfo.new('host_tools/AiEditor/aibb.fbs', :cs, "#{CsprojDirectory}/host_tools/AiEditor/", ""),
+    ConvInfo.new('host_tools/AiEditor/aibt.fbs', :cs, "#{CsprojDirectory}/host_tools/AiEditor/", ""),
+    ConvInfo.new('host_tools/AiEditor/boot_config.fbs', :cs, "#{CsprojDirectory}/host_tools/AiEditor/", ""),
+    ConvInfo.new('host_tools/AiEditor/ui_config.fbs', :cs, "#{CsprojDirectory}/host_tools/AiEditor/", ""),
+    ConvInfo.new('host_tools/AiEditor/aemeta.fbs', :cs, "#{CsprojDirectory}/host_tools/AiEditor/", ""),
+    ConvInfo.new('host_tools/AiEditor/template_util.fbs', :cs, "#{CsprojDirectory}/host_tools/AiEditor/", ""),
+    ConvInfo.new('host_tools/AiEditor/template_task.fbs', :cs, "#{CsprojDirectory}/host_tools/AiEditor/", ""),
+    ConvInfo.new('host_tools/AiEditor/template_service.fbs', :cs, "#{CsprojDirectory}/host_tools/AiEditor/", ""),
+    ConvInfo.new('host_tools/AiEditor/template_decorator.fbs', :cs, "#{CsprojDirectory}/host_tools/AiEditor/", ""),
+    ConvInfo.new('host_tools/AiEditor/template_enum.fbs', :cs, "#{CsprojDirectory}/host_tools/AiEditor/", ""),
+
+    # pmaux
+    ConvInfo.new('pmaux/resource/pmcatalog.fbs', :cs, PmauxCsprojDirectory, ""),
+    ConvInfo.new('pmaux/resource/pmcatalog.fbs', :cpp, "#{PmauxDirectory}/resource", ""),
+
+    ConvInfo.new('pmaux/pokecfg/pokecfg.fbs', :cs, PmauxCsprojDirectory, ""),
+    ConvInfo.new('pmaux/pokecfg/pokecfg.fbs', :cpp, "#{PmauxDirectory}/pokecfg", ""),
+
+    ConvInfo.new('pmaux/viewer/extension/PokeCfgMessageToViewer.fbs', :cs, PmauxCsprojDirectory, ""),
+    ConvInfo.new('pmaux/viewer/extension/PokeCfgMessageToViewer.fbs', :cpp, GenericViewerDirectory, ""),
+
+    # audio
+    ConvInfo.new('include/audio/audio_component.fbs', :cpp, AudioDirectory, ""),
+    ConvInfo.new('include/audio/audio_component.fbs', :cs, AudioCsprojDirectory, ""),
+
+    ConvInfo.new('include/audio/audio_joint_component.fbs', :cpp, AudioDirectory, ""),
+    ConvInfo.new('include/audio/audio_joint_component.fbs', :cs, AudioCsprojDirectory, ""),
+
+    ConvInfo.new('include/audio/audio_bank_component.fbs', :cpp, AudioDirectory, ""),
+    ConvInfo.new('include/audio/audio_bank_component.fbs', :cs, AudioCsprojDirectory, ""),
+
+    ConvInfo.new('include/audio/audio_generator_component.fbs', :cpp, AudioDirectory, ""),
+    ConvInfo.new('include/audio/audio_generator_component.fbs', :cs, AudioCsprojDirectory, ""),
+
+    ConvInfo.new('include/audio/audio_listener_component.fbs', :cpp, AudioDirectory, ""),
+    ConvInfo.new('include/audio/audio_listener_component.fbs', :cs, AudioCsprojDirectory, ""),
+
+    ConvInfo.new('include/audio/audio_player_component.fbs', :cpp, AudioDirectory, ""),
+    ConvInfo.new('include/audio/audio_player_component.fbs', :cs, AudioCsprojDirectory, ""),
+
+    ConvInfo.new('include/audio/particle_audio_component.fbs', :cpp, AudioDirectory, ""),
+    ConvInfo.new('include/audio/particle_audio_component.fbs', :cs, AudioCsprojDirectory, ""),
+
+	# pokemon engine uikit
+    ConvInfo.new('pokemon_engine/uikit/uikit_view_component.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/uikit/", ""),
+    ConvInfo.new('pokemon_engine/uikit/uikit_view_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/uikit/fbs/", ""),
+    ConvInfo.new('pokemon_engine/uikit/uikit_manager_component.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/uikit/", ""),
+    ConvInfo.new('pokemon_engine/uikit/uikit_manager_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/uikit/fbs/", ""),
+
+    # pokemon engine text
+    ConvInfo.new('pokemon_engine/text/text_component.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/text/", ""),
+    ConvInfo.new('pokemon_engine/text/text_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/text/fbs/", ""),
+    ConvInfo.new('pokemon_engine/text/text_font_setting.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/text/", ""),
+    ConvInfo.new('pokemon_engine/text/text_font_setting.fbs', :cpp, "#{PokemonEngineDirectory}/pe/text/fbs/", ""),
+
+    # pokemon engine simple_node
+    ConvInfo.new('pokemon_engine/simple_node/simple_node.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/simple_node/", ""),
+    ConvInfo.new('pokemon_engine/simple_node/simple_node.fbs', :cpp, "#{PokemonEngineDirectory}/pe/pokemon_app/", ""),
+
+    # pokemon engine pmaux
+    ConvInfo.new('pokemon_engine/pmaux/poke_config_component.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/pmaux/", ""),
+    ConvInfo.new('pokemon_engine/pmaux/poke_config_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/pmaux/fbs/", ""),
+
+    # pokemon engine hid
+    ConvInfo.new('pokemon_engine/hid/hid_input_setting.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/hid/", ""),
+    ConvInfo.new('pokemon_engine/hid/hid_input_setting.fbs', :cpp, "#{PokemonEngineDirectory}/pe/hid/fbs/", ""),
+    ConvInfo.new('include/scene/input_event_trigger_component.fbs', :cpp, SceneDirectory, ""),
+    ConvInfo.new('include/scene/input_event_trigger_component.fbs', :cs, SceneCsprojDirectory, ""),
+
+    # pokemon engine network
+    ConvInfo.new('pokemon_engine/network/network_view_component.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/network/", ""),
+    ConvInfo.new('pokemon_engine/network/network_view_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/network/fbs/", ""),
+    ConvInfo.new('pokemon_engine/network/network_sync_srt_component.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/network/", ""),
+    ConvInfo.new('pokemon_engine/network/network_sync_srt_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/network/fbs/", ""),
+    ConvInfo.new('pokemon_engine/network/network_sync_anim_component.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/network/", ""),
+    ConvInfo.new('pokemon_engine/network/network_sync_anim_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/network/fbs/", ""),
+    ConvInfo.new('pokemon_engine/network/network_sync_chara_create_component.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/network/", ""),
+    ConvInfo.new('pokemon_engine/network/network_sync_chara_create_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/network/fbs/", ""),
+    ConvInfo.new('pokemon_engine/network/network_script_rpc_component.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/network/", ""),
+    ConvInfo.new('pokemon_engine/network/network_script_rpc_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/network/fbs/", ""),
+    ConvInfo.new('pokemon_engine/network/network_script_data_component.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/network/", ""),
+    ConvInfo.new('pokemon_engine/network/network_script_data_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/network/fbs/", ""),
+
+    ConvInfo.new('pokemon_engine/network/network_event_trigger_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/network/fbs/", ""),
+    ConvInfo.new('pokemon_engine/network/network_event_trigger_component.fbs', :cs, "#{CsprojDirectory}/pokemon_engine/network/", ""),
+
+    # pokemon engine flatbuffers_data
+    ConvInfo.new('pokemon_engine/flatbuffers_data/flatbuffers_data_component.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/flatbuffers_data/", ""),
+    ConvInfo.new('pokemon_engine/flatbuffers_data/flatbuffers_data_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/flatbuffers_data/fbs/", ""),
+
+    # pokemon engine field
+    ConvInfo.new('pokemon_engine/field/receive_wind_spring_bone_component.fbs', :cs_gf, "#{CsprojDirectory}/pokemon_engine/field/", ""),
+    ConvInfo.new('pokemon_engine/field/receive_wind_spring_bone_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/field/fbs/", ""),
+    ConvInfo.new('pokemon_engine/field/ambient_wind_component.fbs', :cs, "#{CsprojDirectory}/pokemon_engine/field/", ""),
+    ConvInfo.new('pokemon_engine/field/ambient_wind_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/field/fbs/", ""),
+    ConvInfo.new('pokemon_engine/field/weather_effect.fbs', :cs, "#{CsprojDirectory}/pokemon_engine/field/", ""),
+    ConvInfo.new('pokemon_engine/field/weather_effect.fbs', :cpp, "#{PokemonEngineDirectory}/pe/field/fbs/", ""),
+    ConvInfo.new('pokemon_engine/field/light_for_weather.fbs', :cs, "#{CsprojDirectory}/pokemon_engine/field/", ""),
+    ConvInfo.new('pokemon_engine/field/light_for_weather.fbs', :cpp, "#{PokemonEngineDirectory}/pe/field/fbs/", ""),
+    ConvInfo.new('pokemon_engine/field/weather_event_trigger.fbs', :cs, "#{CsprojDirectory}/pokemon_engine/field/", ""),
+    ConvInfo.new('pokemon_engine/field/weather_event_trigger.fbs', :cpp, "#{PokemonEngineDirectory}/pe/field/fbs/", ""),
+    # pokemon engine gfx
+    ConvInfo.new('pokemon_engine/gfx/off_screen_component.fbs', :cs, "#{CsprojDirectory}/pokemon_engine/gfx/", ""),
+    ConvInfo.new('pokemon_engine/gfx/off_screen_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/gfx/", ""),
+    # pokemon engine animation
+    ConvInfo.new('pokemon_engine/anm/animation_container_component.fbs', :cs, "#{CsprojDirectory}/pokemon_engine/anm/", ""),
+    ConvInfo.new('pokemon_engine/anm/animation_container_component.fbs', :cpp, "#{PokemonEngineDirectory}/pe/anm/", ""),
+
+    # gnpt
+    ConvInfo.new('include/gnpt/types.fbs', :cs, GnptCsprojDirectory, ""),
+    ConvInfo.new('include/gnpt/types.fbs', :cpp, GnptDirectory, ""),
+    ConvInfo.new('include/gnpt/gnpt.fbs', :cs, GnptCsprojDirectory, ""),
+    ConvInfo.new('include/gnpt/gnpt.fbs', :cpp, GnptDirectory, ""),
+
+    # ScriptDebugger
+    ConvInfo.new('host_tools/ScriptDebugger/sdp_common.fbs', :cs, ScriptDebuggerCsprojDirectory, ""),
+    ConvInfo.new('host_tools/ScriptDebugger/sdp_common.fbs', :cpp, ScriptDebuggerCppDirectory, ""),
+    ConvInfo.new('host_tools/ScriptDebugger/message_to_debugger.fbs', :cs, ScriptDebuggerCsprojDirectory, ""),
+    ConvInfo.new('host_tools/ScriptDebugger/message_to_debugger.fbs', :cpp, ScriptDebuggerCppDirectory, ""),
+    ConvInfo.new('host_tools/ScriptDebugger/message_to_runtime.fbs', :cs, ScriptDebuggerCsprojDirectory, ""),
+    ConvInfo.new('host_tools/ScriptDebugger/message_to_runtime.fbs', :cpp, ScriptDebuggerCppDirectory, ""),
+]
+
+fbs_conv convInfoList
